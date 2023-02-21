@@ -47,7 +47,7 @@ export const LevelVocabularyView = memo(function LevelVocabularyView({
   return (
     contentId?.id && (
       <div>
-        <Grid noScroll items={items} gridStyle />
+        <Grid noScroll items={items} />
       </div>
     )
   );
