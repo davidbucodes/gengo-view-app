@@ -10,7 +10,7 @@ export function InfoNavigationView({
     contentId && (
       <div>
         <Styles.Header>Navigation</Styles.Header>
-        <Styles.Line>Navigation is enabled.</Styles.Line>
+        <Styles.Line>Navigation is enabled. (Not implemented yet)</Styles.Line>
       </div>
     )
   );

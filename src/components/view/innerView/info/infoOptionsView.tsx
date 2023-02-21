@@ -10,7 +10,7 @@ export function InfoOptionsView({
     contentId && (
       <div>
         <Styles.Header>Options</Styles.Header>
-        <Styles.Line>There are options.</Styles.Line>
+        <Styles.Line>There are options. (Not implemented yet)</Styles.Line>
       </div>
     )
   );
