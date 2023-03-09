@@ -42,7 +42,7 @@ const config: Configuration = {
   },
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "docs"),
   },
   plugins: [
     ...webpackBasePlugins,
@@ -50,7 +50,7 @@ const config: Configuration = {
       patterns: [
         {
           from: "./public",
-          to: "public",
+          to: ".",
         },
       ],
     }),

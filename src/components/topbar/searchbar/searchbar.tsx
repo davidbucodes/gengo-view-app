@@ -28,7 +28,6 @@ export function Searchbar() {
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       Database.termsIndices.searchText(searchText).then(results => {
-        console.log(results);
         const contentIds = searchResultsToContentIds(results);
         setSearchResults(contentIds.slice(0, 20));
         setSearchResultsLength(contentIds.length);
