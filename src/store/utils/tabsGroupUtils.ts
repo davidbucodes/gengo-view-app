@@ -124,9 +124,10 @@ export namespace TabsGroupUtils {
   }
 
   export function getTabIndexAtGroup(state: SliceState, tab: TabModel) {
-    return state.tabGroups[tab.tabGroupId].openTabs.findIndex(
-      tabGroupTab => tabGroupTab === tab
+    const index = state.tabGroups[tab.tabGroupId].openTabs.findIndex(
+      tabGroupTab => tabGroupTab.id === tab.id
     );
+    return index;
   }
 
   export function removeOtherTabsAtGroup(
@@ -187,11 +188,11 @@ export namespace TabsGroupUtils {
     const tabIndex = getTabIndexAtGroup(state, tab);
 
     tabGroup.openTabs.forEach((groupTab, index) => {
-      if (side === "right" && index > tabIndex) {
+      if (side === "right" && index > tabIndex && !groupTab.isPinned) {
         removeTabFromGroup(state, groupTab);
       }
 
-      if (side === "left" && index < tabIndex) {
+      if (side === "left" && index < tabIndex && !groupTab.isPinned) {
         removeTabFromGroup(state, groupTab);
       }
     });
