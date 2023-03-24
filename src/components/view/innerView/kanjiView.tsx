@@ -3,11 +3,11 @@ import {
   Database,
   IndexSearchResult,
   KanjiDocument,
-  SentenceDocument,
 } from "@gengo-view/database";
 import { useEffect, useState } from "react";
 import { KanjiSvg } from "../../common/svg/svg";
 import { ContentId } from "../contentId";
+import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
 
 export function KanjiView({
@@ -16,25 +16,17 @@ export function KanjiView({
   contentId: ContentId & { type: "kanji" };
 }) {
   const [kanji, setKanji] = useState(null as IndexSearchResult<KanjiDocument>);
-  const [sentences, setSentences] = useState(
-    [] as IndexSearchResult<SentenceDocument>[]
-  );
+
   useEffect(() => {
     if (contentId.dbIndex === "kanji") {
       const kanjiResult = Database.indices.kanjiIndex.get(contentId.dbId);
       setKanji(kanjiResult);
-      (async () => {
-        const sentencesResult = await Database.indices.sentenceIndex.searchText(
-          kanjiResult.kanji
-        );
-        setSentences(sentencesResult);
-      })();
     }
   }, [contentId]);
 
   return (
     kanji && (
-      <div>
+      <Styles.InnerView>
         <Styles.Line style={{ float: "left", marginRight: 15 }}>
           <KanjiSvg kanji={kanji.kanji} />
         </Styles.Line>
@@ -53,12 +45,12 @@ export function KanjiView({
         <Styles.Line>
           <b>Meaning:</b> {kanji.meaning?.join(", ")}
         </Styles.Line>
-        <Styles.Line>
-          {sentences.slice(0, 20).map(sentence => (
-            <li key={sentence._id}>{sentence.j}</li>
-          ))}
-        </Styles.Line>
-      </div>
+
+        <ContentReferences
+          contentId={contentId}
+          indexNames={["sentence", "vocabulary"]}
+        />
+      </Styles.InnerView>
     )
   );
 }

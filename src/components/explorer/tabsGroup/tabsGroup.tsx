@@ -103,7 +103,6 @@ export function TabsGroup<T>({
             const result = dispatch(
               moveDraggedTabToNewGroup({ newTabGroupId })
             );
-            console.log(result);
             setTimeout(() => {
               onOpenGroup({
                 groupId: tabGroupId,

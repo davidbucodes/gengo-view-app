@@ -24,9 +24,17 @@ export function SearchResults({
     state => state.config.closeSearchResultsOnPopupInteraction
   );
 
-  function onResultClick(result: ContentId) {
-    dispatch(openTab(result));
-    closePopupIfNeeded();
+  function onResultClick(
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    result: ContentId
+  ) {
+    console.log(e.button);
+    if (e.button === 1) {
+      dispatch(openTab(result));
+    } else if (e.button === 0) {
+      dispatch(openTab(result));
+      closePopupIfNeeded();
+    }
   }
 
   function closePopupIfNeeded() {
@@ -48,9 +56,8 @@ export function SearchResults({
       )}
       {displayedResults.map((result, index) => (
         <Styles.SearchResult
-          tabIndex={1}
           key={result.id}
-          onClick={() => onResultClick(result)}
+          onMouseDown={e => onResultClick(e, result)}
         >
           <ContentIdBadge tabContentType={result.type} />
           <Styles.SearchResultText>{result.label}</Styles.SearchResultText>

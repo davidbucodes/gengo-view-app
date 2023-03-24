@@ -15,6 +15,13 @@ export namespace Styles {
     overflow-x: auto;
     ${props => (props.isDisplayed ? "" : "display: none;")}
   `;
+
+  export const InnerView = styled.div`
+    flex-grow: 1;
+    padding-bottom: 30px;
+    overflow-y: auto;
+  `;
+
   export const Header = styled.div`
     line-height: ${fontSizes.larger};
     font-size: ${fontSizes.large};
