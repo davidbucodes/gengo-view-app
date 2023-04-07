@@ -5,6 +5,7 @@ import {
   SentenceDocument,
   VocabularyDocument,
 } from "@gengo-view/database";
+import { meanBy, sortBy } from "lodash";
 import { useEffect, useState } from "react";
 import { ContentId } from "../contentId";
 import { Section } from "./section";
@@ -41,7 +42,9 @@ export function ContentReferences({
       (async () => {
         const vocabularyResult =
           await Database.indices.vocabularyIndex.searchText(contentId.label);
-        setVocabulary(vocabularyResult);
+        setVocabulary(
+          sortBy(vocabularyResult, vocab => meanBy(vocab.display, "length"))
+        );
       })();
     }
   }, [contentId, indexNames]);
