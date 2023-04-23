@@ -4,6 +4,8 @@ Improvements:
 
 - improve all views, implement unimplemented
 - kanji search page / draw area
+- export group/all groups/tab to CSV
+- keyboard shortcuts
 
 Features:
 
