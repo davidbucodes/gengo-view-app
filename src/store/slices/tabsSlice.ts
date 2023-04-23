@@ -16,7 +16,7 @@ export const defaultAppGroupId = generateId();
 
 const getInitialState = (): SliceState => {
   const contentId: ContentId = {
-    type: "info",
+    type: "system",
     id: SystemContentIds.Welcome,
     label: SystemContentIds.Welcome,
   };

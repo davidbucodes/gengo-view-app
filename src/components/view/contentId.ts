@@ -16,7 +16,7 @@ export type ContentId =
   | {
       id: SystemContentIds;
       label: string;
-      type: "info";
+      type: "system";
     }
   | {
       id: JlptLevel;

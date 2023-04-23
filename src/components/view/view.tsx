@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setActiveTab } from "../../store/slices/tabsSlice";
 import { ContentId } from "./contentId";
-import { InfoView } from "./innerView/info/infoView";
 import { KanjiView } from "./innerView/kanjiView";
 import { LevelKanjiView } from "./innerView/levelKanjiView";
 import { LevelVocabularyView } from "./innerView/levelVocabularyView";
 import { NameView } from "./innerView/nameView";
 import { SearchView } from "./innerView/searchView";
+import { SystemView } from "./innerView/system/systemView";
 import { VocabularyView } from "./innerView/vocabularyView";
 import { Styles } from "./style";
 
@@ -67,8 +67,10 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
                 }
               />
             )}
-            {contentId?.type === "info" && (
-              <InfoView contentId={contentId as ContentId & { type: "info" }} />
+            {contentId?.type === "system" && (
+              <SystemView
+                contentId={contentId as ContentId & { type: "system" }}
+              />
             )}
             {contentId?.type === "search" && (
               <SearchView

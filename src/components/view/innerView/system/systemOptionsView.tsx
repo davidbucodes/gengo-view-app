@@ -1,10 +1,10 @@
 import { ContentId } from "../../contentId";
 import { Styles } from "../../style";
 
-export function InfoOptionsView({
+export function SystemOptionsView({
   contentId,
 }: {
-  contentId: ContentId & { type: "info" };
+  contentId: ContentId & { type: "system" };
 }) {
   return (
     contentId && (

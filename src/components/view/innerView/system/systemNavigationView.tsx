@@ -1,16 +1,16 @@
 import { ContentId } from "../../contentId";
 import { Styles } from "../../style";
 
-export function InfoNavigationView({
+export function SystemNavigationView({
   contentId,
 }: {
-  contentId: ContentId & { type: "info" };
+  contentId: ContentId & { type: "system" };
 }) {
   return (
     contentId && (
       <div>
         <Styles.Header>Navigation</Styles.Header>
-        <Styles.Line>Navigation info page (Not implemented yet)</Styles.Line>
+        <Styles.Line>Navigation system page (Not implemented yet)</Styles.Line>
       </div>
     )
   );
