@@ -16,10 +16,9 @@ export function VocabularyView({
     null as IndexSearchResult<VocabularyDocument>
   );
   useEffect(() => {
-    if (contentId.dbIndex === "vocabulary") {
-      const vocabResult = Database.indices.vocabularyIndex.get(contentId.dbId);
-      setVocab(vocabResult);
-    }
+    const vocabResult =
+      Database.getById<IndexSearchResult<VocabularyDocument>>(contentId);
+    setVocab(vocabResult);
   }, [contentId]);
 
   return (

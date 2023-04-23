@@ -17,10 +17,9 @@ export function NameView({
   const [name, setName] = useState(null as IndexSearchResult<NameDocument>);
 
   useEffect(() => {
-    if (contentId.dbIndex === "name") {
-      const nameResult = Database.indices.nameIndex.get(contentId.dbId);
-      setName(nameResult);
-    }
+    const nameResult =
+      Database.getById<IndexSearchResult<NameDocument>>(contentId);
+    setName(nameResult);
   }, []);
 
   return (

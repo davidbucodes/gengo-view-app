@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fontSizes } from "../../theme";
+import { colors, fontSizes } from "../../theme";
 
 export namespace Styles {
   export const View = styled.div<{ isDisplayed: boolean }>`
@@ -34,5 +34,15 @@ export namespace Styles {
     font-size: ${fontSizes.medium};
     vertical-align: center;
     padding-bottom: ${fontSizes.tiny};
+  `;
+
+  export const CSVPreview = styled.pre`
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 30vh;
+    overflow-y: scroll;
+    border: ${colors.backgroundLight4} 1px solid;
+    border-radius: 10px;
+    padding: 10px;
   `;
 }

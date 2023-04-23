@@ -5,6 +5,7 @@ export const enum SystemContentIds {
   Welcome = "Welcome to GengoView!",
   Options = "Options",
   NavigationEfficiency = "Navigation Efficiency",
+  Export = "Export",
 }
 
 export type ContentId =

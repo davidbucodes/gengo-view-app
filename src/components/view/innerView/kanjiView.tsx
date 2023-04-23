@@ -18,10 +18,9 @@ export function KanjiView({
   const [kanji, setKanji] = useState(null as IndexSearchResult<KanjiDocument>);
 
   useEffect(() => {
-    if (contentId.dbIndex === "kanji") {
-      const kanjiResult = Database.indices.kanjiIndex.get(contentId.dbId);
-      setKanji(kanjiResult);
-    }
+    const kanjiResult =
+      Database.getById<IndexSearchResult<KanjiDocument>>(contentId);
+    setKanji(kanjiResult);
   }, [contentId]);
 
   return (

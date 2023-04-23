@@ -12,6 +12,7 @@ export function NavigationMenu(): JSX.Element {
     ["Navigation Efficiency", SystemContentIds.NavigationEfficiency],
     ["Options", SystemContentIds.Options],
     ["About", SystemContentIds.About],
+    ["Export", SystemContentIds.Export],
   ];
 
   return (

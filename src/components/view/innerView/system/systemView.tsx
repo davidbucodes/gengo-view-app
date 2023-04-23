@@ -1,5 +1,6 @@
 import { ContentId, SystemContentIds } from "../../contentId";
 import { SystemAboutView } from "./systemAboutView";
+import { SystemExportView } from "./systemExport";
 import { SystemNavigationView } from "./systemNavigationView";
 import { SystemOptionsView } from "./systemOptionsView";
 import { SystemWelcomeView } from "./systemWelcomeView";
@@ -18,5 +19,7 @@ export function SystemView({
       return <SystemOptionsView contentId={contentId} />;
     case SystemContentIds.Welcome:
       return <SystemWelcomeView contentId={contentId} />;
+    case SystemContentIds.Export:
+      return <SystemExportView contentId={contentId} />;
   }
 }
