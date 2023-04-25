@@ -2,10 +2,13 @@ import {
   Database,
   IndexName,
   IndexSearchResult,
+  KanjiDocument,
+  NameDocument,
   SentenceDocument,
   VocabularyDocument,
+  isKanjiRegexp,
 } from "@gengo-view/database";
-import { meanBy, sortBy } from "lodash";
+import { meanBy, sortBy, uniq } from "lodash";
 import { useEffect, useState } from "react";
 import { ContentId } from "../contentId";
 import { Section } from "./section";
@@ -27,8 +30,23 @@ export function ContentReferences({
     useState<IndexSearchResult<SentenceDocument>[]>(null);
   const [vocabulary, setVocabulary] =
     useState<IndexSearchResult<VocabularyDocument>[]>(null);
+  const [names, setNames] = useState<IndexSearchResult<NameDocument>[]>(null);
+  const [kanji, setKanji] = useState<IndexSearchResult<KanjiDocument>[]>(null);
 
   useEffect(() => {
+    if (indexNames.includes("kanji")) {
+      (async () => {
+        const kanjis = uniq([...contentId.label.match(isKanjiRegexp)]);
+        setKanji(
+          kanjis.map(kanji => {
+            const kanjiId = Database.kanjiToId[kanji];
+            if (Number.isInteger(kanjiId)) {
+              return Database.indices.kanjiIndex.get(kanjiId);
+            }
+          })
+        );
+      })();
+    }
     if (indexNames.includes("sentence")) {
       (async () => {
         const sentencesResult = await Database.indices.sentenceIndex.searchText(
@@ -46,10 +64,30 @@ export function ContentReferences({
         );
       })();
     }
+    if (indexNames.includes("name")) {
+      (async () => {
+        const nameResult = await Database.indices.nameIndex.searchText(
+          contentId.label
+        );
+        setNames(sortBy(nameResult, name => meanBy(name.d, "length")));
+      })();
+    }
   }, [contentId, indexNames]);
 
   return (
     <div>
+      {kanji && (
+        <Section
+          title={indexNameToTitle["kanji"]}
+          items={kanji}
+          itemsRenderer={kanji => (
+            <li key={kanji._id}>
+              {kanji.kanji}: {kanji.meaning.join(", ")}
+            </li>
+          )}
+          itemsCountAtPage={10}
+        />
+      )}
       {vocabulary && (
         <Section
           title={indexNameToTitle["vocabulary"]}
@@ -76,6 +114,22 @@ export function ContentReferences({
                 {sentence.j}
                 <rt>{sentence.e}</rt>
               </ruby>
+            </li>
+          )}
+          itemsCountAtPage={10}
+        />
+      )}
+      {names && (
+        <Section
+          title={indexNameToTitle["name"]}
+          items={names}
+          itemsRenderer={name => (
+            <li key={name._id}>
+              <ruby>
+                {name.n}
+                <rt>{name.r}</rt>
+              </ruby>
+              : {name.d}
             </li>
           )}
           itemsCountAtPage={10}

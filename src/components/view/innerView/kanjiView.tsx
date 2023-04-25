@@ -17,7 +17,12 @@ export function KanjiView({
   contentId: ContentId & { type: "kanji" };
 }) {
   const [kanji, setKanji] = useState(null as IndexSearchResult<KanjiDocument>);
-  const [indexNames] = useState<IndexName[]>(["sentence", "vocabulary"]);
+  const [indexNames] = useState<IndexName[]>([
+    "sentence",
+    "vocabulary",
+    "name",
+    "kanji",
+  ]);
 
   useEffect(() => {
     const kanjiResult =
