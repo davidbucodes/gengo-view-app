@@ -16,7 +16,6 @@ const indexNameToTitle: Record<IndexName, string> = {
   kanji: "Kanji",
   sentence: "Sentences",
 };
-
 export function ContentReferences({
   contentId,
   indexNames,

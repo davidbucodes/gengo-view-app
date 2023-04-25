@@ -1,6 +1,7 @@
 // import { kanjis } from "../../database/kanji/kanjiDatabase";
 import {
   Database,
+  IndexName,
   IndexSearchResult,
   KanjiDocument,
 } from "@gengo-view/database";
@@ -16,6 +17,7 @@ export function KanjiView({
   contentId: ContentId & { type: "kanji" };
 }) {
   const [kanji, setKanji] = useState(null as IndexSearchResult<KanjiDocument>);
+  const [indexNames] = useState<IndexName[]>(["sentence", "vocabulary"]);
 
   useEffect(() => {
     const kanjiResult =
@@ -45,10 +47,7 @@ export function KanjiView({
           <b>Meaning:</b> {kanji.meaning?.join(", ")}
         </Styles.Line>
 
-        <ContentReferences
-          contentId={contentId}
-          indexNames={["sentence", "vocabulary"]}
-        />
+        <ContentReferences contentId={contentId} indexNames={indexNames} />
       </Styles.InnerView>
     )
   );
