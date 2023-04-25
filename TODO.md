@@ -2,10 +2,8 @@
 
 Improvements:
 
-- improve all views, implement unimplemented
 - kanji search page / draw area
 - keyboard shortcuts
-- fix vocab scroll bug
 
 Features:
 
