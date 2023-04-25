@@ -4,6 +4,8 @@ Improvements:
 
 - kanji search page / draw area
 - keyboard shortcuts
+- content reference search exact term
+- kanji without image - replacing text styling
 
 Features:
 

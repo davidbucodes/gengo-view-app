@@ -6,6 +6,7 @@ export const enum SystemContentIds {
   Options = "Options",
   NavigationEfficiency = "Navigation Efficiency",
   Export = "Export",
+  KanjiSearch = "Kanji Search",
 }
 
 export type ContentId =

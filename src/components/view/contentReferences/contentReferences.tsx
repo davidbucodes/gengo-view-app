@@ -84,7 +84,8 @@ export function ContentReferences({
           items={kanji}
           itemsRenderer={kanji => (
             <li key={kanji._id}>
-              {kanji.kanji}: {kanji.meaning.join(", ")}
+              {kanji.kanji}
+              {kanji.meaning ? ": " + kanji.meaning?.join(", ") : ""}
             </li>
           )}
           itemsCountAtPage={10}

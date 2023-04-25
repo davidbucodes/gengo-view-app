@@ -1,6 +1,7 @@
 import { ContentId, SystemContentIds } from "../../contentId";
 import { SystemAboutView } from "./systemAboutView";
 import { SystemExportView } from "./systemExport";
+import { SystemKanjiSearchView } from "./systemKanjiSearch/systemKanjiSearch";
 import { SystemNavigationView } from "./systemNavigationView";
 import { SystemOptionsView } from "./systemOptionsView";
 import { SystemWelcomeView } from "./systemWelcomeView";
@@ -21,5 +22,7 @@ export function SystemView({
       return <SystemWelcomeView contentId={contentId} />;
     case SystemContentIds.Export:
       return <SystemExportView contentId={contentId} />;
+    case SystemContentIds.KanjiSearch:
+      return <SystemKanjiSearchView contentId={contentId} />;
   }
 }

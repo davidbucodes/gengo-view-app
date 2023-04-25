@@ -4,13 +4,15 @@ export function RadioGroup<T extends string>({
   options,
   selectedOption,
   onSelected,
+  direction = "column",
 }: {
   options: T[];
   selectedOption: T;
   onSelected: (selectedOption: T) => void;
+  direction?: "row" | "column";
 }) {
   return (
-    <Styles.RadioGroup>
+    <Styles.RadioGroup direction={direction}>
       {options.map(option => (
         <Styles.RadioButton key={option}>
           <Styles.RadioButtonInput

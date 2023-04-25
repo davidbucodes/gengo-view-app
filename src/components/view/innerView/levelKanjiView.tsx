@@ -53,7 +53,7 @@ export const LevelKanjiView = memo(function LevelKanjiView({
           flexGrow: 1,
         }}
       >
-        <Grid noScroll items={items} />
+        <Grid items={items} />
       </div>
     )
   );
