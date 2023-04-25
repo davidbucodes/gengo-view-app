@@ -29,6 +29,14 @@ export namespace Styles {
     padding-bottom: ${fontSizes.smaller};
     font-weight: bold;
   `;
+  export const Title = styled.div`
+    line-height: ${fontSizes.large};
+    font-size: ${fontSizes.medium};
+    vertical-align: center;
+    padding-top: ${fontSizes.tiny};
+    padding-bottom: ${fontSizes.medium};
+    font-weight: bold;
+  `;
   export const Line = styled.div`
     line-height: ${fontSizes.large};
     font-size: ${fontSizes.medium};
@@ -36,7 +44,7 @@ export namespace Styles {
     padding-bottom: ${fontSizes.tiny};
   `;
 
-  export const CSVPreview = styled.pre`
+  export const Code = styled.pre`
     white-space: pre-wrap;
     word-break: break-word;
     max-height: 30vh;
@@ -44,5 +52,6 @@ export namespace Styles {
     border: ${colors.backgroundLight4} 1px solid;
     border-radius: 10px;
     padding: 10px;
+    margin: 0;
   `;
 }

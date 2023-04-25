@@ -1,6 +1,6 @@
 import { Database, IndexName } from "@gengo-view/database";
 import { uniq } from "lodash";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../../../store/hooks";
 import { Button } from "../../../common/button/button";
 import { CheckboxGroup } from "../../../common/checkboxGroup/checkboxGroup";
@@ -24,6 +24,8 @@ export function SystemExportView({
   >([]);
   const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
   const [columns, setColumns] = useState<string[]>([]);
+
+  const csvRef = useRef<HTMLPreElement>();
 
   useEffect(() => {
     const exportableTabs = Object.values(tabGroups).reduce(
@@ -56,16 +58,44 @@ export function SystemExportView({
       exportableTabs
         .map(tab =>
           selectedColumns
-            .map(
-              column =>
-                (tab[column] || "").toString().replaceAll(",", ";") || ""
-            )
+            .map(column => {
+              const content = tab[column];
+              if (Array.isArray(content)) {
+                return `"${content.join("\n")}"`;
+              }
+              return (content || "").toString().replaceAll(",", " | ") || "";
+            })
             .join(",")
         )
         .join("\n");
 
     setExportableCsv(exportableCsv);
   }, [selectedColumns, exportableTabs]);
+
+  const copyCsv = () => {
+    navigator.clipboard.writeText(csvRef.current?.innerText);
+  };
+
+  const selectCsv = () => {
+    var range = document.createRange();
+    range.selectNodeContents(csvRef.current);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  };
+
+  const saveCsv = () => {
+    const BOM = "\uFEFF";
+    const blob = new Blob([BOM + exportableCsv], {
+      type: "text/csv;charset=utf-8",
+    });
+
+    const url = window.URL.createObjectURL(blob);
+    const linkElem = document.createElement("a");
+    linkElem.href = url;
+    linkElem.download = selectedTabType;
+    linkElem.click();
+  };
 
   return (
     contentId && (
@@ -89,24 +119,13 @@ export function SystemExportView({
           />
         </Styles.Line>
 
-        <Styles.Line>CSV preview:</Styles.Line>
-        <Styles.CSVPreview>{exportableCsv}</Styles.CSVPreview>
-        <Button
-          onClick={() => {
-            const BOM = "\uFEFF";
-            const blob = new Blob([BOM + exportableCsv], {
-              type: "text/csv;charset=utf-8",
-            });
-
-            const url = window.URL.createObjectURL(blob);
-            const linkElem = document.createElement("a");
-            linkElem.href = url;
-            linkElem.download = selectedTabType;
-            linkElem.click();
-          }}
-        >
-          Save CSV
-        </Button>
+        <Styles.Line>
+          CSV preview:
+          <Button onClick={selectCsv}>Select CSV</Button>
+          <Button onClick={copyCsv}>Copy CSV to clipboard</Button>
+          <Button onClick={saveCsv}>Save CSV</Button>
+        </Styles.Line>
+        <Styles.Code ref={csvRef}>{exportableCsv}</Styles.Code>
       </div>
     )
   );
