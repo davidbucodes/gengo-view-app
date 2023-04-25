@@ -46,7 +46,12 @@ export const LevelVocabularyView = memo(function LevelVocabularyView({
   }));
   return (
     contentId?.id && (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexGrow: 1,
+        }}
+      >
         <Grid noScroll items={items} />
       </div>
     )
