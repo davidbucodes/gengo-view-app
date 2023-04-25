@@ -50,7 +50,7 @@ export function ContentReferences({
     if (indexNames.includes("sentence")) {
       (async () => {
         const sentencesResult = await Database.indices.sentenceIndex.searchText(
-          contentId.label
+          contentId.label?.split(",")[0]
         );
         setSentences(sentencesResult);
       })();
@@ -58,7 +58,9 @@ export function ContentReferences({
     if (indexNames.includes("vocabulary")) {
       (async () => {
         const vocabularyResult =
-          await Database.indices.vocabularyIndex.searchText(contentId.label);
+          await Database.indices.vocabularyIndex.searchText(
+            contentId.label?.split(",")[0]
+          );
         setVocabulary(
           sortBy(vocabularyResult, vocab => meanBy(vocab.display, "length"))
         );
@@ -67,9 +69,9 @@ export function ContentReferences({
     if (indexNames.includes("name")) {
       (async () => {
         const nameResult = await Database.indices.nameIndex.searchText(
-          contentId.label
+          contentId.label?.split(",")[0]
         );
-        setNames(sortBy(nameResult, name => meanBy(name.d, "length")));
+        setNames(sortBy(nameResult, name => name.n.length));
       })();
     }
   }, [contentId, indexNames]);

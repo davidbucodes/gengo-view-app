@@ -1,5 +1,6 @@
 import {
   Database,
+  IndexName,
   IndexSearchResult,
   NameDocument,
   getReadableNameDocumentType,
@@ -7,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { Loader } from "../../common/loader/loader";
 import { ContentId } from "../contentId";
+import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
 
 export function NameView({
@@ -15,6 +17,12 @@ export function NameView({
   contentId: ContentId & { type: "name" };
 }) {
   const [name, setName] = useState(null as IndexSearchResult<NameDocument>);
+  const [indexNames] = useState<IndexName[]>([
+    "sentence",
+    "vocabulary",
+    "name",
+    "kanji",
+  ]);
 
   useEffect(() => {
     const nameResult =
@@ -24,7 +32,7 @@ export function NameView({
 
   return (
     name && (
-      <div>
+      <Styles.InnerView>
         <Loader isLoaded={Boolean(name)}>
           <Styles.Header>{name?.n}</Styles.Header>
           <div>
@@ -44,8 +52,10 @@ export function NameView({
               </Styles.Line>
             )}
           </div>
+
+          <ContentReferences contentId={contentId} indexNames={indexNames} />
         </Loader>
-      </div>
+      </Styles.InnerView>
     )
   );
 }

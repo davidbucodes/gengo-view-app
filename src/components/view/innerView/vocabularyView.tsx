@@ -1,10 +1,12 @@
 import {
   Database,
+  IndexName,
   IndexSearchResult,
   VocabularyDocument,
 } from "@gengo-view/database";
 import { useEffect, useState } from "react";
 import { ContentId } from "../contentId";
+import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
 
 export function VocabularyView({
@@ -15,6 +17,13 @@ export function VocabularyView({
   const [vocab, setVocab] = useState(
     null as IndexSearchResult<VocabularyDocument>
   );
+  const [indexNames] = useState<IndexName[]>([
+    "sentence",
+    "vocabulary",
+    "name",
+    "kanji",
+  ]);
+
   useEffect(() => {
     const vocabResult =
       Database.getById<IndexSearchResult<VocabularyDocument>>(contentId);
@@ -23,7 +32,7 @@ export function VocabularyView({
 
   return (
     vocab && (
-      <div>
+      <Styles.InnerView>
         <Styles.Header>{vocab.display.join(", ")}</Styles.Header>
         <div>
           {Boolean(vocab.jlpt) && (
@@ -53,7 +62,9 @@ export function VocabularyView({
             </Styles.Line>
           )}
         </div>
-      </div>
+
+        <ContentReferences contentId={contentId} indexNames={indexNames} />
+      </Styles.InnerView>
     )
   );
 }
