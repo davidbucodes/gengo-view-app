@@ -16,6 +16,7 @@ export const fontSizes = {
   tiny: "0.8rem",
   smaller: "1.15rem",
   small: "1.5rem",
+  mediumSmall: "1.75rem",
   medium: "2rem",
   large: "2.25rem",
   larger: "2.5rem",

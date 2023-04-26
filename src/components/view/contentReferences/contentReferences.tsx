@@ -83,10 +83,10 @@ export function ContentReferences({
           title={indexNameToTitle["kanji"]}
           items={kanji}
           itemsRenderer={kanji => (
-            <li key={kanji._id}>
-              {kanji.kanji}
-              {kanji.meaning ? ": " + kanji.meaning?.join(", ") : ""}
-            </li>
+            <tr key={kanji._id}>
+              <td>{kanji.kanji}</td>
+              <td>{kanji.meaning ? kanji.meaning?.join(", ") : ""}</td>
+            </tr>
           )}
           itemsCountAtPage={10}
         />
@@ -96,13 +96,15 @@ export function ContentReferences({
           title={indexNameToTitle["vocabulary"]}
           items={vocabulary}
           itemsRenderer={vocab => (
-            <li key={vocab._id}>
-              <ruby>
-                {vocab.display.join(", ")}
-                <rt>{vocab.reading.join(", ")}</rt>
-              </ruby>
-              : {vocab.meaning.join(", ")}
-            </li>
+            <tr key={vocab._id}>
+              <td>
+                <ruby>
+                  {vocab.display.join(", ")}
+                  <rt>{vocab.reading.join(", ")}</rt>
+                </ruby>
+              </td>
+              <td>{vocab.meaning.join(", ")}</td>
+            </tr>
           )}
           itemsCountAtPage={10}
         />
@@ -112,12 +114,14 @@ export function ContentReferences({
           title={indexNameToTitle["sentence"]}
           items={sentences}
           itemsRenderer={sentence => (
-            <li key={sentence._id}>
-              <ruby>
-                {sentence.j}
-                <rt>{sentence.e}</rt>
-              </ruby>
-            </li>
+            <tr key={sentence._id}>
+              <td>
+                <ruby>
+                  {sentence.j}
+                  <rt>{sentence.e}</rt>
+                </ruby>
+              </td>
+            </tr>
           )}
           itemsCountAtPage={10}
         />
@@ -127,13 +131,15 @@ export function ContentReferences({
           title={indexNameToTitle["name"]}
           items={names}
           itemsRenderer={name => (
-            <li key={name._id}>
-              <ruby>
-                {name.n}
-                <rt>{name.r}</rt>
-              </ruby>
-              : {name.d}
-            </li>
+            <tr key={name._id}>
+              <td>
+                <ruby>
+                  {name.n}
+                  <rt>{name.r}</rt>
+                </ruby>
+              </td>
+              <td>{name.d}</td>
+            </tr>
           )}
           itemsCountAtPage={10}
         />

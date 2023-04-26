@@ -37,7 +37,9 @@ cursor: {
     return (
       <Styles.Section>
         <Styles.Title>{title}</Styles.Title>
-        <Styles.Info>No {title.toLowerCase()} available</Styles.Info>
+        <Styles.Footer>
+          <Styles.Info>No {title.toLowerCase()} available</Styles.Info>
+        </Styles.Footer>
       </Styles.Section>
     );
   }
@@ -45,32 +47,36 @@ cursor: {
   return (
     <Styles.Section>
       <Styles.Title>{title}</Styles.Title>
-      {items?.slice(0, itemsCountToRender).map(itemsRenderer)}
-      <Styles.Info>
-        Showing {itemsCountToRender} of {items?.length || 0}{" "}
-        {title.toLowerCase()}
-      </Styles.Info>
-      <Styles.Links>
-        {isNextPageAvailable && (
-          <Styles.Link
-            onClick={() => {
-              setPageNumber(pageNumber + 1);
-            }}
-          >
-            Show more
-          </Styles.Link>
-        )}
-        {isNextPageAvailable && isPrevPageAvailable && " | "}
-        {isPrevPageAvailable && (
-          <Styles.Link
-            onClick={() => {
-              setPageNumber(pageNumber - 1);
-            }}
-          >
-            Show less
-          </Styles.Link>
-        )}
-      </Styles.Links>
+      <Styles.Table border={1} cellPadding={15}>
+        {items?.slice(0, itemsCountToRender).map(itemsRenderer)}
+      </Styles.Table>
+      <Styles.Footer>
+        <Styles.Info>
+          Showing {itemsCountToRender} of {items?.length || 0}{" "}
+          {title.toLowerCase()}
+        </Styles.Info>
+        <Styles.Links>
+          {isNextPageAvailable && (
+            <Styles.Link
+              onClick={() => {
+                setPageNumber(pageNumber + 1);
+              }}
+            >
+              Show more
+            </Styles.Link>
+          )}
+          {isNextPageAvailable && isPrevPageAvailable && " | "}
+          {isPrevPageAvailable && (
+            <Styles.Link
+              onClick={() => {
+                setPageNumber(pageNumber - 1);
+              }}
+            >
+              Show less
+            </Styles.Link>
+          )}
+        </Styles.Links>
+      </Styles.Footer>
     </Styles.Section>
   );
 }

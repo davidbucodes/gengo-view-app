@@ -8,9 +8,11 @@ export namespace Styles {
   `;
 
   export const SvgLoadingError = styled.span`
-    background-color: ${colors.backgroundGrey};
+    background-color: ${colors.backgroundLight3};
     font-size: ${fontSizes.small};
     border-radius: 10px;
     padding: 5px;
+    max-width: 150px;
+    display: inline-block;
   `;
 }

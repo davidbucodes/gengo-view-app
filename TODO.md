@@ -6,6 +6,7 @@ Improvements:
 - keyboard shortcuts
 - content reference search exact term
 - kanji without image - replacing text styling
+- fix export cell start with - for example 出　漢字　訓読み
 
 Features:
 

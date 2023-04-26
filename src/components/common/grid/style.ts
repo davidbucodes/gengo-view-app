@@ -51,10 +51,14 @@ export namespace Styles {
         visibility: visible;
       }
       
+    &:nth-child(-n+40)::after {
+      top: 100%;
+    }
+    
     &::after {
-    user-select: none;
-    visibility: hidden;
-      display: block;
+      user-select: none;
+      visibility: hidden;
+      display: table;
       content: attr(data-tooltip);
       position: absolute;
       pointer-events: none;
