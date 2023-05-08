@@ -119,10 +119,8 @@ export function ContentReferences({
           itemsRenderer={sentence => (
             <tr key={sentence._id}>
               <td>
-                <ruby>
-                  {sentence.j}
-                  <rt>{sentence.e}</rt>
-                </ruby>
+                <div>{sentence.j}</div>
+                <div>{sentence.e}</div>
               </td>
             </tr>
           )}

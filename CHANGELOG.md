@@ -5,3 +5,7 @@
 ### Added
 
 - 📎 **Content reference links at click:** Kanji, names and vocabulary at content references are now clickable
+
+### Fixed
+
+- **Fix stretched sentences with furigana:** Sentences are now presented as two lined text instead of using furigana.

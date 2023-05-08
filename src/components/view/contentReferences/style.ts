@@ -44,7 +44,6 @@ export namespace Styles {
     }
     td:first-child {
       width: 8em;
-      word-break: keep-all;
     }
   `;
 }
