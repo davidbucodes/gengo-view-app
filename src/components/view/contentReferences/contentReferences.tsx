@@ -10,6 +10,7 @@ import {
 } from "@gengo-view/database";
 import { meanBy, sortBy, uniq } from "lodash";
 import { useEffect, useState } from "react";
+import { Link } from "../../common/link/link";
 import { ContentId } from "../contentId";
 import { Section } from "./section";
 
@@ -84,7 +85,9 @@ export function ContentReferences({
           items={kanji}
           itemsRenderer={kanji => (
             <tr key={kanji._id}>
-              <td>{kanji.kanji}</td>
+              <td>
+                <Link searchResult={kanji}>{kanji.kanji}</Link>
+              </td>
               <td>{kanji.meaning ? kanji.meaning?.join(", ") : ""}</td>
             </tr>
           )}
@@ -99,7 +102,7 @@ export function ContentReferences({
             <tr key={vocab._id}>
               <td>
                 <ruby>
-                  {vocab.display.join(", ")}
+                  <Link searchResult={vocab}>{vocab.display.join(", ")}</Link>
                   <rt>{vocab.reading.join(", ")}</rt>
                 </ruby>
               </td>
@@ -134,7 +137,7 @@ export function ContentReferences({
             <tr key={name._id}>
               <td>
                 <ruby>
-                  {name.n}
+                  <Link searchResult={name}> {name.n}</Link>
                   <rt>{name.r}</rt>
                 </ruby>
               </td>

@@ -10,7 +10,6 @@ Improvements:
 - fix stretched sentences with furigana - example kuchibiru
 - maybe separate sentence furigana
 - improve query options
-- content reference links
 - name of csv file
 - force english search?
 - add csv summary if possible?
