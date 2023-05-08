@@ -7,6 +7,17 @@ Improvements:
 - content reference search exact term
 - kanji without image - replacing text styling
 - fix export cell start with - for example 出　漢字　訓読み
+- fix stretched sentences with furigana - example kuchibiru
+- maybe separate sentence furigana
+- improve query options
+- content reference links
+- name of csv file
+- force english search?
+- add csv summary if possible?
+- top bar width at phone
+- search page
+- drag to empty space at tabs bar
+- load exported sessions
 
 Features:
 
