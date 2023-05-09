@@ -1,4 +1,4 @@
-import { Database, IndexName } from "@gengo-view/database";
+import { Database, IndexName } from "@davidbucodes/gengo-view-database";
 import { uniq } from "lodash";
 import { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../../../store/hooks";

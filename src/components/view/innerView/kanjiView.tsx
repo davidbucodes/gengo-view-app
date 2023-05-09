@@ -4,7 +4,7 @@ import {
   IndexName,
   IndexSearchResult,
   KanjiDocument,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
 import { KanjiSvg } from "../../common/svg/svg";
 import { ContentId } from "../contentId";

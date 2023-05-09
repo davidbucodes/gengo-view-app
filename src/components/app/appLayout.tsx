@@ -1,4 +1,8 @@
-import { IndexSearchResult, Jlpt, KanjiDocument } from "@gengo-view/database";
+import {
+  IndexSearchResult,
+  Jlpt,
+  KanjiDocument,
+} from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { openTab, setDraggedContent } from "../../store/slices/tabsSlice";

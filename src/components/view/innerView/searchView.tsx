@@ -4,7 +4,7 @@ import {
   KanjiDocument,
   NameDocument,
   VocabularyDocument,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
 import { Loader } from "../../common/loader/loader";
 import { ContentId } from "../contentId";

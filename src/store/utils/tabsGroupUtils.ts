@@ -1,4 +1,4 @@
-import { IndexName } from "@gengo-view/database";
+import { IndexName } from "@davidbucodes/gengo-view-database";
 import { ContentId } from "../../components/view/contentId";
 import { SliceState } from "../slices/tabsSlice";
 import { generateId } from "./generateId";

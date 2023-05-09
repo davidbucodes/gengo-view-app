@@ -1,5 +1,5 @@
 {
-  "name": "@gengo-view/app",
+  "name": "@davidbucodes/gengo-view-app",
   "version": "1.0.0-beta",
   "description": "",
   "main": "index.js",
@@ -13,12 +13,15 @@
     "copy-indices": "RD /S /Q .\\public\\indices & xcopy .\\node_modules\\@gengo-view\\indices .\\public\\indices /EIRY & del .\\public\\indices\\package.json",
     "copy-kanji-svgs": "RD /S /Q .\\public\\kanjiSvgs & xcopy .\\node_modules\\@gengo-view\\kanji-svgs\\svgByKanji.json .\\public /EIRY",
     "format": "prettier -w **/*.ts **/*.tsx",
-    "link-dependencies": "npm link @gengo-view/database @gengo-view/indices @gengo-view/kanji-svgs"
+    "link-dependencies": "npm link @davidbucodes/gengo-view-database @davidbucodes/gengo-view-indices @davidbucodes/gengo-view-kanji-svgs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@davidbucodes/gengo-view-database": "^1.0.0",
+    "@davidbucodes/gengo-view-indices": "^1.0.0",
+    "@davidbucodes/gengo-view-kanji-svgs": "^1.0.0-beta1",
     "@mui/icons-material": "^5.10.16",
     "@reduxjs/toolkit": "^1.9.1",
     "lodash": "^4.17.21",

@@ -5,6 +5,8 @@
 ### Added
 
 - 📎 **Content reference links at click:** Kanji, names and vocabulary at content references are now clickable
+- Create NPM packages for inner requirements
+- Add GitHub pages CD pipeline
 
 ### Fixed
 

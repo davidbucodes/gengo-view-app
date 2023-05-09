@@ -1,4 +1,4 @@
-import { Database } from "@gengo-view/database";
+import { Database } from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../store/hooks";
 import { ContentId } from "../../view/contentId";

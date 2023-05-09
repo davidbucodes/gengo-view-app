@@ -3,7 +3,7 @@ import {
   KanjiDocument,
   NameDocument,
   VocabularyDocument,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { useAppDispatch } from "../../../store/hooks";
 import { openTab } from "../../../store/slices/tabsSlice";
 import { searchResultToContentId } from "../../topbar/searchbar/searchResultsToContentIds";

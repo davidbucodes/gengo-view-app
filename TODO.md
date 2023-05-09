@@ -7,15 +7,17 @@ Improvements:
 - content reference search exact term
 - kanji without image - replacing text styling
 - fix export cell start with - for example 出　漢字　訓読み
-- maybe separate sentence furigana
 - improve query options
 - name of csv file
 - force english search?
-- add csv summary if possible?
 - top bar width at phone
 - search page
 - drag to empty space at tabs bar
 - load exported sessions
+- convert top buttons to tabs at tab bar?
+- maybe section should contain the link for all every line?
+- add Storybook
+- add Jest
 
 Features:
 

@@ -3,7 +3,7 @@ import {
   KanjiDocument,
   NameDocument,
   VocabularyDocument,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { ContentId } from "../../view/contentId";
 
 export function searchResultToContentId(

@@ -2,7 +2,7 @@ import {
   Database,
   IndexSearchResult,
   KanjiDocument,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { range } from "lodash";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../../../store/hooks";

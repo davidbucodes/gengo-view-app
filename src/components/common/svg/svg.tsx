@@ -1,4 +1,4 @@
-import { SvgByKanji } from "@gengo-view/kanji-svgs";
+import { SvgByKanji } from "@davidbucodes/gengo-view-kanji-svgs";
 import { useEffect, useState } from "react";
 import { Loader } from "../loader/loader";
 import { Styles } from "./style";

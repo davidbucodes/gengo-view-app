@@ -1,5 +1,5 @@
-import { Database, Jlpt } from "@gengo-view/database";
-import { SvgByKanji } from "@gengo-view/kanji-svgs";
+import { Database, Jlpt } from "@davidbucodes/gengo-view-database";
+import { SvgByKanji } from "@davidbucodes/gengo-view-kanji-svgs";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {

@@ -1,4 +1,4 @@
-import { IndexName, JlptLevel } from "@gengo-view/database";
+import { IndexName, JlptLevel } from "@davidbucodes/gengo-view-database";
 
 export const enum SystemContentIds {
   About = "About",

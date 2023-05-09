@@ -7,7 +7,7 @@ import {
   SentenceDocument,
   VocabularyDocument,
   isKanjiRegexp,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { meanBy, sortBy, uniq } from "lodash";
 import { useEffect, useState } from "react";
 import { Link } from "../../common/link/link";

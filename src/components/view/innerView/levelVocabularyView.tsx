@@ -2,7 +2,7 @@ import {
   IndexSearchResult,
   Jlpt,
   VocabularyDocument,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { memo, useEffect, useState } from "react";
 import { useAppDispatch } from "../../../store/hooks";
 import { openTab, setDraggedContent } from "../../../store/slices/tabsSlice";

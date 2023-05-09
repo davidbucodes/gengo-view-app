@@ -1,4 +1,4 @@
-import { jlptLevels } from "@gengo-view/database";
+import { jlptLevels } from "@davidbucodes/gengo-view-database";
 import { TreeModel } from "../common/tree/tree";
 import { ContentId } from "../view/contentId";
 

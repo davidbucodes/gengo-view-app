@@ -3,7 +3,7 @@ import {
   IndexName,
   IndexSearchResult,
   VocabularyDocument,
-} from "@gengo-view/database";
+} from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
 import { ContentId } from "../contentId";
 import { ContentReferences } from "../contentReferences/contentReferences";
