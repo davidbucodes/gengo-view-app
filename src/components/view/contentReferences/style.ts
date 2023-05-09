@@ -39,6 +39,7 @@ export namespace Styles {
   export const Table = styled.table`
     border-collapse: collapse;
     flex-grow: 1;
+    font-weight: lighter;
     td {
       border: ${colors.backgroundLight3} 1px solid;
     }

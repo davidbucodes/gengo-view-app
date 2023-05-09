@@ -25,14 +25,14 @@ export namespace Styles {
   export const Header = styled.div`
     line-height: ${fontSizes.larger};
     font-size: ${fontSizes.large};
-    vertical-align: center;
+    vertical-align: middle;
     padding-bottom: ${fontSizes.smaller};
     font-weight: bold;
   `;
   export const Title = styled.div`
     line-height: ${fontSizes.large};
     font-size: ${fontSizes.medium};
-    vertical-align: center;
+    vertical-align: middle;
     padding-top: ${fontSizes.tiny};
     padding-bottom: ${fontSizes.medium};
     font-weight: bold;
@@ -40,7 +40,7 @@ export namespace Styles {
   export const Line = styled.div`
     line-height: ${fontSizes.large};
     font-size: ${fontSizes.medium};
-    vertical-align: center;
+    vertical-align: middle;
     padding-bottom: ${fontSizes.tiny};
   `;
 

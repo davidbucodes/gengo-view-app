@@ -15,7 +15,6 @@ Improvements:
 - drag to empty space at tabs bar
 - load exported sessions
 - convert top buttons to tabs at tab bar?
-- maybe section should contain the link for all every line?
 - add Storybook
 - add Jest
 
