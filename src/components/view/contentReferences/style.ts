@@ -43,7 +43,7 @@ export namespace Styles {
     td {
       border: ${colors.backgroundLight3} 1px solid;
     }
-    td:first-child {
+    td:not(:last-child) {
       width: 8em;
     }
   `;
