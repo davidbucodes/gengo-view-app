@@ -14,7 +14,6 @@ Improvements:
 - search page
 - drag to empty space at tabs bar
 - load exported sessions
-- convert top buttons to tabs at tab bar?
 - add Storybook
 - add Jest
 

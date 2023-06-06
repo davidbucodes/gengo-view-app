@@ -1,29 +1,60 @@
 import { jlptLevels } from "@davidbucodes/gengo-view-database";
 import { TreeModel } from "../common/tree/tree";
-import { ContentId } from "../view/contentId";
+import { ContentId, SystemContentIds } from "../view/contentId";
 
 export const sidebarTree: TreeModel<ContentId> = {
-  items: jlptLevels.map(level => {
-    return {
-      label: `N${level}`,
+  items: [
+    {
+      label: "Pages",
       items: [
         {
-          label: "Kanji",
+          label: "Welcome page",
           content: {
-            type: "level_kanji",
-            id: level,
-            label: `N${level} Kanji`,
-          } as ContentId,
+            label: "Welcome page",
+            type: "system",
+            id: SystemContentIds.Welcome,
+          },
         },
         {
-          label: "Vocabulary",
+          label: "Navigation",
           content: {
-            type: "level_vocabulary",
-            id: level,
-            label: `N${level} Vocabulary`,
-          } as ContentId,
+            label: "Navigation",
+            type: "system",
+            id: SystemContentIds.NavigationEfficiency,
+          },
+        },
+        {
+          label: "About",
+          content: {
+            label: "About",
+            type: "system",
+            id: SystemContentIds.About,
+          },
         },
       ],
-    };
-  }),
+    },
+    ...jlptLevels.map(level => {
+      return {
+        label: `JLPT N${level}`,
+        items: [
+          {
+            label: "Kanji",
+            content: {
+              type: "level_kanji",
+              id: level,
+              label: `N${level} Kanji`,
+            } as ContentId,
+          },
+          {
+            label: "Vocabulary",
+            content: {
+              type: "level_vocabulary",
+              id: level,
+              label: `N${level} Vocabulary`,
+            } as ContentId,
+          },
+        ],
+      };
+    }),
+  ],
 };

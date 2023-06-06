@@ -8,10 +8,7 @@ export function NavigationMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const buttons: [string, SystemContentIds][] = [
-    ["Welcome page", SystemContentIds.Welcome],
-    ["Navigation", SystemContentIds.NavigationEfficiency],
     ["Options", SystemContentIds.Options],
-    ["About", SystemContentIds.About],
     ["Export", SystemContentIds.Export],
     ["Kanji search", SystemContentIds.KanjiSearch],
   ];

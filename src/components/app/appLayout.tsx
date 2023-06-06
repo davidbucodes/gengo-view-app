@@ -31,7 +31,7 @@ export function AppLayout() {
     setKanjis(kanjis);
   }, []);
 
-  function onTreeItemSelect(treeItem: (typeof sidebarTree.items)[0]) {
+  function onTreeItemSelect(treeItem: (typeof sidebarTree.items)[number]) {
     dispatch(openTab(treeItem.content));
   }
 
@@ -80,7 +80,7 @@ export function AppLayout() {
       <Styles.Main>
         <Sidebar show={isLeftSidebarVisible} side={"left"}>
           <Tree
-            title={"JLPT Explorer"}
+            title={"Explorer"}
             treeRoot={sidebarTree}
             onSelect={onTreeItemSelect}
           />
