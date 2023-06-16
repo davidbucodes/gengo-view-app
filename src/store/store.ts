@@ -4,6 +4,8 @@ import contextMenu from "./slices/contextMenuSlice";
 import databaseLoadStatus from "./slices/databaseLoadStatusSlice";
 import tabsDisplay from "./slices/tabsDisplaySlice";
 import tabs from "./slices/tabsSlice";
+import keyboard from "./slices/keyboardSlice";
+import command from "./slices/commandSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +14,8 @@ const store = configureStore({
     config,
     contextMenu,
     databaseLoadStatus,
+    keyboard,
+    command,
   },
 });
 

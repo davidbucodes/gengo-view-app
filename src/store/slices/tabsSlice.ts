@@ -46,6 +46,7 @@ export const {
   openTab,
   moveDraggedTabToNewGroup,
   closeTab,
+  closeCurrentTab,
   closeOtherTabs,
   closeTabsToTheLeft,
   closeTabsToTheRight,

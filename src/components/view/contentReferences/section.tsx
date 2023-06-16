@@ -48,7 +48,9 @@ cursor: {
     <Styles.Section>
       <Styles.Title>{title}</Styles.Title>
       <Styles.Table border={1} cellPadding={15}>
-        {items?.slice(0, itemsCountToRender).map(itemsRenderer)}
+        <Styles.TableBody>
+          {items?.slice(0, itemsCountToRender).map(itemsRenderer)}
+        </Styles.TableBody>
       </Styles.Table>
       <Styles.Footer>
         <Styles.Info>

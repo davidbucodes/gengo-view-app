@@ -43,6 +43,20 @@ export namespace Styles {
     vertical-align: middle;
     padding-bottom: ${fontSizes.tiny};
   `;
+  export const KeyValueTable = styled.table`
+    border-collapse: collapse;
+    flex-grow: 1;
+    font-weight: lighter;
+
+    td:not(:last-child) {
+      width: 8em;
+    }
+  `;
+
+  export const KeyValueTableBody = styled.tbody``;
+  export const KeyValueRow = styled.tr``;
+  export const Key = styled.td``;
+  export const Value = styled.td``;
 
   export const Code = styled.pre`
     white-space: pre-wrap;

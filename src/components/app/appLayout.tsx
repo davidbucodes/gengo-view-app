@@ -4,8 +4,13 @@ import {
   KanjiDocument,
 } from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
-import { openTab, setDraggedContent } from "../../store/slices/tabsSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  closeAllGroups,
+  closeCurrentTab,
+  openTab,
+  setDraggedContent,
+} from "../../store/slices/tabsSlice";
 import { Grid } from "../common/grid/grid";
 import { GridItemModel } from "../common/grid/gridItem";
 import { Tree } from "../common/tree/tree";
@@ -16,20 +21,47 @@ import { ContentId } from "../view/contentId";
 import { Side } from "./side";
 import { sidebarTree } from "./sidebarTree";
 import { Styles } from "./style";
+import { pickCommand } from "../../store/slices/commandSlice";
+import { patchKeyboardConfig } from "../../store/slices/keyboardSlice";
+import { useKeyboardShortcuts } from "../../hooks/useKeyboardShourtcuts";
 
 export function AppLayout() {
   const dispatch = useAppDispatch();
   const [isRightSidebarVisible, setIsRightSidebarVisible] = useState(true);
   const [isLeftSidebarVisible, setIsLeftSidebarVisible] = useState(true);
 
+  const commandQueue = useAppSelector(state => state.command.commandQueue);
+
   const [kanjis, setKanjis] = useState(
     [] as IndexSearchResult<KanjiDocument>[]
   );
 
+  useKeyboardShortcuts();
+
   useEffect(() => {
     const kanjis = Jlpt.allKanji();
     setKanjis(kanjis);
+
+    dispatch(
+      patchKeyboardConfig({
+        config: {
+          KeyW: "Close current tab",
+          ShiftKeyW: "Close all groups",
+        },
+      })
+    );
   }, []);
+
+  useEffect(() => {
+    if (commandQueue.includes("Close current tab")) {
+      dispatch(pickCommand({ name: "Close current tab" }));
+      dispatch(closeCurrentTab());
+    }
+    if (commandQueue.includes("Close all groups")) {
+      dispatch(pickCommand({ name: "Close all groups" }));
+      dispatch(closeAllGroups());
+    }
+  }, [commandQueue]);
 
   function onTreeItemSelect(treeItem: (typeof sidebarTree.items)[number]) {
     dispatch(openTab(treeItem.content));

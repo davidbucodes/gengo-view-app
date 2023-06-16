@@ -40,6 +40,9 @@ export namespace Styles {
     border-collapse: collapse;
     flex-grow: 1;
     font-weight: lighter;
+  `;
+
+  export const TableBody = styled.tbody`
     td {
       border: ${colors.backgroundLight3} 1px solid;
     }

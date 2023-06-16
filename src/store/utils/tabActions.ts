@@ -134,6 +134,15 @@ export namespace TabActions {
     TabsGroupUtils.removeTabGroupIfEmpty(state, action.payload);
   };
 
+  export const closeCurrentTab = (state: SliceState) => {
+    const activeTabGroup = TabsGroupUtils.getActiveTabGroup(state);
+    if (activeTabGroup) {
+      const activeTab = TabsGroupUtils.getActiveTabByGroup(activeTabGroup);
+      TabsGroupUtils.removeTabFromGroup(state, activeTab);
+      TabsGroupUtils.removeTabGroupIfEmpty(state, activeTab);
+    }
+  };
+
   export const closeOtherTabs = (
     state: SliceState,
     action: PayloadAction<TabModel>
