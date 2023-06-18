@@ -78,9 +78,10 @@ export namespace TabActions {
     state: SliceState,
     action: PayloadAction<{
       tabGroupId: string;
+      setAsLast?: boolean;
     }>
   ) => {
-    const { tabGroupId } = action.payload;
+    const { tabGroupId, setAsLast } = action.payload;
     const { draggedTab } = state;
 
     if (!draggedTab) {
@@ -88,10 +89,15 @@ export namespace TabActions {
     }
     draggedTab.isPinned = false;
 
-    const activeTab = TabsGroupUtils.getActiveTabByGroup(
-      state.tabGroups[tabGroupId]
-    );
-    TabsGroupUtils.addTabAsideTab(state, activeTab, draggedTab, "after");
+    const tabGroup = state.tabGroups[tabGroupId];
+    const activeTab = TabsGroupUtils.getActiveTabByGroup(tabGroup);
+
+    if (setAsLast) {
+      TabsGroupUtils.addTabAsLast(state, tabGroup, draggedTab);
+    } else {
+      TabsGroupUtils.addTabAsideTab(state, activeTab, draggedTab, "after");
+    }
+
     state.draggedTab = null;
   };
 

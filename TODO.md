@@ -10,7 +10,6 @@ Improvements:
 - force english search?
 - top bar width at phone
 - search page
-- drag to empty space at tabs bar
 - load exported sessions
 - add Storybook
 - add Jest

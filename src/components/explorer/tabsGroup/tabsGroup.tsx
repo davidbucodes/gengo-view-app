@@ -57,7 +57,7 @@ export function TabsGroup<T>({
   }
 
   function onTabDropOnEmptyArea() {
-    dispatch(moveDraggedTabToGroup({ tabGroupId }));
+    dispatch(moveDraggedTabToGroup({ tabGroupId, setAsLast: true }));
   }
 
   if (!tabGroup) {
