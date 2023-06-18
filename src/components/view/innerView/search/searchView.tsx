@@ -4,6 +4,8 @@ import {
   KanjiDocument,
   NameDocument,
   VocabularyDocument,
+  isLatinCharactersRegexp,
+  isValidRomajiRegexp,
 } from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
 import { Loader } from "../../../common/loader/loader";
@@ -42,6 +44,11 @@ export function SearchView({
     }
   }, [contentId, selectedOptions]);
 
+  const isEnglish =
+    isLatinCharactersRegexp.test(contentId.id) &&
+    !isValidRomajiRegexp.test(contentId.id);
+  const detectedLanguage = isEnglish ? "English" : "Japanese";
+
   return (
     searchResults && (
       <div
@@ -51,7 +58,9 @@ export function SearchView({
           flexGrow: 1,
         }}
       >
-        <Styles.Header>Search: {contentId.id}</Styles.Header>
+        <Styles.Header>
+          Search: {contentId.id} (detected language: {detectedLanguage})
+        </Styles.Header>
         <Loader isLoaded={Boolean(searchResults)}>
           Results count: {searchResults.length}
         </Loader>

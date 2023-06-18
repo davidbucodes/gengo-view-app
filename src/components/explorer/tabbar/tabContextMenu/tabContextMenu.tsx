@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { clearContextMenu } from "../../../../store/slices/contextMenuSlice";
+import { clearTabContextMenu } from "../../../../store/slices/tabContextMenuSlice";
 import {
   closeAllGroups,
   closeAllTabsOfGroup,
@@ -13,16 +13,18 @@ import {
 import { Styles } from "./style";
 
 export function TabContextMenu(): JSX.Element {
-  const contextMenu = useAppSelector(state => state.contextMenu);
+  const tabContextMenu = useAppSelector(state => state.tabContextMenu);
   const dispatch = useAppDispatch();
 
   const inputRef = useRef(null);
 
   function close() {
-    dispatch(clearContextMenu());
+    dispatch(clearTabContextMenu());
   }
 
-  const shouldDisplay = Boolean(contextMenu.clickedTab && contextMenu.position);
+  const shouldDisplay = Boolean(
+    tabContextMenu.clickedTab && tabContextMenu.position
+  );
 
   useEffect(() => {
     if (shouldDisplay) {
@@ -38,8 +40,8 @@ export function TabContextMenu(): JSX.Element {
 
   return (
     <Styles.ContextMenu
-      x={contextMenu.position.x}
-      y={contextMenu.position.y}
+      x={tabContextMenu.position.x}
+      y={tabContextMenu.position.y}
       onContextMenu={event => event.preventDefault()}
       tabIndex={0}
       onBlur={() => close()}
@@ -48,7 +50,7 @@ export function TabContextMenu(): JSX.Element {
       <Styles.ContextMenuItem
         onClick={() => {
           close();
-          dispatch(closeTab(contextMenu.clickedTab));
+          dispatch(closeTab(tabContextMenu.clickedTab));
         }}
       >
         Close tab
@@ -56,7 +58,7 @@ export function TabContextMenu(): JSX.Element {
       <Styles.ContextMenuItem
         onClick={() => {
           close();
-          dispatch(closeOtherTabs(contextMenu.clickedTab));
+          dispatch(closeOtherTabs(tabContextMenu.clickedTab));
         }}
       >
         Close other tabs
@@ -64,7 +66,7 @@ export function TabContextMenu(): JSX.Element {
       <Styles.ContextMenuItem
         onClick={() => {
           close();
-          dispatch(closeTabsToTheLeft(contextMenu.clickedTab));
+          dispatch(closeTabsToTheLeft(tabContextMenu.clickedTab));
         }}
       >
         Close tabs to the left
@@ -72,7 +74,7 @@ export function TabContextMenu(): JSX.Element {
       <Styles.ContextMenuItem
         onClick={() => {
           close();
-          dispatch(closeTabsToTheRight(contextMenu.clickedTab));
+          dispatch(closeTabsToTheRight(tabContextMenu.clickedTab));
         }}
       >
         Close tabs to the right
@@ -80,7 +82,7 @@ export function TabContextMenu(): JSX.Element {
       <Styles.ContextMenuItem
         onClick={() => {
           close();
-          dispatch(closeAllTabsOfGroup(contextMenu.clickedTab));
+          dispatch(closeAllTabsOfGroup(tabContextMenu.clickedTab));
         }}
       >
         Close all tabs of group
@@ -101,7 +103,7 @@ export function TabContextMenu(): JSX.Element {
             onClick={() => {
               close();
               navigator.clipboard.writeText(
-                contextMenu.clickedTab.content.label
+                tabContextMenu.clickedTab.content.label
               );
             }}
           >
@@ -110,25 +112,28 @@ export function TabContextMenu(): JSX.Element {
         </>
       )}
       <Styles.ContextMenuLine />
-      {!contextMenu.clickedTab.isPinned && (
+      {!tabContextMenu.clickedTab.isPinned && (
         <Styles.ContextMenuItem
           onClick={() => {
             close();
             dispatch(
-              setTabPinnedState({ tab: contextMenu.clickedTab, isPinned: true })
+              setTabPinnedState({
+                tab: tabContextMenu.clickedTab,
+                isPinned: true,
+              })
             );
           }}
         >
           Pin tab
         </Styles.ContextMenuItem>
       )}
-      {contextMenu.clickedTab.isPinned && (
+      {tabContextMenu.clickedTab.isPinned && (
         <Styles.ContextMenuItem
           onClick={() => {
             close();
             dispatch(
               setTabPinnedState({
-                tab: contextMenu.clickedTab,
+                tab: tabContextMenu.clickedTab,
                 isPinned: false,
               })
             );

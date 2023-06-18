@@ -99,6 +99,7 @@ export namespace Styles {
     display: flex;
     overflow-y: auto;
     flex-grow: 1;
+    padding-top: 1ch;
   `;
 
   export const KeyboardKeys = styled.span`

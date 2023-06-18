@@ -1,7 +1,7 @@
 import { useDragOver } from "../../../hooks/useDragOver";
 import { useHorizontalScroll } from "../../../hooks/useHorizontalScroll";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { setContextMenu } from "../../../store/slices/contextMenuSlice";
+import { setTabContextMenu } from "../../../store/slices/tabContextMenuSlice";
 import { setActiveTab } from "../../../store/slices/tabsSlice";
 import { TabModel } from "../../../store/utils/tabActions";
 import { Styles } from "./style";
@@ -31,8 +31,9 @@ export function Tabbar({
     tab: (typeof tabGroup.openTabs)[number]
   ): void {
     ev.preventDefault();
+    ev.stopPropagation();
     dispatch(
-      setContextMenu({ position: { x: ev.clientX, y: ev.clientY }, tab })
+      setTabContextMenu({ position: { x: ev.clientX, y: ev.clientY }, tab })
     );
   }
 

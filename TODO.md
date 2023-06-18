@@ -38,7 +38,7 @@ Data & Index creation:
 
 Grid:
 
-- grid item and links context menu (search, external sites)
+- grid item and links context menu: external sites
 - grid item middle finger click by parameter
 - grid with filters and grid items for the stroke number/levels
 - alphabet order? japanese order?

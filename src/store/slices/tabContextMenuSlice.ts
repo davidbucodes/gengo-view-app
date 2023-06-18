@@ -9,10 +9,10 @@ export interface SliceState {
 const initialState: SliceState = {};
 
 export const slice = createSlice({
-  name: "contextMenuSlice",
+  name: "tabContextMenuSlice",
   initialState,
   reducers: {
-    setContextMenu: (
+    setTabContextMenu: (
       state,
       action: PayloadAction<{
         tab: TabModel;
@@ -22,13 +22,13 @@ export const slice = createSlice({
       state.clickedTab = action.payload.tab;
       state.position = action.payload.position;
     },
-    clearContextMenu: state => {
+    clearTabContextMenu: state => {
       state.clickedTab = null;
       state.position = null;
     },
   },
 });
 
-export const { setContextMenu, clearContextMenu } = slice.actions;
+export const { setTabContextMenu, clearTabContextMenu } = slice.actions;
 
 export default slice.reducer;

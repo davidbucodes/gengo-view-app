@@ -17,5 +17,6 @@ export namespace Styles {
     flex-shrink: 0;
     pointer-events: none;
     text-decoration: none !important;
+    font-size: ${fontSizes.small};
   `;
 }

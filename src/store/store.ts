@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import config from "./slices/configSlice";
-import contextMenu from "./slices/contextMenuSlice";
+import tabContextMenu from "./slices/tabContextMenuSlice";
+import selectionContextMenu from "./slices/selectionContextMenuSlice";
 import databaseLoadStatus from "./slices/databaseLoadStatusSlice";
 import tabsDisplay from "./slices/tabsDisplaySlice";
 import tabs from "./slices/tabsSlice";
@@ -12,7 +13,8 @@ const store = configureStore({
     tabs,
     tabsDisplay,
     config,
-    contextMenu,
+    tabContextMenu,
+    selectionContextMenu,
     databaseLoadStatus,
     keyboard,
     command,

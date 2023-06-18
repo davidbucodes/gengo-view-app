@@ -10,6 +10,8 @@ import { EmptyTabGroupsGrid } from "./emptyTabGroupsGrid";
 import { Styles } from "./style";
 import { TabContextMenu } from "./tabbar/tabContextMenu/tabContextMenu";
 import { TabsGroupGrid } from "./tabsGroup/tabsGroupGrid";
+import { SelectionContextMenu } from "./selectionContextMenu/selectionContextMenu";
+import { setSelectionContextMenu } from "../../store/slices/selectionContextMenuSlice";
 
 export function Explorer(): JSX.Element {
   const rootTabGroupId = useAppSelector(state => state.tabs.rootTabGroupId);
@@ -51,9 +53,24 @@ export function Explorer(): JSX.Element {
     );
   }
 
+  function onContextMenu(ev: React.MouseEvent): void {
+    ev.preventDefault();
+    const selectedText = window.getSelection().toString();
+
+    if (selectedText) {
+      dispatch(
+        setSelectionContextMenu({
+          position: { x: ev.clientX, y: ev.clientY },
+          selectedText,
+        })
+      );
+    }
+  }
+
   return (
-    <Styles.Explorer>
+    <Styles.Explorer onContextMenu={event => onContextMenu(event)}>
       <TabContextMenu />
+      <SelectionContextMenu />
       {rootTuple?.first && (
         <TabsGroupGrid tabGroupTuple={rootTuple} onOpenGroup={onOpenGroup} />
       )}
