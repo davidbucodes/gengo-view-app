@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type CommandName =
   | "Close current tab"
-  | "Close all groups"
+  | "Close all tab groups"
   | "Search selected text"
   | "Search copied text"
   | "Focus searchbox"

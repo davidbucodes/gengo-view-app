@@ -48,7 +48,7 @@ export function AppLayout() {
       patchKeyboardConfig({
         config: {
           KeyW: "Close current tab",
-          ShiftKeyW: "Close all groups",
+          ShiftKeyW: "Close all tab groups",
           KeyS: "Search selected text",
           KeyV: "Search copied text",
           KeyT: "Focus next tab in group",
@@ -63,8 +63,8 @@ export function AppLayout() {
       dispatch(pickCommand({ name: "Close current tab" }));
       dispatch(closeCurrentTab());
     }
-    if (commandQueue.includes("Close all groups")) {
-      dispatch(pickCommand({ name: "Close all groups" }));
+    if (commandQueue.includes("Close all tab groups")) {
+      dispatch(pickCommand({ name: "Close all tab groups" }));
       dispatch(closeAllGroups());
     }
     if (commandQueue.includes("Search selected text")) {

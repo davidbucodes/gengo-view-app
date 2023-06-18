@@ -92,7 +92,7 @@ export function TabContextMenu(): JSX.Element {
           dispatch(closeAllGroups());
         }}
       >
-        Close all groups
+        Close all tab groups
       </Styles.ContextMenuItem>
       {navigator.clipboard.writeText && (
         <>
