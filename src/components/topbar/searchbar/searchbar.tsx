@@ -1,12 +1,15 @@
 import { Database } from "@davidbucodes/gengo-view-database";
-import { useEffect, useState } from "react";
-import { useAppSelector } from "../../../store/hooks";
+import { useEffect, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { ContentId } from "../../view/contentId";
 import { SearchResults } from "./searchResults";
 import { searchResultsToContentIds } from "./searchResultsToContentIds";
 import { Styles } from "./style";
+import { openTab } from "../../../store/slices/tabsSlice";
 
 export function Searchbar() {
+  const ref = useRef<HTMLInputElement>();
+  const dispatch = useAppDispatch();
   const selectSearchOnFocus = useAppSelector(
     state => state.config.selectSearchOnFocus
   );
@@ -14,6 +17,8 @@ export function Searchbar() {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isResultsPopupFocused, setIsResultsPopupFocused] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [searchResults, setSearchResults] = useState<ContentId[]>([]);
+  const [searchResultsLength, setSearchResultsLength] = useState(0);
 
   function onClosePopup() {
     setTimeout(() => {
@@ -21,9 +26,6 @@ export function Searchbar() {
       setIsInputFocused(false);
     });
   }
-
-  const [searchResults, setSearchResults] = useState<ContentId[]>([]);
-  const [searchResultsLength, setSearchResultsLength] = useState(0);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
@@ -43,6 +45,7 @@ export function Searchbar() {
     <Styles.SearchbarWrapper>
       <Styles.Searchbar>
         <Styles.SearchInput
+          ref={ref}
           type={"text"}
           onFocus={event => {
             setIsInputFocused(true);
@@ -56,6 +59,19 @@ export function Searchbar() {
             });
           }}
           onChange={event => setSearchText(event.target.value)}
+          onKeyDown={event => {
+            if (event.code === "Enter") {
+              dispatch(
+                openTab({
+                  type: "search",
+                  label: searchText,
+                  id: searchText,
+                })
+              );
+              ref.current?.blur();
+              setIsResultsPopupFocused(false);
+            }
+          }}
           placeholder={"Search..."}
         />
         {(isInputFocused || isResultsPopupFocused) && (
