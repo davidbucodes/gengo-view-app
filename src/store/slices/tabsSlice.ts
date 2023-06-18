@@ -58,6 +58,8 @@ export const {
   moveDraggedTabToGroup,
   setDraggedTab,
   setDraggedContent,
+  focusNextTabInGroup,
+  focusPreviousTabInGroup,
 } = slice.actions;
 
 export default slice.reducer;

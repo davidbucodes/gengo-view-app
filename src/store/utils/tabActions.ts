@@ -192,6 +192,45 @@ export namespace TabActions {
     TabsGroupUtils.setActiveTabGroup(state, tabGroup);
   };
 
+  export const focusNextTabInGroup = (state: SliceState) => {
+    const activeTabGroup = TabsGroupUtils.getActiveTabGroup(state);
+    const activeTab = TabsGroupUtils.getActiveTabByGroup(activeTabGroup);
+
+    const activeTabIndex = activeTabGroup.openTabs.findIndex(
+      tab => tab.id === activeTab.id
+    );
+
+    if (activeTabIndex === activeTabGroup.openTabs.length - 1) {
+      TabsGroupUtils.setActiveTab(state, activeTabGroup.openTabs[0]);
+    } else {
+      TabsGroupUtils.setActiveTab(
+        state,
+        activeTabGroup.openTabs[activeTabIndex + 1]
+      );
+    }
+  };
+
+  export const focusPreviousTabInGroup = (state: SliceState) => {
+    const activeTabGroup = TabsGroupUtils.getActiveTabGroup(state);
+    const activeTab = TabsGroupUtils.getActiveTabByGroup(activeTabGroup);
+
+    const activeTabIndex = activeTabGroup.openTabs.findIndex(
+      tab => tab.id === activeTab.id
+    );
+
+    if (activeTabIndex === 0) {
+      TabsGroupUtils.setActiveTab(
+        state,
+        activeTabGroup.openTabs[activeTabGroup.openTabs.length - 1]
+      );
+    } else {
+      TabsGroupUtils.setActiveTab(
+        state,
+        activeTabGroup.openTabs[activeTabIndex - 1]
+      );
+    }
+  };
+
   export const setTabPinnedState = (
     state: SliceState,
     action: PayloadAction<{ tab: TabModel; isPinned: boolean }>

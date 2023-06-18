@@ -86,8 +86,8 @@ export function ContentReferences({
           title={indexNameToTitle["kanji"]}
           items={kanji}
           itemsRenderer={kanji => (
-            <Link searchResult={kanji}>
-              <tr key={kanji._id}>
+            <Link searchResult={kanji} key={kanji._id}>
+              <tr>
                 <td>{kanji.kanji}</td>
                 <td>{kanji.meaning ? kanji.meaning?.join(", ") : ""}</td>
               </tr>
@@ -102,7 +102,9 @@ export function ContentReferences({
           items={vocabulary}
           itemsRenderer={vocab => (
             <Link searchResult={vocab}>
-              <tr key={vocab._id}>
+              {" "}
+              key={vocab._id}
+              <tr>
                 <td>{vocab.display.join(", ")}</td>
                 <td>{vocab.reading.join(", ")}</td>
                 <td>{vocab.meaning.join(", ")}</td>
@@ -132,8 +134,8 @@ export function ContentReferences({
           title={indexNameToTitle["name"]}
           items={names}
           itemsRenderer={name => (
-            <Link searchResult={name}>
-              <tr key={name._id}>
+            <Link searchResult={name} key={name._id}>
+              <tr>
                 <td>
                   <ruby>
                     {name.n}

@@ -8,6 +8,8 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   closeAllGroups,
   closeCurrentTab,
+  focusNextTabInGroup,
+  focusPreviousTabInGroup,
   openTab,
   setDraggedContent,
 } from "../../store/slices/tabsSlice";
@@ -49,6 +51,8 @@ export function AppLayout() {
           ShiftKeyW: "Close all groups",
           KeyS: "Search selected text",
           KeyV: "Search copied text",
+          KeyT: "Focus next tab in group",
+          ShiftKeyT: "Focus previous tab in group",
         },
       })
     );
@@ -90,6 +94,14 @@ export function AppLayout() {
           })
         );
       })();
+    }
+    if (commandQueue.includes("Focus next tab in group")) {
+      dispatch(pickCommand({ name: "Focus next tab in group" }));
+      dispatch(focusNextTabInGroup());
+    }
+    if (commandQueue.includes("Focus previous tab in group")) {
+      dispatch(pickCommand({ name: "Focus previous tab in group" }));
+      dispatch(focusPreviousTabInGroup());
     }
   }, [commandQueue]);
 

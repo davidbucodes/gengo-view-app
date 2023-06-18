@@ -5,7 +5,9 @@ export type CommandName =
   | "Close all groups"
   | "Search selected text"
   | "Search copied text"
-  | "Focus searchbox";
+  | "Focus searchbox"
+  | "Focus next tab in group"
+  | "Focus previous tab in group";
 
 export interface ConfigState {
   commandQueue: CommandName[];

@@ -10,6 +10,8 @@ const enum KeySequence {
   KeyS = "KeyS",
   KeyV = "KeyV",
   KeyF = "KeyF",
+  KeyT = "KeyT",
+  ShiftKeyT = "ShiftKeyT",
 }
 
 export type KeyboardConfig = Partial<Record<KeySequence, CommandName>>;
