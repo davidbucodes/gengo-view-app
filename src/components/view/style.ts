@@ -42,6 +42,9 @@ export namespace Styles {
     font-size: ${fontSizes.medium};
     vertical-align: middle;
     padding-bottom: ${fontSizes.tiny};
+    display: flex;
+    gap: 1ch;
+    align-items: center;
   `;
   export const KeyValueTable = styled.table`
     border-collapse: collapse;
@@ -67,5 +70,9 @@ export namespace Styles {
     border-radius: 10px;
     padding: 10px;
     margin: 0;
+  `;
+  export const Textbox = styled.input`
+    padding: 5px;
+    font-size: 2rem;
   `;
 }

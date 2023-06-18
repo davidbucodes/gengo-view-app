@@ -7,7 +7,6 @@ Improvements:
 - kanji without image - replacing text styling
 - fix export cell start with - for example 出　漢字　訓読み
 - improve query options
-- name of csv file
 - force english search?
 - top bar width at phone
 - search page

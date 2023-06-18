@@ -17,7 +17,12 @@ export function SystemExportView({
   const tabTypes = ["kanji", "name", "vocabulary"] as IndexName[];
 
   const [selectedTabType, setSelectedTabType] = useState<IndexName>("kanji");
+  const [csvFilename, setCsvFilename] = useState<string>(selectedTabType);
   const [exportableCsv, setExportableCsv] = useState<string>("");
+
+  useEffect(() => {
+    setCsvFilename(selectedTabType);
+  }, [selectedTabType]);
 
   const [exportableTabs, setExportableTabs] = useState<
     Record<string, unknown>[]
@@ -93,7 +98,7 @@ export function SystemExportView({
     const url = window.URL.createObjectURL(blob);
     const linkElem = document.createElement("a");
     linkElem.href = url;
-    linkElem.download = selectedTabType;
+    linkElem.download = csvFilename;
     linkElem.click();
   };
 
@@ -118,7 +123,13 @@ export function SystemExportView({
             onChange={setSelectedColumns}
           />
         </Styles.Line>
-
+        <Styles.Line>
+          CSV file name:
+          <Styles.Textbox
+            value={csvFilename}
+            onChange={event => setCsvFilename(event.target.value)}
+          />
+        </Styles.Line>
         <Styles.Line>
           CSV preview:
           <Button onClick={selectCsv}>Select CSV</Button>
