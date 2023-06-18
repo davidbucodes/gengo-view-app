@@ -29,8 +29,9 @@ export function Pagination<T>({
       return;
     }
 
+    console.log("scrolling to next page");
     setIsScrollPaginationBlocked(true);
-    setTimeout(() => setIsScrollPaginationBlocked(false), 300);
+    setTimeout(() => setIsScrollPaginationBlocked(false), 100);
     const lastPage = Math.ceil(items.length / itemsInPage);
     setVisiblePage(Math.min(visiblePage + 1, lastPage));
   }

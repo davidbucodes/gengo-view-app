@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../theme";
+import { colors, fontSizes } from "../../../theme";
 
 export namespace Styles {
   export const Tree = styled.div`
@@ -7,6 +7,7 @@ export namespace Styles {
     overflow-y: auto;
     flex-grow: 1;
     background-color: ${colors.backgroundDark1};
+    font-size: ${fontSizes.small};
   `;
 
   export const TreeTopbar = styled.div`

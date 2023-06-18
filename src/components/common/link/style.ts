@@ -9,7 +9,7 @@ export namespace Styles {
       div,
       span,
       tr {
-        text-decoration: underline !important;
+        text-decoration: underline;
       }
     }
   `;

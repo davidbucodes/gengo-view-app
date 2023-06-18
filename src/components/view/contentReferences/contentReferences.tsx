@@ -37,7 +37,9 @@ export function ContentReferences({
   useEffect(() => {
     if (indexNames.includes("kanji")) {
       (async () => {
-        const kanjis = uniq([...contentId.label.match(isKanjiRegexp)]);
+        const kanjis = uniq([
+          ...(contentId?.label?.match(isKanjiRegexp) || []),
+        ]);
         setKanji(
           kanjis.map(kanji => {
             const kanjiId = Database.kanjiToId[kanji];

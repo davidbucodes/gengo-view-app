@@ -8,8 +8,15 @@ Improvements:
 - fix export cell start with - for example 出　漢字　訓読み
 - improve query options
 - force english search?
+- support japanese UI text
+- enter key search: detect IME
+- add style to navigation page: keys as keyboard keys
+- shortcut for: focusing searchbox
+- shortcut for: searching the selected text
+- shortcut for: searching the text at the clipboard
+- shortcut for: next tab & prev tab
+- shortcut for: next group & prev group
 - top bar width at phone
-- search page
 - load exported sessions
 - add Storybook
 - add Jest

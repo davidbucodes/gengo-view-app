@@ -75,4 +75,23 @@ export namespace Styles {
     padding: 5px;
     font-size: 2rem;
   `;
+  export const SearchResult = styled.div`
+    padding: 1ch;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: 1px solid grey;
+    margin-bottom: 1ch;
+  `;
+  export const SearchResultLine = styled.div`
+    display: flex;
+    gap: 1ch;
+    text-align: left;
+    align-items: start;
+  `;
+  export const SearchResultsTable = styled.div`
+    display: flex;
+    overflow-y: auto;
+    flex-grow: 1;
+  `;
 }

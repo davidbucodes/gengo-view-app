@@ -5,7 +5,7 @@ import { KanjiView } from "./innerView/kanjiView";
 import { LevelKanjiView } from "./innerView/levelKanjiView";
 import { LevelVocabularyView } from "./innerView/levelVocabularyView";
 import { NameView } from "./innerView/nameView";
-import { SearchView } from "./innerView/searchView";
+import { SearchView } from "./innerView/search/searchView";
 import { SystemView } from "./innerView/system/systemView";
 import { VocabularyView } from "./innerView/vocabularyView";
 import { Styles } from "./style";

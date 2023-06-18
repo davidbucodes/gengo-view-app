@@ -11,6 +11,11 @@ export function SystemNavigationView({
 
   const configEntries = Object.entries(keyboardConfig);
 
+  configEntries.unshift([
+    "AltEnter",
+    "Search typed text (when searchbox is focused)" as any,
+  ]);
+
   return (
     contentId && (
       <div>

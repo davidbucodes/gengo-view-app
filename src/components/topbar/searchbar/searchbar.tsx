@@ -60,7 +60,7 @@ export function Searchbar() {
           }}
           onChange={event => setSearchText(event.target.value)}
           onKeyDown={event => {
-            if (event.code === "Enter") {
+            if (event.code === "Enter" && event.altKey === true) {
               dispatch(
                 openTab({
                   type: "search",
