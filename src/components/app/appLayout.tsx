@@ -47,6 +47,8 @@ export function AppLayout() {
         config: {
           KeyW: "Close current tab",
           ShiftKeyW: "Close all groups",
+          KeyS: "Search selected text",
+          KeyV: "Search copied text",
         },
       })
     );
@@ -60,6 +62,34 @@ export function AppLayout() {
     if (commandQueue.includes("Close all groups")) {
       dispatch(pickCommand({ name: "Close all groups" }));
       dispatch(closeAllGroups());
+    }
+    if (commandQueue.includes("Search selected text")) {
+      dispatch(pickCommand({ name: "Search selected text" }));
+
+      const selectedText = window.getSelection();
+
+      dispatch(
+        openTab({
+          type: "search",
+          id: selectedText.toString(),
+          label: selectedText.toString(),
+        })
+      );
+    }
+    if (commandQueue.includes("Search copied text")) {
+      dispatch(pickCommand({ name: "Search copied text" }));
+
+      (async () => {
+        const copiedText = await navigator.clipboard.readText();
+
+        dispatch(
+          openTab({
+            type: "search",
+            id: copiedText,
+            label: copiedText,
+          })
+        );
+      })();
     }
   }, [commandQueue]);
 

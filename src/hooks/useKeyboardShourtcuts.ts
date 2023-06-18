@@ -6,6 +6,8 @@ const enum KeySequence {
   Space = "Space",
   Enter = "Enter",
   KeyW = "KeyW",
+  KeyS = "KeyS",
+  KeyV = "KeyV",
   ShiftKeyW = "ShiftKeyW",
 }
 

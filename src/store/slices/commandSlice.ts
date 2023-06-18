@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type CommandName = "Close current tab" | "Close all groups";
-type CommandCallback = () => void;
+export type CommandName =
+  | "Close current tab"
+  | "Close all groups"
+  | "Search selected text"
+  | "Search copied text";
 
 export interface ConfigState {
   commandQueue: CommandName[];

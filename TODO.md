@@ -12,8 +12,6 @@ Improvements:
 - enter key search: detect IME
 - add style to navigation page: keys as keyboard keys
 - shortcut for: focusing searchbox
-- shortcut for: searching the selected text
-- shortcut for: searching the text at the clipboard
 - shortcut for: next tab & prev tab
 - shortcut for: next group & prev group
 - top bar width at phone
