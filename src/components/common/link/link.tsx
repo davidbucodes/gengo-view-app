@@ -29,6 +29,10 @@ export function Link({
 
   function onClick(event: React.MouseEvent) {
     event.stopPropagation();
+    const selectedText = window.getSelection().toString();
+    if (selectedText) {
+      return;
+    }
     const contentId = searchResultToContentId(searchResult);
     dispatch(openTab(contentId));
   }
