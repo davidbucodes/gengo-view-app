@@ -47,15 +47,21 @@ export namespace Styles {
     align-items: center;
   `;
   export const KeyValueTable = styled.table`
+    font-size: ${fontSizes.mediumSmall};
     border-collapse: collapse;
     flex-grow: 1;
     font-weight: lighter;
-
+    td {
+      border: ${colors.backgroundLight3} 1px solid;
+    }
     td:not(:last-child) {
-      width: 8em;
+      width: 15em;
     }
   `;
 
+  export const KeyValueTableHeader = styled.thead`
+    background-color: ${colors.backgroundLight4};
+  `;
   export const KeyValueTableBody = styled.tbody``;
   export const KeyValueRow = styled.tr``;
   export const Key = styled.td``;
@@ -94,4 +100,19 @@ export namespace Styles {
     overflow-y: auto;
     flex-grow: 1;
   `;
+
+  export const KeyboardKeys = styled.span`
+    display: flex;
+    gap: 1ch;
+    position: relative;
+    align-items: center;
+  `;
+  export const KeyboardKey = styled.span`
+    background-color: ${colors.backgroundLight5};
+    color: ${colors.backgroundLight1};
+    padding: 0.5ch 1ch;
+    border-radius: 10px;
+    border: inset 2px ${colors.backgroundGrey};
+  `;
+  export const KeyboardKeysSequencePlus = styled.div``;
 }

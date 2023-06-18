@@ -10,7 +10,6 @@ Improvements:
 - force english search?
 - support japanese UI text
 - enter key search: detect IME
-- add style to navigation page: keys as keyboard keys
 - shortcut for: focusing searchbox
 - shortcut for: next tab & prev tab
 - shortcut for: next group & prev group
