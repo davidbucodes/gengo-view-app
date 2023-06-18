@@ -6,9 +6,31 @@ import { SearchResults } from "./searchResults";
 import { searchResultsToContentIds } from "./searchResultsToContentIds";
 import { Styles } from "./style";
 import { openTab } from "../../../store/slices/tabsSlice";
+import { patchKeyboardConfig } from "../../../store/slices/keyboardSlice";
+import { pickCommand } from "../../../store/slices/commandSlice";
 
 export function Searchbar() {
   const ref = useRef<HTMLInputElement>();
+
+  const commandQueue = useAppSelector(state => state.command.commandQueue);
+
+  useEffect(() => {
+    dispatch(
+      patchKeyboardConfig({
+        config: {
+          KeyF: "Focus searchbox",
+        },
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    if (commandQueue.includes("Focus searchbox")) {
+      dispatch(pickCommand({ name: "Focus searchbox" }));
+      setTimeout(() => ref?.current?.focus());
+    }
+  }, [commandQueue]);
+
   const dispatch = useAppDispatch();
   const selectSearchOnFocus = useAppSelector(
     state => state.config.selectSearchOnFocus

@@ -14,7 +14,7 @@ export function SystemNavigationView({
 
   configEntries.unshift([
     "AltEnter",
-    "Search typed text (when searchbox is focused)" as any,
+    "When searchbox is focused - open search tab for the typed text" as any,
   ]);
 
   function getKeys(sequence: string) {
