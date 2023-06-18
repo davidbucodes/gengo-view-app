@@ -1,3 +1,4 @@
+import { generateId } from "../../../store/utils/generateId";
 import { Styles } from "./styles";
 
 export function CheckboxGroup<T extends string>({
@@ -13,12 +14,13 @@ export function CheckboxGroup<T extends string>({
     <Styles.CheckboxGroup>
       {options.map(option => {
         const isChecked = selectedOptions.includes(option);
+        const id = generateId();
         return (
           <Styles.Checkbox key={option}>
             <Styles.CheckboxInput
               checked={isChecked}
               value={option}
-              id={option}
+              id={id}
               onChange={e => {
                 const option = e.target.value as T;
                 if (isChecked) {
@@ -32,9 +34,7 @@ export function CheckboxGroup<T extends string>({
                 }
               }}
             />
-            <Styles.CheckboxLabel htmlFor={option}>
-              {option}
-            </Styles.CheckboxLabel>
+            <Styles.CheckboxLabel htmlFor={id}>{option}</Styles.CheckboxLabel>
           </Styles.Checkbox>
         );
       })}

@@ -101,9 +101,7 @@ export function ContentReferences({
           title={indexNameToTitle["vocabulary"]}
           items={vocabulary}
           itemsRenderer={vocab => (
-            <Link searchResult={vocab}>
-              {" "}
-              key={vocab._id}
+            <Link searchResult={vocab} key={vocab._id}>
               <tr>
                 <td>{vocab.display.join(", ")}</td>
                 <td>{vocab.reading.join(", ")}</td>

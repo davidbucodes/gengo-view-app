@@ -7,7 +7,6 @@ Improvements:
 - kanji without image - replacing text styling
 - fix export cell start with - for example 出　漢字　訓読み
 - improve query options
-- force english search?
 - support japanese UI text
 - enter key search: detect IME
 - top bar width at phone

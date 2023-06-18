@@ -12,6 +12,7 @@ import { Styles } from "../../style";
 import { SearchResult } from "./searchResult";
 import { Pagination } from "../../../common/pagination/pagination";
 import { Link } from "../../../common/link/link";
+import { CheckboxGroup } from "../../../common/checkboxGroup/checkboxGroup";
 
 export function SearchView({
   contentId,
@@ -25,17 +26,21 @@ export function SearchView({
       | IndexSearchResult<NameDocument>
     )[]
   );
-
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   useEffect(() => {
     if (contentId.id) {
       (async () => {
         const searchResults = await Database.termsIndices.searchText(
-          contentId.id
+          contentId.id,
+          {
+            forceEnglish: selectedOptions.includes("Search English term"),
+            forceJapanese: selectedOptions.includes("Search Japanese term"),
+          }
         );
         setSearchResults(searchResults);
       })();
     }
-  }, [contentId]);
+  }, [contentId, selectedOptions]);
 
   return (
     searchResults && (
@@ -50,6 +55,11 @@ export function SearchView({
         <Loader isLoaded={Boolean(searchResults)}>
           Results count: {searchResults.length}
         </Loader>
+        <CheckboxGroup
+          options={["Search English term", "Search Japanese term"]}
+          onChange={setSelectedOptions}
+          selectedOptions={selectedOptions}
+        />
         <Styles.SearchResultsTable>
           <Pagination
             items={searchResults}

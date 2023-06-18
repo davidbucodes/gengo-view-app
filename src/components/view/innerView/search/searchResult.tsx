@@ -17,7 +17,7 @@ export function SearchResult({
     | IndexSearchResult<NameDocument>;
 }) {
   let header, body;
-  let tags = [<SearchResultBadge text={result._index} />];
+  let tags = [<SearchResultBadge text={result._index} key={result._index} />];
 
   if (result._index === "kanji") {
     const { kanji, jlpt, meaning, kunReading, onReading } =
@@ -69,7 +69,9 @@ export function SearchResult({
       </div>
     );
     if (jlpt) {
-      tags.push(<SearchResultBadge text={`N${String(jlpt)}`} />);
+      tags.push(
+        <SearchResultBadge text={`N${String(jlpt)}`} key={`N${String(jlpt)}`} />
+      );
     }
   }
 
