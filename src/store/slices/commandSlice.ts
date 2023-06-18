@@ -30,7 +30,9 @@ export const slice = createSlice({
     },
     pickCommand: (state, action: PayloadAction<{ name: CommandName }>) => {
       const { name } = action.payload;
-      state.commandQueue.filter(command => command !== name);
+      state.commandQueue = state.commandQueue.filter(
+        command => command !== name
+      );
     },
   },
 });
