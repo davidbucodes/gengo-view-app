@@ -44,7 +44,6 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.2",
     "encoding-japanese": "^2.0.0",
-    "fast-xml-parser": "^4.0.12",
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "html-webpack-plugin": "^5.5.0",
     "json-to-ts": "^1.7.0",
