@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@davidbucodes/gengo-view-database": "^1.0.0",
+    "@davidbucodes/gengo-view-database": "^1.0.1",
     "@davidbucodes/gengo-view-indices": "^1.0.0",
     "@davidbucodes/gengo-view-kanji-svgs": "^1.0.0-beta1",
     "@mui/icons-material": "^5.10.16",
