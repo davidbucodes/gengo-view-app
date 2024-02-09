@@ -8,6 +8,7 @@ import { Styles } from "./style";
 import { openTab } from "../../../store/slices/tabsSlice";
 import { patchKeyboardConfig } from "../../../store/slices/keyboardSlice";
 import { pickCommand } from "../../../store/slices/commandSlice";
+import { hebrewToQwerty } from "../../../utils/hebrewToQwerty";
 
 export function Searchbar() {
   const ref = useRef<HTMLInputElement>();
@@ -51,7 +52,8 @@ export function Searchbar() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
-      Database.termsIndices.searchText(searchText).then(results => {
+      const parsedText = hebrewToQwerty(searchText);
+      Database.termsIndices.searchText(parsedText).then(results => {
         const contentIds = searchResultsToContentIds(results);
         setSearchResults(contentIds.slice(0, 20));
         setSearchResultsLength(contentIds.length);
