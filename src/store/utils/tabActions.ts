@@ -30,20 +30,26 @@ export namespace TabActions {
       return;
     }
 
-    TabsGroupUtils.removeTabFromGroup(state, draggedTab);
-    if (draggedTab.id !== droppedOnTab.id) {
-      TabsGroupUtils.removeTabGroupIfEmpty(state, draggedTab);
-    }
-
     draggedTab.isPinned = false;
 
     if (draggedTab.tabGroupId !== droppedOnTab.tabGroupId) {
+      TabsGroupUtils.removeTabFromGroup(state, draggedTab);
+      TabsGroupUtils.removeTabGroupIfEmpty(state, draggedTab);
+
       TabsGroupUtils.addTabAsideTab(state, droppedOnTab, draggedTab, "before");
     } else {
-      if (
-        TabsGroupUtils.getTabIndexAtGroup(state, draggedTab) >
-        TabsGroupUtils.getTabIndexAtGroup(state, droppedOnTab)
-      ) {
+      const draggedTabIndex = TabsGroupUtils.getTabIndexAtGroup(
+        state,
+        draggedTab
+      );
+      const droppedOnTabIndex = TabsGroupUtils.getTabIndexAtGroup(
+        state,
+        droppedOnTab
+      );
+
+      TabsGroupUtils.removeTabFromGroup(state, draggedTab);
+
+      if (draggedTabIndex > droppedOnTabIndex) {
         TabsGroupUtils.addTabAsideTab(
           state,
           droppedOnTab,

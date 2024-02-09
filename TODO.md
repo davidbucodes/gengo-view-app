@@ -2,7 +2,6 @@
 
 Improvements:
 
-- Fix bug moving tab to the left (cannot move to the most left, always after the tab which dragged upon)
 - kanji search page / draw area
 - content reference search exact term
 - kanji without image - replacing text styling
