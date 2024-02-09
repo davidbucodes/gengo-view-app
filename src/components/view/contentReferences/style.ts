@@ -23,6 +23,22 @@ export namespace Styles {
     padding: 20px;
     margin: 10px 0;
     background-color: ${colors.backgroundLight3};
+    display: flex;
+  `;
+
+  export const TitleText = styled.div`
+    flex-grow: 1;
+  `;
+
+  export const TextFilterInput = styled.input.attrs({
+    type: "text",
+  })`
+    background: ${colors.backgroundLight3};
+    padding: 5px;
+    border: 3px solid ${colors.backgroundLight4};
+    border-radius: 10px;
+    font-style: italic;
+    color: ${colors.backgroundLight5};
   `;
 
   export const Links = styled.div``;

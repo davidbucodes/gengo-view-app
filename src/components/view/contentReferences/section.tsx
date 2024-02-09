@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Styles } from "./style";
 
 export function Section<T>({
@@ -16,11 +16,13 @@ cursor: {
 }
   */
   itemsCountAtPage = 10,
+  onTextFilterInputChange,
 }: {
   title: string;
   items: T[];
   itemsRenderer: (item: T) => JSX.Element;
   itemsCountAtPage: number;
+  onTextFilterInputChange?: (filterText: string) => void;
 }) {
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -33,52 +35,61 @@ cursor: {
     items?.length || 0
   );
 
-  if (itemsCountToRender === 0) {
-    return (
-      <Styles.Section>
-        <Styles.Title>{title}</Styles.Title>
-        <Styles.Footer>
-          <Styles.Info>No {title.toLowerCase()} available</Styles.Info>
-        </Styles.Footer>
-      </Styles.Section>
-    );
-  }
+  useEffect(() => {
+    setPageNumber(1);
+  }, [items]);
 
   return (
     <Styles.Section>
-      <Styles.Title>{title}</Styles.Title>
-      <Styles.Table border={1} cellPadding={15}>
-        <Styles.TableBody>
-          {items?.slice(0, itemsCountToRender).map(itemsRenderer)}
-        </Styles.TableBody>
-      </Styles.Table>
-      <Styles.Footer>
-        <Styles.Info>
-          Showing {itemsCountToRender} of {items?.length || 0}{" "}
-          {title.toLowerCase()}
-        </Styles.Info>
-        <Styles.Links>
-          {isNextPageAvailable && (
-            <Styles.Link
-              onClick={() => {
-                setPageNumber(pageNumber + 1);
-              }}
-            >
-              Show more
-            </Styles.Link>
-          )}
-          {isNextPageAvailable && isPrevPageAvailable && " | "}
-          {isPrevPageAvailable && (
-            <Styles.Link
-              onClick={() => {
-                setPageNumber(pageNumber - 1);
-              }}
-            >
-              Show less
-            </Styles.Link>
-          )}
-        </Styles.Links>
-      </Styles.Footer>
+      <Styles.Title>
+        <Styles.TitleText>{title}</Styles.TitleText>
+        {onTextFilterInputChange && (
+          <Styles.TextFilterInput
+            placeholder="Filter..."
+            onChange={event => onTextFilterInputChange(event.target.value)}
+          />
+        )}
+      </Styles.Title>
+      {itemsCountToRender === 0 ? (
+        <Styles.Footer>
+          <Styles.Info>No {title.toLowerCase()} available</Styles.Info>
+        </Styles.Footer>
+      ) : (
+        <>
+          <Styles.Table border={1} cellPadding={15}>
+            <Styles.TableBody>
+              {items?.slice(0, itemsCountToRender).map(itemsRenderer)}
+            </Styles.TableBody>
+          </Styles.Table>
+          <Styles.Footer>
+            <Styles.Info>
+              Showing {itemsCountToRender} of {items?.length || 0}{" "}
+              {title.toLowerCase()}
+            </Styles.Info>
+            <Styles.Links>
+              {isNextPageAvailable && (
+                <Styles.Link
+                  onClick={() => {
+                    setPageNumber(pageNumber + 1);
+                  }}
+                >
+                  Show more
+                </Styles.Link>
+              )}
+              {isNextPageAvailable && isPrevPageAvailable && " | "}
+              {isPrevPageAvailable && (
+                <Styles.Link
+                  onClick={() => {
+                    setPageNumber(pageNumber - 1);
+                  }}
+                >
+                  Show less
+                </Styles.Link>
+              )}
+            </Styles.Links>
+          </Styles.Footer>
+        </>
+      )}
     </Styles.Section>
   );
 }

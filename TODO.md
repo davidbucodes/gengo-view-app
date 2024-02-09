@@ -3,7 +3,6 @@
 Improvements:
 
 - kanji search page / draw area
-- content reference search exact term
 - kanji without image - replacing text styling
 - improve query options
 - support japanese UI text

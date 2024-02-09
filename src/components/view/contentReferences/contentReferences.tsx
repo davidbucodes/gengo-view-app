@@ -36,12 +36,71 @@ export function ContentReferences({
   const [names, setNames] = useState<IndexSearchResult<NameDocument>[]>(null);
   const [kanji, setKanji] = useState<IndexSearchResult<KanjiDocument>[]>(null);
 
+  const [sentencesFilterText, setSentencesFilterText] = useState<string>();
+  const [vocabularyFilterText, setVocabularyFilterText] = useState<string>();
+  const [namesFilterText, setNamesFilterText] = useState<string>();
+
+  useEffect(() => {
+    if (indexNames.includes("sentence")) {
+      (async () => {
+        let sentencesResult = await Database.indices.sentenceIndex.searchText(
+          contentId.label?.split(",")[0]
+        );
+        if (sentencesFilterText) {
+          sentencesResult = await Database.indices.sentenceIndex.searchText(
+            sentencesFilterText,
+            { documents: sentencesResult }
+          );
+        }
+        setSentences(sentencesResult);
+      })();
+    }
+  }, [contentId, indexNames, sentencesFilterText]);
+
+  useEffect(() => {
+    if (indexNames.includes("vocabulary")) {
+      (async () => {
+        let vocabularyResult =
+          await Database.indices.vocabularyIndex.searchText(
+            contentId.label?.split(",")[0]
+          );
+
+        if (vocabularyFilterText) {
+          vocabularyResult = await Database.indices.vocabularyIndex.searchText(
+            vocabularyFilterText,
+            { documents: vocabularyResult }
+          );
+        }
+        setVocabulary(
+          sortBy(vocabularyResult, vocab => meanBy(vocab.display, "length"))
+        );
+      })();
+    }
+  }, [contentId, indexNames, vocabularyFilterText]);
+
+  useEffect(() => {
+    if (indexNames.includes("name")) {
+      (async () => {
+        let nameResult = await Database.indices.nameIndex.searchText(
+          contentId.label?.split(",")[0]
+        );
+
+        if (namesFilterText) {
+          nameResult = await Database.indices.nameIndex.searchText(
+            namesFilterText,
+            { documents: nameResult }
+          );
+        }
+        setNames(sortBy(nameResult, name => name.n.length));
+      })();
+    }
+  }, [contentId, indexNames, namesFilterText]);
+
   useEffect(() => {
     if (indexNames.includes("kanji")) {
       (async () => {
-        const kanjis = uniq([
-          ...(contentId?.label?.match(isKanjiRegexp) || []),
-        ]);
+        let kanjis = uniq([...(contentId?.label?.match(isKanjiRegexp) || [])]);
+
         setKanji(
           kanjis
             .map(kanji => {
@@ -52,33 +111,6 @@ export function ContentReferences({
             })
             .filter(kanji => kanji)
         );
-      })();
-    }
-    if (indexNames.includes("sentence")) {
-      (async () => {
-        const sentencesResult = await Database.indices.sentenceIndex.searchText(
-          contentId.label?.split(",")[0]
-        );
-        setSentences(sentencesResult);
-      })();
-    }
-    if (indexNames.includes("vocabulary")) {
-      (async () => {
-        const vocabularyResult =
-          await Database.indices.vocabularyIndex.searchText(
-            contentId.label?.split(",")[0]
-          );
-        setVocabulary(
-          sortBy(vocabularyResult, vocab => meanBy(vocab.display, "length"))
-        );
-      })();
-    }
-    if (indexNames.includes("name")) {
-      (async () => {
-        const nameResult = await Database.indices.nameIndex.searchText(
-          contentId.label?.split(",")[0]
-        );
-        setNames(sortBy(nameResult, name => name.n.length));
       })();
     }
   }, [contentId, indexNames]);
@@ -122,6 +154,9 @@ export function ContentReferences({
             </Link>
           )}
           itemsCountAtPage={10}
+          onTextFilterInputChange={filterText => {
+            setVocabularyFilterText(filterText);
+          }}
         />
       )}
       {sentences && (
@@ -137,6 +172,9 @@ export function ContentReferences({
             </tr>
           )}
           itemsCountAtPage={10}
+          onTextFilterInputChange={filterText => {
+            setSentencesFilterText(filterText);
+          }}
         />
       )}
       {names && (
@@ -161,6 +199,9 @@ export function ContentReferences({
             </Link>
           )}
           itemsCountAtPage={10}
+          onTextFilterInputChange={filterText => {
+            setNamesFilterText(filterText);
+          }}
         />
       )}
     </div>
