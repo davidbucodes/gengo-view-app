@@ -56,6 +56,7 @@ export function SearchResults({
       )}
       {displayedResults.map((result, index) => (
         <Styles.SearchResult
+          tabIndex={-1}
           key={result.id}
           onMouseDown={e => onResultClick(e, result)}
         >

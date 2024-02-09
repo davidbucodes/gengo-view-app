@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { clearSelectionContextMenu } from "../../../store/slices/selectionContextMenuSlice";
 import { Styles } from "./style";
 import { openTab } from "../../../store/slices/tabsSlice";
+import { getExternalLink, sites } from "../../../utils/externalLinks";
 
 export function SelectionContextMenu(): JSX.Element {
   const selectionContextMenu = useAppSelector(
@@ -56,26 +57,18 @@ export function SelectionContextMenu(): JSX.Element {
         Search selection
       </Styles.ContextMenuItem>
       <Styles.ContextMenuLine />
-      <Styles.ContextMenuItem
-        onClick={() => {
-          close();
-          window.open(
-            `http://google.com/search?q=${selectionContextMenu.selectedText}`
-          );
-        }}
-      >
-        Search in Google
-      </Styles.ContextMenuItem>
-      <Styles.ContextMenuItem
-        onClick={() => {
-          close();
-          window.open(
-            `https://translate.google.com/?sl=ja&tl=en&op=translate&text=${selectionContextMenu.selectedText}`
-          );
-        }}
-      >
-        Search in Google Translate
-      </Styles.ContextMenuItem>
+      {sites.map(site => (
+        <Styles.ContextMenuItem
+          onClick={() => {
+            close();
+            window.open(
+              getExternalLink(selectionContextMenu.selectedText, site)
+            );
+          }}
+        >
+          Search in {site}
+        </Styles.ContextMenuItem>
+      ))}
     </Styles.ContextMenu>
   );
 }

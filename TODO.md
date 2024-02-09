@@ -5,7 +5,6 @@ Improvements:
 - kanji search page / draw area
 - content reference search exact term
 - kanji without image - replacing text styling
-- fix export cell start with - for example 出　漢字　訓読み
 - improve query options
 - support japanese UI text
 - enter key search: detect IME
@@ -16,9 +15,7 @@ Improvements:
 
 Features:
 
-- kanji and vocab links
 - kanji svg animation controls and maybe svg styles
-- selection context menu (search, external sites)
 - add keyboard shortcuts (with config at store)
 - add words compare at table (by search? maybe by popup)
 - export current tabs state and import

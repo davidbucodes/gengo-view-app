@@ -107,7 +107,7 @@ export function Searchbar() {
             onBlur={() => {
               setIsResultsPopupFocused(false);
             }}
-            tabIndex={0}
+            tabIndex={-1}
           >
             <SearchResults
               searchText={searchText}

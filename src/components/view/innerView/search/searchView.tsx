@@ -37,6 +37,7 @@ export function SearchView({
           {
             forceEnglish: selectedOptions.includes("Search English term"),
             forceJapanese: selectedOptions.includes("Search Japanese term"),
+            addKanjiAtBottom: true,
           }
         );
         setSearchResults(searchResults);
