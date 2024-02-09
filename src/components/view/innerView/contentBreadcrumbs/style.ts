@@ -4,7 +4,7 @@ import { colors, fontSizes } from "../../../../theme";
 export namespace Styles {
   export const ContentBreadcrumbs = styled.div`
     flex-grow: 1;
-    border-bottom: solid ${colors.backgroundGrey} 1px;
+    border-bottom: solid ${colors.backgroundLight1} 1px;
     flex-shrink: 0;
     padding-bottom: ${fontSizes.tiny};
     margin-bottom: ${fontSizes.small};
