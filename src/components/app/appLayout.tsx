@@ -2,6 +2,7 @@ import {
   IndexSearchResult,
   Jlpt,
   KanjiDocument,
+  Database,
 } from "@davidbucodes/gengo-view-database";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -26,6 +27,7 @@ import { Styles } from "./style";
 import { pickCommand } from "../../store/slices/commandSlice";
 import { patchKeyboardConfig } from "../../store/slices/keyboardSlice";
 import { useKeyboardShortcuts } from "../../hooks/useKeyboardShourtcuts";
+import { searchResultToContentId } from "../topbar/searchbar/searchResultsToContentIds";
 
 export function AppLayout() {
   const dispatch = useAppDispatch();
@@ -51,6 +53,7 @@ export function AppLayout() {
           ShiftKeyW: "Close all tab groups",
           KeyS: "Search selected text",
           KeyV: "Search copied text",
+          KeyE: "Search copied text - first vocabulary or open search",
           KeyT: "Focus next tab in group",
           ShiftKeyT: "Focus previous tab in group",
         },
@@ -93,6 +96,47 @@ export function AppLayout() {
             label: copiedText,
           })
         );
+      })();
+    }
+    if (
+      commandQueue.includes(
+        "Search copied text - first vocabulary or open search"
+      )
+    ) {
+      dispatch(
+        pickCommand({
+          name: "Search copied text - first vocabulary or open search",
+        })
+      );
+
+      (async () => {
+        const copiedText = await navigator.clipboard.readText();
+
+        const results = await Database.indices.vocabularyIndex.searchText(
+          copiedText,
+          {
+            english: true,
+            japanese: true,
+            scorePenalty: 0,
+            sortByScore: true,
+          }
+        );
+
+        if (results.length) {
+          dispatch(
+            openTab({
+              ...searchResultToContentId(results[0]),
+            })
+          );
+        } else {
+          dispatch(
+            openTab({
+              type: "search",
+              id: copiedText,
+              label: copiedText,
+            })
+          );
+        }
       })();
     }
     if (commandQueue.includes("Focus next tab in group")) {

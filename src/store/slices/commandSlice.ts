@@ -5,6 +5,7 @@ export type CommandName =
   | "Close all tab groups"
   | "Search selected text"
   | "Search copied text"
+  | "Search copied text - first vocabulary or open search"
   | "Focus searchbox"
   | "Focus next tab in group"
   | "Focus previous tab in group";
