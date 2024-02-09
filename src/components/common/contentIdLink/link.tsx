@@ -6,9 +6,11 @@ import { ContentId } from "../../view/contentId";
 export function ContentIdLink({
   children,
   contentId,
+  title,
   previousContentIds = [],
 }: React.PropsWithChildren<{
   contentId: ContentId;
+  title?: string;
   previousContentIds?: ContentId[];
 }>): JSX.Element {
   const dispatch = useAppDispatch();
@@ -29,7 +31,7 @@ export function ContentIdLink({
   }
 
   return (
-    <Styles.Link onClick={onClick} onAuxClick={onAuxClick}>
+    <Styles.Link title={title} onClick={onClick} onAuxClick={onAuxClick}>
       {children}
     </Styles.Link>
   );

@@ -11,7 +11,12 @@ export function ContentBreadcrumbs({
     <Styles.ContentBreadcrumbs>
       {contentIds.map((contentId, index) => (
         <>
-          <ContentIdLink contentId={contentId}>{contentId.label}</ContentIdLink>
+          <ContentIdLink
+            title={`${contentId.label} - ${contentId.type}`}
+            contentId={contentId}
+          >
+            {contentId.label}
+          </ContentIdLink>
           {index + 1 < contentIds.length && " > "}
         </>
       ))}
