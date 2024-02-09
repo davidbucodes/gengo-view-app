@@ -69,8 +69,15 @@ cursor: {
             <Styles.Links>
               {isNextPageAvailable && (
                 <Styles.Link
+                  tabIndex={1}
                   onClick={() => {
                     setPageNumber(pageNumber + 1);
+                  }}
+                  onKeyDown={ev => {
+                    if (ev.code === "Enter" || ev.code === "Space") {
+                      ev.preventDefault();
+                      setPageNumber(pageNumber + 1);
+                    }
                   }}
                 >
                   Show more
@@ -79,8 +86,15 @@ cursor: {
               {isNextPageAvailable && isPrevPageAvailable && " | "}
               {isPrevPageAvailable && (
                 <Styles.Link
+                  tabIndex={1}
                   onClick={() => {
                     setPageNumber(pageNumber - 1);
+                  }}
+                  onKeyDown={ev => {
+                    if (ev.code === "Enter" || ev.code === "Space") {
+                      ev.preventDefault();
+                      setPageNumber(pageNumber + 1);
+                    }
                   }}
                 >
                   Show less

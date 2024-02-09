@@ -31,6 +31,15 @@ export const sidebarTree: TreeModel<ContentId> = {
             id: SystemContentIds.About,
           },
         },
+        ,
+        {
+          label: "Text-to-speech",
+          content: {
+            label: "Text-to-speech",
+            type: "system",
+            id: SystemContentIds.TextToSpeech,
+          },
+        },
       ],
     },
     ...jlptLevels.map(level => {

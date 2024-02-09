@@ -81,6 +81,11 @@ export namespace Styles {
     padding: 5px;
     font-size: 2rem;
   `;
+  export const Textarea = styled.textarea`
+    padding: 5px;
+    font-size: 2rem;
+    height: 70%;
+  `;
   export const SearchResult = styled.div`
     padding: 1ch;
     display: flex;

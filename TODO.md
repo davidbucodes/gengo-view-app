@@ -20,6 +20,7 @@ Features:
 
 Data & Index creation:
 
+- delete \r at end of Japanese sentences
 - kanji index creation: tanos data merge
 - tanos data merge: improve the merge process
 - tanos data merge: always prefer to set word level as lowest possible
@@ -33,7 +34,6 @@ Data & Index creation:
 
 Grid:
 
-- grid item and links context menu: external sites
 - grid item middle finger click by parameter
 - grid with filters and grid items for the stroke number/levels
 - alphabet order? japanese order?

@@ -10,6 +10,7 @@ import {
 import { AppLayout } from "./appLayout";
 import { DatabaseLoader } from "./databaseLoader";
 import { Styles } from "./style";
+import { TextToSpeech } from "../../utils/tts";
 
 export function App() {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ export function App() {
   useEffect(() => {
     const shouldLoad = !isSvgByKanjiLoaded && !isDatabaseLoaded;
     if (shouldLoad) {
+      TextToSpeech.loadAllVoices();
       (async () => {
         await Database.load(
           {

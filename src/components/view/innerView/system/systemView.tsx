@@ -4,6 +4,7 @@ import { SystemExportView } from "./systemExport";
 import { SystemKanjiSearchView } from "./systemKanjiSearch/systemKanjiSearch";
 import { SystemNavigationView } from "./systemNavigationView";
 import { SystemOptionsView } from "./systemOptionsView";
+import { SystemTextToSpeechView } from "./systemTextToSpeechView";
 import { SystemWelcomeView } from "./systemWelcomeView";
 
 export function SystemView({
@@ -24,5 +25,7 @@ export function SystemView({
       return <SystemExportView contentId={contentId} />;
     case SystemContentIds.KanjiSearch:
       return <SystemKanjiSearchView contentId={contentId} />;
+    case SystemContentIds.TextToSpeech:
+      return <SystemTextToSpeechView contentId={contentId} />;
   }
 }

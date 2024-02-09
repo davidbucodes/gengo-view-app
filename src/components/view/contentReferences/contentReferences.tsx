@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import { Link } from "../../common/link/link";
 import { ContentId } from "../contentId";
 import { Section } from "./section";
+import { TextReader } from "../../common/textReader/textReader";
+import { TextVoiceLanguage } from "../../../utils/tts";
 
 const indexNameToTitle: Record<IndexName, string> = {
   name: "Names",
@@ -181,8 +183,20 @@ export function ContentReferences({
           itemsRenderer={sentence => (
             <tr key={sentence._id}>
               <td>
-                <div>{sentence.j}</div>
-                <div>{sentence.e}</div>
+                <div>
+                  {sentence.j}{" "}
+                  <TextReader
+                    language={TextVoiceLanguage.JA}
+                    textToRead={sentence.j}
+                  />
+                </div>
+                <div>
+                  {sentence.e}{" "}
+                  <TextReader
+                    language={TextVoiceLanguage.EN}
+                    textToRead={sentence.e}
+                  />
+                </div>
               </td>
             </tr>
           )}

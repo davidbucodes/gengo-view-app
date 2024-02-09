@@ -10,9 +10,12 @@ export const colors = {
   backgroundDark1: "#191919",
   backgroundDark2: "#141414",
   blue: "#007fd4",
+  white: "white",
 };
 
 export const fontSizes = {
+  tinitiny: "0.3rem",
+  tinier: "0.5rem",
   tiny: "0.8rem",
   smaller: "1.15rem",
   small: "1.5rem",

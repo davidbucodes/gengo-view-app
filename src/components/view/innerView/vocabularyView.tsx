@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { ContentId } from "../contentId";
 import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
+import { TextReader } from "../../common/textReader/textReader";
+import { TextVoiceLanguage } from "../../../utils/tts";
 
 export function VocabularyView({
   contentId,
@@ -35,7 +37,15 @@ export function VocabularyView({
   return (
     vocab && (
       <Styles.InnerView>
-        <Styles.Header>{vocab.display.join(", ")}</Styles.Header>
+        <Styles.Header>
+          {vocab.display.join(", ")}{" "}
+          {
+            <TextReader
+              language={TextVoiceLanguage.JA}
+              textToRead={vocab.display.join(", ")}
+            />
+          }
+        </Styles.Header>
         <div>
           {Boolean(vocab.jlpt) && (
             <Styles.Line>
