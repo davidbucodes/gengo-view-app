@@ -70,7 +70,7 @@ export function Searchbar() {
       <Styles.Searchbar>
         <Styles.SearchInput
           ref={ref}
-          type={"text"}
+          type={"search"}
           onFocus={event => {
             setIsInputFocused(true);
             if (selectSearchOnFocus) {

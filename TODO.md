@@ -2,11 +2,10 @@
 
 Improvements:
 
+- restyle everything
 - kanji search page / draw area
 - kanji without image - replacing text styling
 - improve query options
-- support japanese UI text
-- enter key search: detect IME
 - top bar width at phone
 - load exported sessions
 - add Storybook

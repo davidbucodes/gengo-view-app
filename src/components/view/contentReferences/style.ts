@@ -32,7 +32,7 @@ export namespace Styles {
   `;
 
   export const TextFilterInput = styled.input.attrs({
-    type: "text",
+    type: "search",
   })`
     background: ${colors.backgroundLight3};
     padding: 8px;
