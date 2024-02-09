@@ -41,12 +41,14 @@ export function ContentReferences({
           ...(contentId?.label?.match(isKanjiRegexp) || []),
         ]);
         setKanji(
-          kanjis.map(kanji => {
-            const kanjiId = Database.kanjiToId[kanji];
-            if (Number.isInteger(kanjiId)) {
-              return Database.indices.kanjiIndex.get(kanjiId);
-            }
-          })
+          kanjis
+            .map(kanji => {
+              const kanjiId = Database.kanjiToId[kanji];
+              if (Number.isInteger(kanjiId)) {
+                return Database.indices.kanjiIndex.get(kanjiId);
+              }
+            })
+            .filter(kanji => kanji)
         );
       })();
     }
