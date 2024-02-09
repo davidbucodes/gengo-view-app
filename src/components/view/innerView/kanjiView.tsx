@@ -13,8 +13,10 @@ import { Styles } from "../style";
 
 export function KanjiView({
   contentId,
+  previousContentIds,
 }: {
   contentId: ContentId & { type: "kanji" };
+  previousContentIds: ContentId[];
 }) {
   const [kanji, setKanji] = useState(null as IndexSearchResult<KanjiDocument>);
   const [indexNames] = useState<IndexName[]>([
@@ -52,7 +54,11 @@ export function KanjiView({
           <b>Meaning:</b> {kanji.meaning?.join(", ")}
         </Styles.Line>
 
-        <ContentReferences contentId={contentId} indexNames={indexNames} />
+        <ContentReferences
+          contentId={contentId}
+          indexNames={indexNames}
+          previousContentIds={previousContentIds}
+        />
       </Styles.InnerView>
     )
   );

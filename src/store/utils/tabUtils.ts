@@ -7,7 +7,8 @@ export namespace TabUtils {
   export function generateTab(
     contentId: ContentId,
     newTabId?: string,
-    tabGroupId?: string
+    tabGroupId?: string,
+    previousContentIds: ContentId[] = []
   ): TabModel {
     return {
       id: newTabId || generateId(),
@@ -16,6 +17,7 @@ export namespace TabUtils {
       tooltip: capitalizeFirstLetter(contentId.type) + " - " + contentId.label,
       isPinned: false,
       tabGroupId: tabGroupId || null,
+      previousContentIds,
     };
   }
 }

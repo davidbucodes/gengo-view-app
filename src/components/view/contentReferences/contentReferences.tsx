@@ -23,9 +23,11 @@ const indexNameToTitle: Record<IndexName, string> = {
 export function ContentReferences({
   contentId,
   indexNames,
+  previousContentIds,
 }: {
   contentId: ContentId;
   indexNames: IndexName[];
+  previousContentIds: ContentId[];
 }) {
   const [sentences, setSentences] =
     useState<IndexSearchResult<SentenceDocument>[]>(null);
@@ -88,7 +90,11 @@ export function ContentReferences({
           title={indexNameToTitle["kanji"]}
           items={kanji}
           itemsRenderer={kanji => (
-            <Link searchResult={kanji} key={kanji._id}>
+            <Link
+              searchResult={kanji}
+              key={kanji._id}
+              previousContentIds={previousContentIds}
+            >
               <tr>
                 <td>{kanji.kanji}</td>
                 <td>{kanji.meaning ? kanji.meaning?.join(", ") : ""}</td>
@@ -103,7 +109,11 @@ export function ContentReferences({
           title={indexNameToTitle["vocabulary"]}
           items={vocabulary}
           itemsRenderer={vocab => (
-            <Link searchResult={vocab} key={vocab._id}>
+            <Link
+              searchResult={vocab}
+              key={vocab._id}
+              previousContentIds={previousContentIds}
+            >
               <tr>
                 <td>{vocab.display.join(", ")}</td>
                 <td>{vocab.reading.join(", ")}</td>
@@ -134,7 +144,11 @@ export function ContentReferences({
           title={indexNameToTitle["name"]}
           items={names}
           itemsRenderer={name => (
-            <Link searchResult={name} key={name._id}>
+            <Link
+              searchResult={name}
+              key={name._id}
+              previousContentIds={previousContentIds}
+            >
               <tr>
                 <td>
                   <ruby>

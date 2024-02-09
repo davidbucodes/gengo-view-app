@@ -30,9 +30,9 @@ export function SearchResults({
   ) {
     console.log(e.button);
     if (e.button === 1) {
-      dispatch(openTab(result));
+      dispatch(openTab({ contentId: result }));
     } else if (e.button === 0) {
-      dispatch(openTab(result));
+      dispatch(openTab({ contentId: result }));
       closePopupIfNeeded();
     }
   }
@@ -73,7 +73,7 @@ export function SearchResults({
           onClick={() => {
             closePopupIfNeeded();
             displayedResults.forEach(result => {
-              dispatch(openTab(result));
+              dispatch(openTab({ contentId: result }));
             });
           }}
         >
@@ -85,7 +85,13 @@ export function SearchResults({
           onClick={() => {
             closePopupIfNeeded();
             dispatch(
-              openTab({ type: "search", id: searchText, label: searchText })
+              openTab({
+                contentId: {
+                  type: "search",
+                  id: searchText,
+                  label: searchText,
+                },
+              })
             );
           }}
         >

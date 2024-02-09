@@ -4,12 +4,14 @@ export interface ConfigState {
   maxResultsForDisplay: number;
   closeSearchResultsOnPopupInteraction: boolean;
   selectSearchOnFocus: boolean;
+  showTabHistory: boolean;
 }
 
 const initialState: ConfigState = {
   maxResultsForDisplay: 20,
   closeSearchResultsOnPopupInteraction: true,
   selectSearchOnFocus: true,
+  showTabHistory: true,
 };
 
 export const slice = createSlice({
@@ -18,6 +20,7 @@ export const slice = createSlice({
   reducers: {
     updateConfig: (state, action: PayloadAction<Partial<ConfigState>>) => {
       Object.assign(state, action.payload);
+      console.log({ ...action.payload });
     },
   },
 });

@@ -42,7 +42,7 @@ export function SystemKanjiSearchView({
   }, [selectedStrokeCount]);
 
   function onGridItemClicked(contentId: ContentId) {
-    dispatch(openTab(contentId));
+    dispatch(openTab({ contentId }));
   }
 
   function onGridItemDrag(contentId: ContentId) {

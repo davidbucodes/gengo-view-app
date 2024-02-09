@@ -22,9 +22,11 @@ export function NavigationMenu(): JSX.Element {
           onClick={() =>
             dispatch(
               openTab({
-                type: "system",
-                id: systemContentId,
-                label: systemContentId,
+                contentId: {
+                  type: "system",
+                  id: systemContentId,
+                  label: systemContentId,
+                },
               })
             )
           }

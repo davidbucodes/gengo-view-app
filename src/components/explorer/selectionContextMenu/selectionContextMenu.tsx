@@ -47,9 +47,11 @@ export function SelectionContextMenu(): JSX.Element {
           close();
           dispatch(
             openTab({
-              type: "search",
-              id: selectionContextMenu.selectedText,
-              label: selectionContextMenu.selectedText,
+              contentId: {
+                type: "search",
+                id: selectionContextMenu.selectedText,
+                label: selectionContextMenu.selectedText,
+              },
             })
           );
         }}

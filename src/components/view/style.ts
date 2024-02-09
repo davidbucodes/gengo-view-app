@@ -7,6 +7,7 @@ export namespace Styles {
     color: white;
     padding: 15px;
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
     min-height: 0;
     min-width: 0;

@@ -11,8 +11,10 @@ import { Styles } from "../style";
 
 export function VocabularyView({
   contentId,
+  previousContentIds,
 }: {
   contentId: ContentId & { type: "vocabulary" };
+  previousContentIds: ContentId[];
 }) {
   const [vocab, setVocab] = useState(
     null as IndexSearchResult<VocabularyDocument>
@@ -63,7 +65,11 @@ export function VocabularyView({
           )}
         </div>
 
-        <ContentReferences contentId={contentId} indexNames={indexNames} />
+        <ContentReferences
+          contentId={contentId}
+          indexNames={indexNames}
+          previousContentIds={previousContentIds}
+        />
       </Styles.InnerView>
     )
   );

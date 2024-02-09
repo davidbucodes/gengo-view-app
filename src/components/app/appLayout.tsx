@@ -77,9 +77,11 @@ export function AppLayout() {
 
       dispatch(
         openTab({
-          type: "search",
-          id: selectedText.toString(),
-          label: selectedText.toString(),
+          contentId: {
+            type: "search",
+            id: selectedText.toString(),
+            label: selectedText.toString(),
+          },
         })
       );
     }
@@ -91,9 +93,11 @@ export function AppLayout() {
 
         dispatch(
           openTab({
-            type: "search",
-            id: copiedText,
-            label: copiedText,
+            contentId: {
+              type: "search",
+              id: copiedText,
+              label: copiedText,
+            },
           })
         );
       })();
@@ -125,15 +129,19 @@ export function AppLayout() {
         if (results.length) {
           dispatch(
             openTab({
-              ...searchResultToContentId(results[0]),
+              contentId: {
+                ...searchResultToContentId(results[0]),
+              },
             })
           );
         } else {
           dispatch(
             openTab({
-              type: "search",
-              id: copiedText,
-              label: copiedText,
+              contentId: {
+                type: "search",
+                id: copiedText,
+                label: copiedText,
+              },
             })
           );
         }
@@ -150,11 +158,11 @@ export function AppLayout() {
   }, [commandQueue]);
 
   function onTreeItemSelect(treeItem: (typeof sidebarTree.items)[number]) {
-    dispatch(openTab(treeItem.content));
+    dispatch(openTab({ contentId: treeItem.content }));
   }
 
   function onGridItemClicked(contentId: ContentId) {
-    dispatch(openTab(contentId));
+    dispatch(openTab({ contentId }));
   }
 
   function onToggleSidebar(side: Side, isVisible: boolean): void {

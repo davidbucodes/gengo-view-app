@@ -12,6 +12,7 @@ export interface TabModel {
   content: ContentId;
   isPinned: boolean;
   tabGroupId: string;
+  previousContentIds: ContentId[];
 }
 
 export namespace TabActions {
@@ -103,9 +104,12 @@ export namespace TabActions {
 
   export const openTab = (
     state: SliceState,
-    action: PayloadAction<ContentId>
+    action: PayloadAction<{
+      contentId: ContentId;
+      previousContentIds?: ContentId[];
+    }>
   ) => {
-    const contentId = action.payload;
+    const { contentId, previousContentIds = [] } = action.payload;
     const existingTab = TabsGroupUtils.findTabByContent(state, contentId);
     if (existingTab) {
       TabsGroupUtils.setActiveTab(state, existingTab);
@@ -120,7 +124,8 @@ export namespace TabActions {
       const newTab = TabUtils.generateTab(
         contentId,
         newTabId,
-        activeTabGroup.id
+        activeTabGroup.id,
+        [...previousContentIds]
       );
 
       const activeTab = TabsGroupUtils.getActiveTabByGroup(activeTabGroup);

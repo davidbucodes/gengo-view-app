@@ -30,7 +30,7 @@ export const LevelVocabularyView = memo(function LevelVocabularyView({
   }, [contentId]);
 
   function onGridItemClicked(contentId: ContentId) {
-    dispatch(openTab(contentId));
+    dispatch(openTab({ contentId }));
   }
 
   function onGridItemDrag(contentId: ContentId) {

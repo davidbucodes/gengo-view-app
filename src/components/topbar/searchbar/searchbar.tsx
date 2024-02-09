@@ -87,9 +87,11 @@ export function Searchbar() {
             if (event.code === "Enter" && event.altKey === true) {
               dispatch(
                 openTab({
-                  type: "search",
-                  label: searchText,
-                  id: searchText,
+                  contentId: {
+                    type: "search",
+                    label: searchText,
+                    id: searchText,
+                  },
                 })
               );
               ref.current?.blur();

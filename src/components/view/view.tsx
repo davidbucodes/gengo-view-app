@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setActiveTab } from "../../store/slices/tabsSlice";
 import { ContentId } from "./contentId";
+import { ContentBreadcrumbs } from "./innerView/contentBreadcrumbs/contentBreadcrumbs";
 import { KanjiView } from "./innerView/kanjiView";
 import { LevelKanjiView } from "./innerView/levelKanjiView";
 import { LevelVocabularyView } from "./innerView/levelVocabularyView";
@@ -9,6 +10,12 @@ import { SearchView } from "./innerView/search/searchView";
 import { SystemView } from "./innerView/system/systemView";
 import { VocabularyView } from "./innerView/vocabularyView";
 import { Styles } from "./style";
+
+const viewsWithContentBreadcrumbs: ContentId["type"][] = [
+  "kanji",
+  "name",
+  "vocabulary",
+];
 
 export function View({ tabGroupId }: { tabGroupId: string }) {
   const dispatch = useAppDispatch();
@@ -21,6 +28,9 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
       tab => tab.id === activeTabId
     );
     return activeTab?.id;
+  });
+  const showContentBreadcrumbs = useAppSelector(state => {
+    return state.config.showTabHistory;
   });
 
   return (
@@ -42,18 +52,28 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
               dispatch(setActiveTab(tab));
             }}
           >
+            {showContentBreadcrumbs &&
+              viewsWithContentBreadcrumbs.includes(contentId?.type) &&
+              Boolean(tab.previousContentIds.length) && (
+                <ContentBreadcrumbs contentIds={tab.previousContentIds} />
+              )}
             {contentId?.type === "kanji" && (
               <KanjiView
                 contentId={contentId as ContentId & { type: "kanji" }}
+                previousContentIds={[...tab.previousContentIds, contentId]}
               />
             )}
             {contentId?.type === "vocabulary" && (
               <VocabularyView
                 contentId={contentId as ContentId & { type: "vocabulary" }}
+                previousContentIds={[...tab.previousContentIds, contentId]}
               />
             )}
             {contentId?.type === "name" && (
-              <NameView contentId={contentId as ContentId & { type: "name" }} />
+              <NameView
+                contentId={contentId as ContentId & { type: "name" }}
+                previousContentIds={[...tab.previousContentIds, contentId]}
+              />
             )}
             {contentId?.type === "level_kanji" && (
               <LevelKanjiView

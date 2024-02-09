@@ -13,8 +13,10 @@ import { Styles } from "../style";
 
 export function NameView({
   contentId,
+  previousContentIds,
 }: {
   contentId: ContentId & { type: "name" };
+  previousContentIds: ContentId[];
 }) {
   const [name, setName] = useState(null as IndexSearchResult<NameDocument>);
   const [indexNames] = useState<IndexName[]>([
@@ -53,7 +55,11 @@ export function NameView({
             )}
           </div>
 
-          <ContentReferences contentId={contentId} indexNames={indexNames} />
+          <ContentReferences
+            contentId={contentId}
+            indexNames={indexNames}
+            previousContentIds={previousContentIds}
+          />
         </Loader>
       </Styles.InnerView>
     )

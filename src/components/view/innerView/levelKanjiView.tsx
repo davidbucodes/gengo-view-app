@@ -30,7 +30,7 @@ export const LevelKanjiView = memo(function LevelKanjiView({
   }, [contentId]);
 
   function onGridItemClicked(contentId: ContentId) {
-    dispatch(openTab(contentId));
+    dispatch(openTab({ contentId: contentId }));
   }
 
   function onGridItemDrag(contentId: ContentId) {
