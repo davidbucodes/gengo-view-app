@@ -4,6 +4,7 @@ export type CommandName =
   | "Close current tab"
   | "Close all tab groups"
   | "Search selected text"
+  | "Search selected text - first vocabulary or open search"
   | "Search copied text"
   | "Search copied text - first vocabulary or open search"
   | "Focus searchbox"

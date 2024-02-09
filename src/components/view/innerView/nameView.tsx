@@ -10,6 +10,8 @@ import { Loader } from "../../common/loader/loader";
 import { ContentId } from "../contentId";
 import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
+import { TextReader } from "../../common/textReader/textReader";
+import { TextVoiceLanguage } from "../../../utils/tts";
 
 export function NameView({
   contentId,
@@ -41,6 +43,10 @@ export function NameView({
             {Boolean(name.r.length) && (
               <Styles.Line>
                 <b>Reading:</b> {name.r.join(", ")}
+                <TextReader
+                  language={TextVoiceLanguage.JA}
+                  textToRead={name.r.join(", ")}
+                />
               </Styles.Line>
             )}
             {Boolean(name.d.length) && (

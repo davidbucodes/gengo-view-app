@@ -9,6 +9,7 @@ export function ContentBreadcrumbs({
 }): JSX.Element {
   return (
     <Styles.ContentBreadcrumbs>
+      Previous:{" "}
       {contentIds.map((contentId, index) => (
         <>
           <ContentIdLink

@@ -37,15 +37,7 @@ export function VocabularyView({
   return (
     vocab && (
       <Styles.InnerView>
-        <Styles.Header>
-          {vocab.display.join(", ")}{" "}
-          {
-            <TextReader
-              language={TextVoiceLanguage.JA}
-              textToRead={vocab.display.join(", ")}
-            />
-          }
-        </Styles.Header>
+        <Styles.Header>{vocab.display.join(", ")}</Styles.Header>
         <div>
           {Boolean(vocab.jlpt) && (
             <Styles.Line>
@@ -55,7 +47,13 @@ export function VocabularyView({
           )}
           {Boolean(vocab.reading.length) && (
             <Styles.Line>
-              <b>Reading:</b> {vocab.reading.join(", ")}
+              <b>Reading:</b> {vocab.reading.join(", ")}{" "}
+              {
+                <TextReader
+                  language={TextVoiceLanguage.JA}
+                  textToRead={vocab.reading.join(", ")}
+                />
+              }
             </Styles.Line>
           )}
           {Boolean(vocab.expl.length) && (

@@ -42,6 +42,38 @@ export function AppLayout() {
 
   useKeyboardShortcuts();
 
+  async function openFirstVocabResultOrSearchTab(copiedText: string) {
+    const results = await Database.indices.vocabularyIndex.searchText(
+      copiedText,
+      {
+        english: true,
+        japanese: true,
+        scorePenalty: 0,
+        sortByScore: true,
+      }
+    );
+
+    if (results.length) {
+      dispatch(
+        openTab({
+          contentId: {
+            ...searchResultToContentId(results[0]),
+          },
+        })
+      );
+    } else {
+      dispatch(
+        openTab({
+          contentId: {
+            type: "search",
+            id: copiedText,
+            label: copiedText,
+          },
+        })
+      );
+    }
+  }
+
   useEffect(() => {
     const kanjis = Jlpt.allKanji();
     setKanjis(kanjis);
@@ -52,8 +84,9 @@ export function AppLayout() {
           KeyW: "Close current tab",
           ShiftKeyW: "Close all tab groups",
           KeyS: "Search selected text",
+          ShiftKeyS: "Search selected text - first vocabulary or open search",
           KeyV: "Search copied text",
-          KeyE: "Search copied text - first vocabulary or open search",
+          ShiftKeyV: "Search copied text - first vocabulary or open search",
           KeyT: "Focus next tab in group",
           ShiftKeyT: "Focus previous tab in group",
         },
@@ -73,7 +106,11 @@ export function AppLayout() {
     if (commandQueue.includes("Search selected text")) {
       dispatch(pickCommand({ name: "Search selected text" }));
 
-      const selectedText = window.getSelection();
+      const selectedText = window.getSelection().toString().trim();
+
+      if (!selectedText) {
+        return;
+      }
 
       dispatch(
         openTab({
@@ -85,11 +122,36 @@ export function AppLayout() {
         })
       );
     }
+    if (
+      commandQueue.includes(
+        "Search selected text - first vocabulary or open search"
+      )
+    ) {
+      dispatch(
+        pickCommand({
+          name: "Search selected text - first vocabulary or open search",
+        })
+      );
+
+      (async () => {
+        const selectedText = window.getSelection().toString().trim();
+
+        if (!selectedText) {
+          return;
+        }
+
+        await openFirstVocabResultOrSearchTab(selectedText);
+      })();
+    }
     if (commandQueue.includes("Search copied text")) {
       dispatch(pickCommand({ name: "Search copied text" }));
 
       (async () => {
-        const copiedText = await navigator.clipboard.readText();
+        const copiedText = (await navigator.clipboard.readText()).trim();
+
+        if (!copiedText) {
+          return;
+        }
 
         dispatch(
           openTab({
@@ -114,37 +176,13 @@ export function AppLayout() {
       );
 
       (async () => {
-        const copiedText = await navigator.clipboard.readText();
+        const copiedText = (await navigator.clipboard.readText()).trim();
 
-        const results = await Database.indices.vocabularyIndex.searchText(
-          copiedText,
-          {
-            english: true,
-            japanese: true,
-            scorePenalty: 0,
-            sortByScore: true,
-          }
-        );
-
-        if (results.length) {
-          dispatch(
-            openTab({
-              contentId: {
-                ...searchResultToContentId(results[0]),
-              },
-            })
-          );
-        } else {
-          dispatch(
-            openTab({
-              contentId: {
-                type: "search",
-                id: copiedText,
-                label: copiedText,
-              },
-            })
-          );
+        if (!copiedText) {
+          return;
         }
+
+        await openFirstVocabResultOrSearchTab(copiedText);
       })();
     }
     if (commandQueue.includes("Focus next tab in group")) {

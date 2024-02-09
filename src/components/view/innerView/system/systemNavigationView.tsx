@@ -10,7 +10,9 @@ export function SystemNavigationView({
 }) {
   const keyboardConfig = useAppSelector(state => state.keyboard.keyboardConfig);
 
-  const configEntries = Object.entries(keyboardConfig);
+  const configEntries = Object.entries(keyboardConfig).sort((a, b) => {
+    return a[0].at(-1).localeCompare(b[0].at(-1));
+  });
 
   configEntries.unshift([
     "AltEnter",
@@ -57,6 +59,7 @@ export function SystemNavigationView({
             ))}
           </Styles.KeyValueTableBody>
         </Styles.KeyValueTable>
+        <Styles.Line />
       </div>
     )
   );

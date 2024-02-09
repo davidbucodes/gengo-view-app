@@ -10,6 +10,8 @@ import { KanjiSvg } from "../../common/svg/svg";
 import { ContentId } from "../contentId";
 import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
+import { TextReader } from "../../common/textReader/textReader";
+import { TextVoiceLanguage } from "../../../utils/tts";
 
 export function KanjiView({
   contentId,
@@ -44,15 +46,33 @@ export function KanjiView({
         <Styles.Line>
           <b>JLPT:</b> N{kanji.jlpt}
         </Styles.Line>
-        <Styles.Line>
-          <b>Kun:</b> {kanji.kunReading?.join(", ")}
-        </Styles.Line>
-        <Styles.Line>
-          <b>On:</b> {kanji.onReading?.join(", ")}
-        </Styles.Line>
-        <Styles.Line>
-          <b>Meaning:</b> {kanji.meaning?.join(", ")}
-        </Styles.Line>
+        {Boolean(kanji.kunReading?.length) && (
+          <Styles.Line>
+            <b>Kun:</b> {kanji.kunReading.join(", ")}{" "}
+            {
+              <TextReader
+                language={TextVoiceLanguage.JA}
+                textToRead={kanji.kunReading.join(", ")}
+              />
+            }
+          </Styles.Line>
+        )}
+        {Boolean(kanji.onReading?.length) && (
+          <Styles.Line>
+            <b>On:</b> {kanji.onReading.join(", ")}{" "}
+            {
+              <TextReader
+                language={TextVoiceLanguage.JA}
+                textToRead={kanji.onReading.join(", ")}
+              />
+            }
+          </Styles.Line>
+        )}
+        {Boolean(kanji.meaning?.length) && (
+          <Styles.Line>
+            <b>Meaning:</b> {kanji.meaning.join(", ")}
+          </Styles.Line>
+        )}
 
         <ContentReferences
           contentId={contentId}
