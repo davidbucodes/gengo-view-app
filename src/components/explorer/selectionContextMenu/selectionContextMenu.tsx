@@ -55,6 +55,27 @@ export function SelectionContextMenu(): JSX.Element {
       >
         Search selection
       </Styles.ContextMenuItem>
+      <Styles.ContextMenuLine />
+      <Styles.ContextMenuItem
+        onClick={() => {
+          close();
+          window.open(
+            `http://google.com/search?q=${selectionContextMenu.selectedText}`
+          );
+        }}
+      >
+        Search in Google
+      </Styles.ContextMenuItem>
+      <Styles.ContextMenuItem
+        onClick={() => {
+          close();
+          window.open(
+            `https://translate.google.com/?sl=ja&tl=en&op=translate&text=${selectionContextMenu.selectedText}`
+          );
+        }}
+      >
+        Search in Google Translate
+      </Styles.ContextMenuItem>
     </Styles.ContextMenu>
   );
 }
