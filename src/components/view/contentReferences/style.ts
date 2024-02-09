@@ -24,6 +24,7 @@ export namespace Styles {
     margin: 10px 0;
     background-color: ${colors.backgroundLight3};
     display: flex;
+    align-items: center;
   `;
 
   export const TitleText = styled.div`
@@ -34,7 +35,7 @@ export namespace Styles {
     type: "text",
   })`
     background: ${colors.backgroundLight3};
-    padding: 5px;
+    padding: 8px;
     border: 3px solid ${colors.backgroundLight4};
     border-radius: 10px;
     font-style: italic;

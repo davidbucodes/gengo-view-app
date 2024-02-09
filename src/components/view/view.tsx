@@ -37,9 +37,14 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
     <>
       {tabs.map(tab => {
         const { content: contentId } = tab;
+        const displayBreadcrumbs =
+          showContentBreadcrumbs &&
+          viewsWithContentBreadcrumbs.includes(contentId?.type) &&
+          Boolean(tab.previousContentIds.length);
         return (
           <Styles.View
             key={tab.id}
+            style={{ flexDirection: displayBreadcrumbs ? "column" : "row" }}
             isDisplayed={tab.id === activeTabId}
             onDragOver={event => {
               event.preventDefault();
@@ -52,11 +57,9 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
               dispatch(setActiveTab(tab));
             }}
           >
-            {showContentBreadcrumbs &&
-              viewsWithContentBreadcrumbs.includes(contentId?.type) &&
-              Boolean(tab.previousContentIds.length) && (
-                <ContentBreadcrumbs contentIds={tab.previousContentIds} />
-              )}
+            {displayBreadcrumbs && (
+              <ContentBreadcrumbs contentIds={tab.previousContentIds} />
+            )}
             {contentId?.type === "kanji" && (
               <KanjiView
                 contentId={contentId as ContentId & { type: "kanji" }}

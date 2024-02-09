@@ -22,11 +22,15 @@ export function SystemNavigationView({
       .split("-")
       .filter(i => i !== "key");
     const keysElements = keys.map(key => (
-      <Styles.KeyboardKey>{capitalize(key)}</Styles.KeyboardKey>
+      <Styles.KeyboardKey key={key}>{capitalize(key)}</Styles.KeyboardKey>
     ));
-    const plusElements = new Array(keysElements.length - 1).fill(
-      <Styles.KeyboardKeysSequencePlus>+</Styles.KeyboardKeysSequencePlus>
-    );
+    const plusElements = new Array(keysElements.length - 1)
+      .fill(0)
+      .map((_, index) => (
+        <Styles.KeyboardKeysSequencePlus key={`+${index}`}>
+          +
+        </Styles.KeyboardKeysSequencePlus>
+      ));
     return zip(keysElements, plusElements);
   }
 

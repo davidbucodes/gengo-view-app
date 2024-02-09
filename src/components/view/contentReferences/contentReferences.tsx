@@ -49,7 +49,12 @@ export function ContentReferences({
         if (sentencesFilterText) {
           sentencesResult = await Database.indices.sentenceIndex.searchText(
             sentencesFilterText,
-            { documents: sentencesResult }
+            {
+              documents: sentencesResult,
+              english: true,
+              japanese: true,
+              scorePenalty: 0,
+            }
           );
         }
         setSentences(sentencesResult);
@@ -68,7 +73,12 @@ export function ContentReferences({
         if (vocabularyFilterText) {
           vocabularyResult = await Database.indices.vocabularyIndex.searchText(
             vocabularyFilterText,
-            { documents: vocabularyResult }
+            {
+              documents: vocabularyResult,
+              english: true,
+              japanese: true,
+              scorePenalty: 0,
+            }
           );
         }
         setVocabulary(
@@ -88,7 +98,12 @@ export function ContentReferences({
         if (namesFilterText) {
           nameResult = await Database.indices.nameIndex.searchText(
             namesFilterText,
-            { documents: nameResult }
+            {
+              documents: nameResult,
+              english: true,
+              japanese: true,
+              scorePenalty: 0,
+            }
           );
         }
         setNames(sortBy(nameResult, name => name.n.length));

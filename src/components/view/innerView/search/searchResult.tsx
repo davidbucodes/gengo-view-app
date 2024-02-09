@@ -32,13 +32,15 @@ export function SearchResult({
         </div>
         <ul>
           {meaning?.map(m => (
-            <li>{m}</li>
+            <li key={m}>{m}</li>
           ))}
         </ul>
       </div>
     );
     if (jlpt) {
-      tags.push(<SearchResultBadge text={`N${String(jlpt)}`} />);
+      tags.push(
+        <SearchResultBadge text={`N${String(jlpt)}`} key={`N${String(jlpt)}`} />
+      );
     }
   } else if (result._index === "name") {
     const { n, r, t, d } = result as IndexSearchResult<NameDocument>;
