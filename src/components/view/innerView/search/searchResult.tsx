@@ -5,7 +5,7 @@ import {
   NameDocument,
   getReadableNameDocumentType,
 } from "@davidbucodes/gengo-view-database";
-import { Styles } from "../../style";
+import { Styles } from "./style";
 import { SearchResultBadge } from "./searchResultBadge/searchResultBadge";
 
 export function SearchResult({
@@ -30,11 +30,7 @@ export function SearchResult({
             .filter(i => i)
             .join(" | ")}
         </div>
-        <ul>
-          {meaning?.map(m => (
-            <li key={m}>{m}</li>
-          ))}
-        </ul>
+        <div>{meaning?.join(", ")}</div>
       </div>
     );
     if (jlpt) {
@@ -80,7 +76,7 @@ export function SearchResult({
   return (
     <Styles.SearchResult>
       <Styles.SearchResultLine>
-        {header}
+        <b>{header}</b>
         {tags}
       </Styles.SearchResultLine>
       <Styles.SearchResultLine>{body}</Styles.SearchResultLine>
