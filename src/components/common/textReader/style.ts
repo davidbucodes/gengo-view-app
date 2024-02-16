@@ -16,6 +16,7 @@ export namespace Styles {
     padding: 0;
     vertical-align: middle;
     margin-top: -4px;
+    flex-shrink: 0;
   `;
   export const PlayButton = styled.div`
     border: ${fontSizes.tinitiny} solid transparent;

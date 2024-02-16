@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export namespace Styles {
-  export const Link = styled.span`
+  export const Link = styled.div`
     cursor: pointer;
-    display: contents;
+    display: block;
     vertical-align: middle;
-    &:hover {
+    &:hover,
+    &:focus {
       div,
       span,
       tr {
@@ -13,4 +14,6 @@ export namespace Styles {
       }
     }
   `;
+
+  export const TrLink = styled.tr(Link);
 }

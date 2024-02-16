@@ -9,12 +9,12 @@ export function Sidebar({
   side,
   children,
 }: React.PropsWithChildren<{ show: boolean; side: Side }>) {
-  const [width, setWidth] = useState<number>();
-
   const { windowSize } = useWindowResize();
 
   const maxWidth = Math.max(windowSize.width * 0.4, 200);
-  const minWidth = Math.max(windowSize.width * 0.08, 200);
+  const minWidth = Math.max(windowSize.width * 0.08, 250);
+
+  const [width, setWidth] = useState<number>(minWidth);
 
   useEffect(() => {
     if (width > maxWidth) {

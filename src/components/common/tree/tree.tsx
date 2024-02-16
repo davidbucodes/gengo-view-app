@@ -10,6 +10,7 @@ export interface TreeItemModel<T> extends TreeModel<T> {
 
 export interface TreeModel<T> {
   items?: TreeItemModel<T>[];
+  defaultClose?: boolean;
 }
 
 export function Tree<T>({
@@ -34,16 +35,18 @@ export function Tree<T>({
           <IndeterminateCheckBoxOutlinedIcon />
         </Styles.TreeTopbarFoldAll>
       </Styles.TreeTopbar>
-      {treeRoot.items.map(item => (
-        <TreeItem
-          treeItem={item}
-          onSelect={onSelect}
-          key={item.label}
-          level={0}
-          onOpenFolder={() => setAreAllFolded(false)}
-          areAllFolded={areAllFolded}
-        />
-      ))}
+      <Styles.TreeItems>
+        {treeRoot.items.map(item => (
+          <TreeItem
+            treeItem={item}
+            onSelect={onSelect}
+            key={item.label}
+            level={0}
+            onOpenFolder={() => setAreAllFolded(false)}
+            areAllFolded={areAllFolded}
+          />
+        ))}
+      </Styles.TreeItems>
     </Styles.Tree>
   );
 }

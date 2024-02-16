@@ -17,7 +17,8 @@ export function TreeItem<T>({
   onOpenFolder: () => void;
   areAllFolded: boolean;
 }) {
-  const [isFolded, setIsFolded] = useState(false);
+  const { defaultClose } = treeItem;
+  const [isFolded, setIsFolded] = useState(defaultClose || false);
 
   useEffect(() => {
     if (areAllFolded) {
@@ -29,7 +30,7 @@ export function TreeItem<T>({
     <Styles.TreeItemWrapper>
       <Styles.TreeItem
         level={level}
-        tabIndex={0}
+        tabIndex={2}
         key={treeItem.label}
         onClick={event => {
           event.stopPropagation();

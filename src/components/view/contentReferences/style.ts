@@ -20,7 +20,8 @@ export namespace Styles {
   `;
 
   export const Title = styled.div`
-    padding: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
     margin: 10px 0;
     background-color: ${colors.backgroundLight3};
     display: flex;

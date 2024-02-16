@@ -143,11 +143,10 @@ export function ContentReferences({
               searchResult={kanji}
               key={kanji._id}
               previousContentIds={previousContentIds}
+              useTrElement
             >
-              <tr>
-                <td>{kanji.kanji}</td>
-                <td>{kanji.meaning ? kanji.meaning?.join(", ") : ""}</td>
-              </tr>
+              <td>{kanji.kanji}</td>
+              <td>{kanji.meaning ? kanji.meaning?.join(", ") : ""}</td>
             </Link>
           )}
           itemsCountAtPage={10}
@@ -162,12 +161,11 @@ export function ContentReferences({
               searchResult={vocab}
               key={vocab._id}
               previousContentIds={previousContentIds}
+              useTrElement
             >
-              <tr>
-                <td>{vocab.display.join(", ")}</td>
-                <td>{vocab.reading.join(", ")}</td>
-                <td>{vocab.meaning.join(", ")}</td>
-              </tr>
+              <td>{vocab.display.join(", ")}</td>
+              <td>{vocab.reading.join(", ")}</td>
+              <td>{vocab.meaning.join(", ")}</td>
             </Link>
           )}
           itemsCountAtPage={10}
@@ -183,8 +181,13 @@ export function ContentReferences({
           itemsRenderer={sentence => (
             <tr key={sentence._id}>
               <td>
-                <div>
-                  {sentence.j}{" "}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {sentence.j}
                   <TextReader
                     language={TextVoiceLanguage.JA}
                     textToRead={sentence.j}
@@ -215,16 +218,15 @@ export function ContentReferences({
               searchResult={name}
               key={name._id}
               previousContentIds={previousContentIds}
+              useTrElement
             >
-              <tr>
-                <td>
-                  <ruby>
-                    {name.n}
-                    <rt>{name.r}</rt>
-                  </ruby>
-                </td>
-                <td>{name.d}</td>
-              </tr>
+              <td>
+                <ruby>
+                  {name.n}
+                  <rt>{name.r}</rt>
+                </ruby>
+              </td>
+              <td>{name.d}</td>
             </Link>
           )}
           itemsCountAtPage={10}

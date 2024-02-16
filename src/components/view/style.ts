@@ -3,7 +3,7 @@ import { colors, fontSizes } from "../../theme";
 
 export namespace Styles {
   export const View = styled.div<{ isDisplayed: boolean }>`
-    font-size: ${fontSizes.medium};
+    font-size: ${fontSizes.mediumSmall};
     color: white;
     padding: 15px;
     display: flex;
@@ -39,9 +39,10 @@ export namespace Styles {
   `;
   export const Line = styled.div`
     line-height: ${fontSizes.large};
-    font-size: ${fontSizes.medium};
+    font-size: ${fontSizes.mediumSmall};
     vertical-align: middle;
     padding-bottom: ${fontSizes.tiny};
+    padding-right: ${fontSizes.small};
     display: flex;
     gap: 1ch;
     align-items: center;
@@ -79,11 +80,11 @@ export namespace Styles {
   `;
   export const Textbox = styled.input`
     padding: 5px;
-    font-size: 2rem;
+    font-size: ${fontSizes.medium};
   `;
   export const Textarea = styled.textarea`
     padding: 5px;
-    font-size: 2rem;
+    font-size: ${fontSizes.medium};
     height: 70%;
   `;
   export const SearchResultsTable = styled.div`

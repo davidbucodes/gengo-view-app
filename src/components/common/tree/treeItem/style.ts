@@ -10,13 +10,16 @@ export namespace Styles {
 
   export const TreeItem = styled.div<TreeItemProps>`
     color: white;
-    padding: 5px 10px;
-    padding-left: ${props => 10 + 30 * props.level}px;
-    font-size: ${fontSizes.smaller};
+    padding: 6px 10px;
+    margin-left: ${props => 40 * props.level}px;
+    padding-left: 15px;
+    font-size: ${fontSizes.small};
     user-select: none;
     cursor: pointer;
     display: flex;
     align-items: center;
+    ${props =>
+      props.level ? `border-left: 1px solid ${colors.backgroundLight3};` : ""}
 
     &:hover {
       background-color: ${colors.backgroundDark2};

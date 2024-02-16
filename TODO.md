@@ -13,6 +13,8 @@ Improvements:
 
 Features:
 
+- cursor navigation
+- tab navigation
 - kanji svg animation controls and maybe svg styles
 - add keyboard shortcuts (with config at store)
 - add words compare at table (by search? maybe by popup)

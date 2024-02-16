@@ -14,12 +14,14 @@ export function Link({
   children,
   searchResult,
   previousContentIds = [],
+  useTrElement = false,
 }: React.PropsWithChildren<{
   searchResult:
     | IndexSearchResult<KanjiDocument>
     | IndexSearchResult<VocabularyDocument>
     | IndexSearchResult<NameDocument>;
   previousContentIds?: ContentId[];
+  useTrElement?: boolean;
 }>): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -40,9 +42,35 @@ export function Link({
     dispatch(openTab({ contentId, previousContentIds }));
   }
 
-  return (
-    <Styles.Link onClick={onClick} onAuxClick={onAuxClick}>
-      {children}
-    </Styles.Link>
-  );
+  function onKeyDown(ev: React.KeyboardEvent) {
+    if (ev.code === "Enter") {
+      ev.preventDefault();
+      const contentId = searchResultToContentId(searchResult);
+      dispatch(openTab({ contentId, previousContentIds }));
+    }
+  }
+
+  if (useTrElement) {
+    return (
+      <Styles.TrLink
+        tabIndex={1}
+        onClick={onClick}
+        onAuxClick={onAuxClick}
+        onKeyDown={onKeyDown}
+      >
+        {children}
+      </Styles.TrLink>
+    );
+  } else {
+    return (
+      <Styles.Link
+        tabIndex={1}
+        onClick={onClick}
+        onAuxClick={onAuxClick}
+        onKeyDown={onKeyDown}
+      >
+        {children}
+      </Styles.Link>
+    );
+  }
 }

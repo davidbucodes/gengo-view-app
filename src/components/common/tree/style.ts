@@ -7,7 +7,9 @@ export namespace Styles {
     overflow-y: auto;
     flex-grow: 1;
     background-color: ${colors.backgroundDark1};
-    font-size: ${fontSizes.small};
+    font-size: ${fontSizes.mediumSmall};
+    display: flex;
+    flex-direction: column;
   `;
 
   export const TreeTopbar = styled.div`
@@ -26,5 +28,10 @@ export namespace Styles {
     cursor: pointer;
     display: flex;
     align-items: center;
+  `;
+
+  export const TreeItems = styled.div`
+    flex-grow: 1;
+    overflow: auto;
   `;
 }

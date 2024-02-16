@@ -43,7 +43,7 @@ export namespace Styles {
     width: 5px;
     min-width: 5px;
     height: 100%;
-    cursor: e-resize;
+    cursor: ew-resize;
     background-color: ${colors.backgroundLight1};
 
     &:hover {
@@ -57,7 +57,7 @@ export namespace Styles {
     left: 0;
     height: 100%;
     width: 100%;
-    cursor: e-resize;
+    cursor: ew-resize;
     z-index: 1;
   `;
 }

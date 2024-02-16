@@ -45,6 +45,7 @@ cursor: {
         <Styles.TitleText>{title}</Styles.TitleText>
         {onTextFilterInputChange && (
           <Styles.TextFilterInput
+            tabIndex={1}
             placeholder="Filter..."
             onChange={event => onTextFilterInputChange(event.target.value)}
           />
@@ -74,7 +75,7 @@ cursor: {
                     setPageNumber(pageNumber + 1);
                   }}
                   onKeyDown={ev => {
-                    if (ev.code === "Enter" || ev.code === "Space") {
+                    if (ev.code === "Enter") {
                       ev.preventDefault();
                       setPageNumber(pageNumber + 1);
                     }
@@ -91,7 +92,7 @@ cursor: {
                     setPageNumber(pageNumber - 1);
                   }}
                   onKeyDown={ev => {
-                    if (ev.code === "Enter" || ev.code === "Space") {
+                    if (ev.code === "Enter") {
                       ev.preventDefault();
                       setPageNumber(pageNumber + 1);
                     }

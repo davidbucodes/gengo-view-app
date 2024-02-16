@@ -59,7 +59,7 @@ export namespace Styles {
               width: "5px",
               minWidth: "5px",
               height: "100%",
-              cursor: "e-resize",
+              cursor: "ew-resize",
             },
           };
       }
@@ -86,7 +86,7 @@ export namespace Styles {
         case "left":
           return {
             style: {
-              cursor: "e-resize",
+              cursor: "ew-resize",
             },
           };
       }

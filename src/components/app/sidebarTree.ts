@@ -42,28 +42,34 @@ export const sidebarTree: TreeModel<ContentId> = {
         },
       ],
     },
-    ...jlptLevels.map(level => {
-      return {
-        label: `JLPT N${level}`,
-        items: [
-          {
-            label: "Kanji",
-            content: {
-              type: "level_kanji",
-              id: level,
-              label: `N${level} Kanji`,
-            } as ContentId,
-          },
-          {
-            label: "Vocabulary",
-            content: {
-              type: "level_vocabulary",
-              id: level,
-              label: `N${level} Vocabulary`,
-            } as ContentId,
-          },
-        ],
-      };
-    }),
+    {
+      label: "JLPT",
+      items: [
+        ...jlptLevels.map(level => {
+          return {
+            label: `JLPT N${level}`,
+            defaultClose: true,
+            items: [
+              {
+                label: "Kanji",
+                content: {
+                  type: "level_kanji",
+                  id: level,
+                  label: `N${level} Kanji`,
+                } as ContentId,
+              },
+              {
+                label: "Vocabulary",
+                content: {
+                  type: "level_vocabulary",
+                  id: level,
+                  label: `N${level} Vocabulary`,
+                } as ContentId,
+              },
+            ],
+          };
+        }),
+      ],
+    },
   ],
 };
