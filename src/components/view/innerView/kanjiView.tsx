@@ -37,43 +37,44 @@ export function KanjiView({
   return (
     kanji && (
       <Styles.InnerView>
-        <Styles.Line style={{ float: "left", marginRight: 15 }}>
-          <KanjiSvg kanji={kanji.kanji} />
-        </Styles.Line>
-        <Styles.Line>
-          <b>{kanji.kanji}</b>
-        </Styles.Line>
-        <Styles.Line>
-          <b>JLPT:</b> N{kanji.jlpt}
-        </Styles.Line>
-        {Boolean(kanji.kunReading?.length) && (
-          <Styles.Line>
-            <b>Kun:</b> {kanji.kunReading.join(", ")}{" "}
-            {
-              <TextReader
-                language={TextVoiceLanguage.JA}
-                textToRead={kanji.kunReading.join(", ")}
-              />
-            }
+        <Styles.KanjiDetailsContainer>
+          <Styles.Line style={{ float: "left", marginRight: 10 }}>
+            <KanjiSvg kanji={kanji.kanji} />
           </Styles.Line>
-        )}
-        {Boolean(kanji.onReading?.length) && (
-          <Styles.Line>
-            <b>On:</b> {kanji.onReading.join(", ")}{" "}
-            {
-              <TextReader
-                language={TextVoiceLanguage.JA}
-                textToRead={kanji.onReading.join(", ")}
-              />
-            }
+          <Styles.Line style={{ marginTop: 10 }}>
+            <b>{kanji.kanji}</b>
           </Styles.Line>
-        )}
-        {Boolean(kanji.meaning?.length) && (
           <Styles.Line>
-            <b>Meaning:</b> {kanji.meaning.join(", ")}
+            <b>JLPT:</b> N{kanji.jlpt}
           </Styles.Line>
-        )}
-
+          {Boolean(kanji.kunReading?.length) && (
+            <Styles.Line>
+              <b>Kun:</b> {kanji.kunReading.join(", ")}{" "}
+              {
+                <TextReader
+                  language={TextVoiceLanguage.JA}
+                  textToRead={kanji.kunReading.join(", ")}
+                />
+              }
+            </Styles.Line>
+          )}
+          {Boolean(kanji.onReading?.length) && (
+            <Styles.Line>
+              <b>On:</b> {kanji.onReading.join(", ")}{" "}
+              {
+                <TextReader
+                  language={TextVoiceLanguage.JA}
+                  textToRead={kanji.onReading.join(", ")}
+                />
+              }
+            </Styles.Line>
+          )}
+          {Boolean(kanji.meaning?.length) && (
+            <Styles.Line>
+              <b>Meaning:</b> {kanji.meaning.join(", ")}
+            </Styles.Line>
+          )}
+        </Styles.KanjiDetailsContainer>
         <ContentReferences
           contentId={contentId}
           indexNames={indexNames}

@@ -133,7 +133,11 @@ export function ContentReferences({
   }, [contentId, indexNames]);
 
   return (
-    <div>
+    <div
+      style={{
+        marginBottom: 10,
+      }}
+    >
       {kanji && (
         <Section
           title={indexNameToTitle["kanji"]}

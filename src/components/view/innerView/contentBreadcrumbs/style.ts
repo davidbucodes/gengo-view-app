@@ -6,8 +6,8 @@ export namespace Styles {
     flex-grow: 1;
     border-bottom: solid ${colors.backgroundLight1} 1px;
     flex-shrink: 0;
-    padding-bottom: ${fontSizes.tiny};
-    margin-bottom: ${fontSizes.small};
+    padding-bottom: ${fontSizes.tinier};
+    margin-bottom: ${fontSizes.tiny};
     font-size: ${fontSizes.smaller};
     color: ${colors.backgroundGrey};
     overflow-x: auto;

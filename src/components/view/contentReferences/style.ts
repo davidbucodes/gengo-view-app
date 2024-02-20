@@ -7,6 +7,7 @@ export namespace Styles {
     display: flex;
     flex-direction: column;
     padding-bottom: 5px;
+    margin-bottom: 10px;
     padding-right: 10px;
   `;
 
@@ -16,13 +17,13 @@ export namespace Styles {
   `;
 
   export const Footer = styled.div`
-    font-size: ${fontSizes.mediumSmall};
+    font-size: ${fontSizes.small};
   `;
 
   export const Title = styled.div`
-    padding: 15px 20px;
-    border-radius: 5px;
-    margin: 10px 0;
+    padding: 13px 17px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     background-color: ${colors.backgroundLight3};
     display: flex;
     align-items: center;
@@ -55,6 +56,7 @@ export namespace Styles {
   `;
 
   export const Table = styled.table`
+    background: ${colors.backgroundLight1};
     border-collapse: collapse;
     flex-grow: 1;
     font-weight: lighter;

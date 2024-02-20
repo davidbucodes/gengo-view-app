@@ -22,6 +22,11 @@ export namespace Styles {
     overflow-y: auto;
   `;
 
+  export const KanjiDetailsContainer = styled.div`
+    float: left;
+    width: 100%;
+  `;
+
   export const Header = styled.div`
     line-height: ${fontSizes.larger};
     font-size: ${fontSizes.large};

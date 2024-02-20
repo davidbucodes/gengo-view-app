@@ -2,7 +2,9 @@
 
 Improvements:
 
+- Restyle pages
 - restyle everything
+- filter with conversation
 - kanji search page / draw area
 - kanji without image - replacing text styling
 - improve query options
