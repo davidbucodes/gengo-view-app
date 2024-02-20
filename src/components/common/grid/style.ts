@@ -2,6 +2,12 @@ import styled from "styled-components";
 import { colors, fontSizes } from "../../../theme";
 
 export namespace Styles {
+  export const GridContainer = styled.div`
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  `;
+
   export const Grid = styled.div<{ gridStyle?: boolean }>`
     flex-grow: 1;
     display: flex;
@@ -15,6 +21,7 @@ export namespace Styles {
     background-color: ${colors.backgroundLight3};
     user-select: none;
     position: relative;
+    overflow-y: auto;
   `;
 
   export const GridItem = styled.div<{
@@ -79,5 +86,17 @@ export namespace Styles {
 
   export const TooltipContent = styled.div`
     font-size: ${fontSizes.medium};
+  `;
+
+  export const TextFilterInput = styled.input.attrs({
+    type: "search",
+  })`
+    background: ${colors.backgroundLight3};
+    margin: ${fontSizes.tinier};
+    padding: 5px 8px;
+    border: 3px solid ${colors.backgroundLight4};
+    border-radius: 10px;
+    font-style: italic;
+    color: ${colors.backgroundLight5};
   `;
 }

@@ -40,6 +40,10 @@ export function AppLayout() {
     [] as IndexSearchResult<KanjiDocument>[]
   );
 
+  const [filteredKanjis, setFilteredKanjis] = useState(
+    [] as IndexSearchResult<KanjiDocument>[]
+  );
+
   useKeyboardShortcuts();
 
   async function openFirstVocabResultOrSearchTab(copiedText: string) {
@@ -77,6 +81,7 @@ export function AppLayout() {
   useEffect(() => {
     const kanjis = Jlpt.allKanji();
     setKanjis(kanjis);
+    setFilteredKanjis(kanjis);
 
     dispatch(
       patchKeyboardConfig({
@@ -215,7 +220,7 @@ export function AppLayout() {
     dispatch(setDraggedContent(contentId));
   }
 
-  const gridItems: GridItemModel[] = kanjis.map(kanji => ({
+  const gridItems: GridItemModel[] = filteredKanjis.map(kanji => ({
     label: kanji.kanji,
     contentId: {
       dbId: kanji._id,
@@ -234,6 +239,21 @@ export function AppLayout() {
       .join(" ")}`,
   }));
 
+  function onGridTextFilterInputChange(filterText: string): void {
+    (async function () {
+      const filtered = await Database.indices.kanjiIndex.searchText(
+        filterText,
+        {
+          documents: kanjis,
+          scorePenalty: 0,
+          english: true,
+          japanese: true,
+        }
+      );
+      setFilteredKanjis(filtered);
+    })();
+  }
+
   return (
     <>
       <Topbar
@@ -251,7 +271,10 @@ export function AppLayout() {
         </Sidebar>
         <Explorer />
         <Sidebar show={isRightSidebarVisible} side={"right"}>
-          <Grid items={gridItems} />
+          <Grid
+            items={gridItems}
+            onTextFilterInputChange={onGridTextFilterInputChange}
+          />
         </Sidebar>
       </Styles.Main>
     </>
