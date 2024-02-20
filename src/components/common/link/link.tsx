@@ -50,27 +50,21 @@ export function Link({
     }
   }
 
+  const attrs: Record<string, string> = {};
+
   if (useTrElement) {
-    return (
-      <Styles.TrLink
-        tabIndex={1}
-        onClick={onClick}
-        onAuxClick={onAuxClick}
-        onKeyDown={onKeyDown}
-      >
-        {children}
-      </Styles.TrLink>
-    );
-  } else {
-    return (
-      <Styles.Link
-        tabIndex={1}
-        onClick={onClick}
-        onAuxClick={onAuxClick}
-        onKeyDown={onKeyDown}
-      >
-        {children}
-      </Styles.Link>
-    );
+    attrs.as = "tr";
   }
+
+  return (
+    <Styles.Link
+      {...attrs}
+      tabIndex={1}
+      onClick={onClick}
+      onAuxClick={onAuxClick}
+      onKeyDown={onKeyDown}
+    >
+      {children}
+    </Styles.Link>
+  );
 }
