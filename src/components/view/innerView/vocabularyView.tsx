@@ -10,6 +10,7 @@ import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
 import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
+import { fontSizes } from "../../../theme";
 
 export function VocabularyView({
   contentId,
@@ -98,12 +99,15 @@ export function VocabularyView({
                   // flexFlow: "wrap column",
                   // maxHeight: "150px",
 
+                  marginBlockStart: 0,
+                  marginBlockEnd: 0,
+                  paddingInlineStart: fontSizes.small,
                   display: "flex",
                   flexFlow: "column wrap",
                   maxHeight: "265px",
                   gap: "0 30px",
                   overflow: "auto",
-                  flexGrow: "1",
+                  flexGrow: 0.5,
                 }}
               >
                 {vocab.meaning.map((m, index) => (
