@@ -25,6 +25,7 @@ cursor: {
   onTextFilterInputChange?: (filterText: string) => void;
 }) {
   const [pageNumber, setPageNumber] = useState(1);
+  const [isFolded, setIsFolded] = useState(false);
 
   const numberOfPages = Math.ceil((items?.length || 0) / itemsCountAtPage);
   const isNextPageAvailable = Boolean(numberOfPages - pageNumber);
@@ -50,8 +51,23 @@ cursor: {
             onChange={event => onTextFilterInputChange(event.target.value)}
           />
         )}
+        <Styles.FoldButton
+          isFolded={isFolded}
+          onClick={() => {
+            setIsFolded(!isFolded);
+          }}
+          tabIndex={1}
+          onKeyDown={event => {
+            if (event.code === "Enter") {
+              event.preventDefault();
+              setIsFolded(!isFolded);
+            }
+          }}
+        />
       </Styles.Title>
-      {itemsCountToRender === 0 ? (
+      {isFolded ? (
+        ""
+      ) : itemsCountToRender === 0 ? (
         <Styles.Footer>
           <Styles.Info>No {title.toLowerCase()} available</Styles.Info>
         </Styles.Footer>
