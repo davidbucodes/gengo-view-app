@@ -34,8 +34,6 @@ export namespace Styles {
         ? {
             left: `${props.lineLeft}px`,
             backgroundColor: colors.blue,
-            pointerEvents: "none",
-            position: "absolute",
           }
         : {},
     })
