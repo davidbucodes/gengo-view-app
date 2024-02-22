@@ -51,8 +51,7 @@ cursor: {
             onChange={event => onTextFilterInputChange(event.target.value)}
           />
         )}
-        <Styles.FoldButton
-          isFolded={isFolded}
+        <Styles.FoldButtonWrapper
           onClick={() => {
             setIsFolded(!isFolded);
           }}
@@ -63,7 +62,9 @@ cursor: {
               setIsFolded(!isFolded);
             }
           }}
-        />
+        >
+          <Styles.FoldButton isFolded={isFolded} />
+        </Styles.FoldButtonWrapper>
       </Styles.Title>
       {isFolded ? (
         ""

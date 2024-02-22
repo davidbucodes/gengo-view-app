@@ -30,10 +30,13 @@ export namespace Styles {
     gap: 10px;
   `;
 
-  export const FoldButton = styled.button<{
+  export const FoldButtonWrapper = styled.div`
+    user-select: none;
+  `;
+
+  export const FoldButton = styled.div<{
     isFolded: boolean;
   }>`
-    all: unset;
     height: 15px;
     width: 15px;
     cursor: pointer;
@@ -46,6 +49,7 @@ export namespace Styles {
   `;
 
   export const TitleText = styled.div`
+    margin-left: 5px;
     flex-grow: 1;
   `;
 
