@@ -18,8 +18,10 @@ export namespace Styles {
 
   export const InnerView = styled.div`
     flex-grow: 1;
+    padding: 10px;
     padding-bottom: 30px;
     overflow-y: auto;
+    outline: 0;
   `;
 
   export const Definitions = styled.div`

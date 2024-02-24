@@ -65,6 +65,13 @@ export function Searchbar() {
     };
   }, [searchText]);
 
+  useEffect(() => {
+    console.log({
+      isInputFocused,
+      isResultsPopupFocused,
+    });
+  }, [isInputFocused, isResultsPopupFocused]);
+
   return (
     <Styles.SearchbarWrapper>
       <Styles.Searchbar>
@@ -109,20 +116,18 @@ export function Searchbar() {
             onClick={() => {
               setIsResultsPopupFocused(true);
             }}
-            onFocus={() => {
-              setIsResultsPopupFocused(true);
-            }}
-            onBlur={() => {
-              setIsResultsPopupFocused(false);
-            }}
-            tabIndex={-1}
           >
             <SearchResults
               searchText={searchText}
               onClosePopup={onClosePopup}
               searchResults={searchResults}
               searchResultsLength={searchResultsLength}
-              onChildrenFocus={() => setIsResultsPopupFocused(true)}
+              onFocus={() => {
+                setIsResultsPopupFocused(true);
+              }}
+              onBlur={() => {
+                setIsResultsPopupFocused(false);
+              }}
             />
           </Styles.SearchResultsPopup>
         )}

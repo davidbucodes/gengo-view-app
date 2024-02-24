@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { openTab } from "../../../store/slices/tabsSlice";
 import { Button } from "../../common/button/button";
@@ -7,13 +8,15 @@ import { Styles } from "./style";
 
 export function SearchResults({
   onClosePopup,
-  onChildrenFocus,
+  onFocus,
+  onBlur,
   searchText,
   searchResults,
   searchResultsLength,
 }: {
   onClosePopup: () => void;
-  onChildrenFocus: () => void;
+  onFocus: () => void;
+  onBlur: () => void;
   searchText: string;
   searchResults: ContentId[];
   searchResultsLength: number;
@@ -25,6 +28,16 @@ export function SearchResults({
   const closeSearchResultsOnPopupInteraction = useAppSelector(
     state => state.config.closeSearchResultsOnPopupInteraction
   );
+
+  const [isSomeElementFocused, setIsSomeElementFocused] = useState(false);
+
+  useEffect(() => {
+    if (isSomeElementFocused) {
+      onFocus();
+    } else {
+      onBlur();
+    }
+  }, [isSomeElementFocused]);
 
   function onResultClick(
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -63,7 +76,15 @@ export function SearchResults({
   const displayedResults = searchResults.slice(0, resultsNumberToDisplay);
 
   return (
-    <Styles.SearchResults>
+    <Styles.SearchResults
+      tabIndex={-1}
+      onFocus={() => {
+        setIsSomeElementFocused(true);
+      }}
+      onBlur={() => {
+        setIsSomeElementFocused(false);
+      }}
+    >
       {searchResults.length === 0 && (
         <Styles.NoSearchResultsText>No results</Styles.NoSearchResultsText>
       )}
@@ -73,7 +94,12 @@ export function SearchResults({
           key={result.id}
           onMouseDown={e => onResultClick(e, result)}
           onKeyDown={e => onResultKeyDown(e, result)}
-          onFocus={() => onChildrenFocus()}
+          onFocus={() => {
+            setIsSomeElementFocused(true);
+          }}
+          onBlur={() => {
+            setIsSomeElementFocused(false);
+          }}
         >
           <ContentIdBadge tabContentType={result.type} />
           <Styles.SearchResultText>{result.label}</Styles.SearchResultText>
@@ -86,7 +112,7 @@ export function SearchResults({
       {displayedResults.length !== 0 && (
         <Button
           tabIndex={1}
-          onFocus={() => onChildrenFocus()}
+          onFocus={() => setIsSomeElementFocused(true)}
           onClick={() => {
             closePopupIfNeeded();
             displayedResults.forEach(result => {
@@ -100,7 +126,7 @@ export function SearchResults({
       {searchText !== "" && (
         <Button
           tabIndex={1}
-          onFocus={() => onChildrenFocus()}
+          onFocus={() => setIsSomeElementFocused(false)}
           onClick={() => {
             closePopupIfNeeded();
             dispatch(
