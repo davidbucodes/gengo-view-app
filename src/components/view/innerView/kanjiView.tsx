@@ -41,9 +41,9 @@ export function KanjiView({
           <Styles.Line style={{ float: "left", marginRight: 10 }}>
             <KanjiSvg kanji={kanji.kanji} />
           </Styles.Line>
-          <Styles.Line style={{ marginTop: 10 }}>
+          <Styles.Header style={{ marginTop: 10 }}>
             <b>{kanji.kanji}</b>
-          </Styles.Line>
+          </Styles.Header>
           <Styles.Line>
             <b>JLPT:</b> N{kanji.jlpt}
           </Styles.Line>

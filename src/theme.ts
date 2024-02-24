@@ -11,6 +11,7 @@ export const colors = {
   backgroundDark2: "#141414",
   blue: "#007fd4",
   white: "white",
+  outlineDark: "#2d2d2d",
 };
 
 export const fontSizes = {
@@ -18,8 +19,9 @@ export const fontSizes = {
   tinier: "0.5rem",
   tiny: "0.8rem",
   smaller: "1.15rem",
+  smallSubtitle: "1.3rem",
   small: "1.5rem",
-  mediumSmall: "1.75rem",
+  mediumSmall: "1.65rem",
   medium: "2rem",
   large: "2.25rem",
   larger: "2.5rem",

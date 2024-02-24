@@ -31,7 +31,7 @@ export namespace Styles {
     text-align: center;
     color: ${colors.backgroundLight6};
     cursor: pointer;
-    font-size: ${fontSizes.medium};
+    font-size: ${fontSizes.mediumSmall};
     padding: 7px;
     user-select: none;
     position: relative;

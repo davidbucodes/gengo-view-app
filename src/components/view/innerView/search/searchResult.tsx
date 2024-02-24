@@ -44,11 +44,9 @@ export function SearchResult({
     body = (
       <div style={{ textAlign: "left" }}>
         <div>
-          {
-            getReadableNameDocumentType(
-              result as IndexSearchResult<NameDocument>
-            ).t
-          }{" "}
+          {getReadableNameDocumentType(
+            result as IndexSearchResult<NameDocument>
+          ).t?.replace("|", " |  ")}
         </div>
         <div>
           {[r?.join(", "), d?.split("|").join(", ")].filter(i => i).join(" | ")}

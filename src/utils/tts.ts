@@ -75,6 +75,7 @@ export class TextToSpeech {
     message.volume = 1; // From 0 to 1
     message.pitch = 1; // From 0 to 2
     message.text = text;
+    message.rate = 1;
 
     const languageCode = languageToCode[language];
     message.lang = languageCode;

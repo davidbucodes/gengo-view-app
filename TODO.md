@@ -3,6 +3,9 @@
 Improvements:
 
 - Restyle pages
+- restyle content references
+- download all dictionaries
+- fix link click and maybe key as well open at other tab group
 - restyle everything
 - filter with conversation
 - kanji search page / draw area

@@ -13,7 +13,7 @@ export namespace Styles {
     padding: 6px 10px;
     margin-left: ${props => 40 * props.level}px;
     padding-left: 15px;
-    font-size: ${fontSizes.small};
+    font-size: ${fontSizes.smallSubtitle};
     user-select: none;
     cursor: pointer;
     display: flex;

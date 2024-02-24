@@ -23,15 +23,15 @@ export namespace Styles {
   `;
 
   export const KanjiDetailsContainer = styled.div`
-    float: left;
     width: 100%;
+    margin-bottom: 10px;
   `;
 
   export const Header = styled.div`
     line-height: ${fontSizes.larger};
-    font-size: ${fontSizes.large};
+    font-size: ${fontSizes.larger};
     vertical-align: middle;
-    padding-bottom: ${fontSizes.smaller};
+    padding-bottom: ${fontSizes.smallSubtitle};
     font-weight: bold;
   `;
   export const Title = styled.div`

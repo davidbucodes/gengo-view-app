@@ -42,19 +42,22 @@ cursor: {
 
   return (
     <Styles.Section>
-      <Styles.Title>
+      <Styles.Title
+        onClick={() => {
+          setIsFolded(!isFolded);
+        }}
+        isFolded={isFolded}
+      >
         <Styles.TitleText>{title}</Styles.TitleText>
         {onTextFilterInputChange && (
           <Styles.TextFilterInput
             tabIndex={1}
             placeholder="Filter..."
             onChange={event => onTextFilterInputChange(event.target.value)}
+            onClick={ev => ev.stopPropagation()}
           />
         )}
         <Styles.FoldButtonWrapper
-          onClick={() => {
-            setIsFolded(!isFolded);
-          }}
           tabIndex={1}
           onKeyDown={event => {
             if (event.code === "Enter") {

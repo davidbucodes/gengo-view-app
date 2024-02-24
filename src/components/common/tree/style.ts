@@ -22,6 +22,7 @@ export namespace Styles {
   export const TreeTopbarText = styled.div`
     flex-grow: 1;
     font-weight: bold;
+    font-size: ${fontSizes.mediumSmall};
   `;
 
   export const TreeTopbarFoldAll = styled.div`
