@@ -22,14 +22,14 @@ export namespace Styles {
     overflow-y: auto;
   `;
 
-  export const KanjiDetailsContainer = styled.div`
+  export const Definitions = styled.div`
     width: 100%;
     margin-bottom: 10px;
   `;
 
   export const Header = styled.div`
     line-height: ${fontSizes.larger};
-    font-size: ${fontSizes.larger};
+    font-size: ${fontSizes.medium};
     vertical-align: middle;
     padding-bottom: ${fontSizes.smallSubtitle};
     font-weight: bold;

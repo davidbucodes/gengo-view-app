@@ -37,7 +37,7 @@ export function KanjiView({
   return (
     kanji && (
       <Styles.InnerView>
-        <Styles.KanjiDetailsContainer>
+        <Styles.Definitions>
           <Styles.Line style={{ float: "left", marginRight: 10 }}>
             <KanjiSvg kanji={kanji.kanji} />
           </Styles.Line>
@@ -74,7 +74,7 @@ export function KanjiView({
               <b>Meaning:</b> {kanji.meaning.join(", ")}
             </Styles.Line>
           )}
-        </Styles.KanjiDetailsContainer>
+        </Styles.Definitions>
         <ContentReferences
           contentId={contentId}
           indexNames={indexNames}

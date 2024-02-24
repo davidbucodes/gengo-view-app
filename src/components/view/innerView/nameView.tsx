@@ -38,29 +38,30 @@ export function NameView({
     name && (
       <Styles.InnerView>
         <Loader isLoaded={Boolean(name)}>
-          <Styles.Header>{name?.n}</Styles.Header>
-          <div>
-            {Boolean(name.r.length) && (
-              <Styles.Line>
-                <b>Reading:</b> {name.r.join(", ")}
-                <TextReader
-                  language={TextVoiceLanguage.JA}
-                  textToRead={name.r.join(", ")}
-                />
-              </Styles.Line>
-            )}
-            {Boolean(name.d.length) && (
-              <Styles.Line>
-                <b>Description:</b> {name.d}
-              </Styles.Line>
-            )}
-            {Boolean(name.t) && (
-              <Styles.Line>
-                <b>Name type:</b> {getReadableNameDocumentType(name).t}
-              </Styles.Line>
-            )}
-          </div>
-
+          <Styles.Definitions>
+            <Styles.Header>{name?.n}</Styles.Header>
+            <div>
+              {Boolean(name.r.length) && (
+                <Styles.Line>
+                  <b>Reading:</b> {name.r.join(", ")}
+                  <TextReader
+                    language={TextVoiceLanguage.JA}
+                    textToRead={name.r.join(", ")}
+                  />
+                </Styles.Line>
+              )}
+              {Boolean(name.d.length) && (
+                <Styles.Line>
+                  <b>Description:</b> {name.d}
+                </Styles.Line>
+              )}
+              {Boolean(name.t) && (
+                <Styles.Line>
+                  <b>Name type:</b> {getReadableNameDocumentType(name).t}
+                </Styles.Line>
+              )}
+            </div>
+          </Styles.Definitions>
           <ContentReferences
             contentId={contentId}
             indexNames={indexNames}
