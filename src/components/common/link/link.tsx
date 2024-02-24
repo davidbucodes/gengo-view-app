@@ -59,7 +59,7 @@ export function Link({
   return (
     <Styles.Link
       {...attrs}
-      tabIndex={1}
+      tabIndex={0}
       onClick={onClick}
       onAuxClick={onAuxClick}
       onKeyDown={onKeyDown}

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setActiveTab } from "../../store/slices/tabsSlice";
 import { ContentId } from "./contentId";
@@ -41,11 +42,12 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
           showContentBreadcrumbs &&
           viewsWithContentBreadcrumbs.includes(contentId?.type) &&
           Boolean(tab.previousContentIds.length);
+        const isDisplayed = tab.id === activeTabId;
         return (
           <Styles.View
             key={tab.id}
             style={{ flexDirection: displayBreadcrumbs ? "column" : "row" }}
-            isDisplayed={tab.id === activeTabId}
+            isDisplayed={isDisplayed}
             onDragOver={event => {
               event.preventDefault();
               return;
@@ -62,18 +64,21 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
             )}
             {contentId?.type === "kanji" && (
               <KanjiView
+                isDisplayed={isDisplayed}
                 contentId={contentId as ContentId & { type: "kanji" }}
                 previousContentIds={[...tab.previousContentIds, contentId]}
               />
             )}
             {contentId?.type === "vocabulary" && (
               <VocabularyView
+                isDisplayed={isDisplayed}
                 contentId={contentId as ContentId & { type: "vocabulary" }}
                 previousContentIds={[...tab.previousContentIds, contentId]}
               />
             )}
             {contentId?.type === "name" && (
               <NameView
+                isDisplayed={isDisplayed}
                 contentId={contentId as ContentId & { type: "name" }}
                 previousContentIds={[...tab.previousContentIds, contentId]}
               />

@@ -51,14 +51,20 @@ cursor: {
         <Styles.TitleText>{title}</Styles.TitleText>
         {onTextFilterInputChange && (
           <Styles.TextFilterInput
-            tabIndex={1}
+            tabIndex={0}
             placeholder="Filter..."
             onChange={event => onTextFilterInputChange(event.target.value)}
             onClick={ev => ev.stopPropagation()}
+            onKeyDown={ev => {
+              if (ev.code === "Escape") {
+                ev.preventDefault();
+                ev.currentTarget.blur();
+              }
+            }}
           />
         )}
         <Styles.FoldButtonWrapper
-          tabIndex={1}
+          tabIndex={0}
           onKeyDown={event => {
             if (event.code === "Enter") {
               event.preventDefault();
@@ -90,7 +96,7 @@ cursor: {
             <Styles.Links>
               {isNextPageAvailable && (
                 <Styles.Link
-                  tabIndex={1}
+                  tabIndex={0}
                   onClick={() => {
                     setPageNumber(pageNumber + 1);
                   }}
@@ -107,7 +113,7 @@ cursor: {
               {isNextPageAvailable && isPrevPageAvailable && " | "}
               {isPrevPageAvailable && (
                 <Styles.Link
-                  tabIndex={1}
+                  tabIndex={0}
                   onClick={() => {
                     setPageNumber(pageNumber - 1);
                   }}

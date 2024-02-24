@@ -18,6 +18,12 @@ export const Grid = React.memo(function Grid({
         <Styles.TextFilterInput
           placeholder="Filter..."
           onChange={event => onTextFilterInputChange(event.target.value)}
+          onKeyDown={ev => {
+            if (ev.code === "Escape") {
+              ev.preventDefault();
+              ev.currentTarget.blur();
+            }
+          }}
         />
       )}
       <Styles.Grid gridStyle={gridStyle}>

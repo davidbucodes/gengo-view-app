@@ -7,11 +7,13 @@ import { Styles } from "./style";
 
 export function SearchResults({
   onClosePopup,
+  onChildrenFocus,
   searchText,
   searchResults,
   searchResultsLength,
 }: {
   onClosePopup: () => void;
+  onChildrenFocus: () => void;
   searchText: string;
   searchResults: ContentId[];
   searchResultsLength: number;
@@ -37,6 +39,17 @@ export function SearchResults({
     }
   }
 
+  function onResultKeyDown(
+    e: React.KeyboardEvent<HTMLDivElement>,
+    result: ContentId
+  ) {
+    console.log(e.code);
+    if (e.code === "Enter") {
+      dispatch(openTab({ contentId: result }));
+      closePopupIfNeeded();
+    }
+  }
+
   function closePopupIfNeeded() {
     if (closeSearchResultsOnPopupInteraction) {
       onClosePopup();
@@ -56,9 +69,11 @@ export function SearchResults({
       )}
       {displayedResults.map((result, index) => (
         <Styles.SearchResult
-          tabIndex={-1}
+          tabIndex={1}
           key={result.id}
           onMouseDown={e => onResultClick(e, result)}
+          onKeyDown={e => onResultKeyDown(e, result)}
+          onFocus={() => onChildrenFocus()}
         >
           <ContentIdBadge tabContentType={result.type} />
           <Styles.SearchResultText>{result.label}</Styles.SearchResultText>
@@ -70,6 +85,8 @@ export function SearchResults({
       </Styles.SearchResultsCount>
       {displayedResults.length !== 0 && (
         <Button
+          tabIndex={1}
+          onFocus={() => onChildrenFocus()}
           onClick={() => {
             closePopupIfNeeded();
             displayedResults.forEach(result => {
@@ -82,6 +99,8 @@ export function SearchResults({
       )}
       {searchText !== "" && (
         <Button
+          tabIndex={1}
+          onFocus={() => onChildrenFocus()}
           onClick={() => {
             closePopupIfNeeded();
             dispatch(

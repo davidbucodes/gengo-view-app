@@ -74,6 +74,7 @@ export function SearchView({
           <Pagination
             items={searchResults}
             itemsInPage={20}
+            tabIndex={0}
             itemsRenderer={result => (
               <Link
                 searchResult={result}

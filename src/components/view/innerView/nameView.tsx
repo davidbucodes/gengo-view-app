@@ -5,20 +5,23 @@ import {
   NameDocument,
   getReadableNameDocumentType,
 } from "@davidbucodes/gengo-view-database";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader } from "../../common/loader/loader";
 import { ContentId } from "../contentId";
 import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
 import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
+import { InnerView } from "./innerView";
 
 export function NameView({
   contentId,
   previousContentIds,
+  isDisplayed,
 }: {
   contentId: ContentId & { type: "name" };
   previousContentIds: ContentId[];
+  isDisplayed: boolean;
 }) {
   const [name, setName] = useState(null as IndexSearchResult<NameDocument>);
   const [indexNames] = useState<IndexName[]>([
@@ -36,7 +39,7 @@ export function NameView({
 
   return (
     name && (
-      <Styles.InnerView>
+      <InnerView isDisplayed={isDisplayed} focusOnArgsChange={[name]}>
         <Loader isLoaded={Boolean(name)}>
           <Styles.Definitions>
             <Styles.Header>{name?.n}</Styles.Header>
@@ -68,7 +71,7 @@ export function NameView({
             previousContentIds={previousContentIds}
           />
         </Loader>
-      </Styles.InnerView>
+      </InnerView>
     )
   );
 }

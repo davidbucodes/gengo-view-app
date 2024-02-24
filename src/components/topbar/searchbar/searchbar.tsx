@@ -70,6 +70,7 @@ export function Searchbar() {
       <Styles.Searchbar>
         <Styles.SearchInput
           ref={ref}
+          tabIndex={1}
           type={"search"}
           onFocus={event => {
             setIsInputFocused(true);
@@ -96,6 +97,9 @@ export function Searchbar() {
               );
               ref.current?.blur();
               setIsResultsPopupFocused(false);
+            } else if (event.code === "Escape") {
+              ref.current?.blur();
+              setIsResultsPopupFocused(false);
             }
           }}
           placeholder={"Search..."}
@@ -118,6 +122,7 @@ export function Searchbar() {
               onClosePopup={onClosePopup}
               searchResults={searchResults}
               searchResultsLength={searchResultsLength}
+              onChildrenFocus={() => setIsResultsPopupFocused(true)}
             />
           </Styles.SearchResultsPopup>
         )}

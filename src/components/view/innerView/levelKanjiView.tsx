@@ -10,6 +10,7 @@ import { Grid } from "../../common/grid/grid";
 import { GridItemModel } from "../../common/grid/gridItem";
 import { searchResultToContentId } from "../../topbar/searchbar/searchResultsToContentIds";
 import { ContentId } from "../contentId";
+import { InnerView } from "./innerView";
 
 export const LevelKanjiView = memo(function LevelKanjiView({
   contentId,

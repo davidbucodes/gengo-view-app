@@ -6,10 +6,12 @@ export function Pagination<T>({
   items,
   itemsRenderer,
   itemsInPage,
+  tabIndex,
 }: {
   items: T[];
   itemsRenderer: (item: T) => JSX.Element;
   itemsInPage: number;
+  tabIndex?: number;
 }) {
   const firstPage = 1;
   const listInnerRef = useRef();
@@ -50,7 +52,11 @@ export function Pagination<T>({
   };
 
   return (
-    <Styles.Pagination onScroll={onScroll} ref={listInnerRef}>
+    <Styles.Pagination
+      onScroll={onScroll}
+      ref={listInnerRef}
+      tabIndex={tabIndex}
+    >
       {itemsToRender.map(itemsRenderer)}
       {itemsToRender.length !== items.length && (
         <Styles.LoaderWrapper>

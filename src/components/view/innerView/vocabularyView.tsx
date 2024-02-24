@@ -4,20 +4,23 @@ import {
   IndexSearchResult,
   VocabularyDocument,
 } from "@davidbucodes/gengo-view-database";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContentId } from "../contentId";
 import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
 import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
 import { fontSizes } from "../../../theme";
+import { InnerView } from "./innerView";
 
 export function VocabularyView({
   contentId,
   previousContentIds,
+  isDisplayed,
 }: {
   contentId: ContentId & { type: "vocabulary" };
   previousContentIds: ContentId[];
+  isDisplayed: boolean;
 }) {
   const [vocab, setVocab] = useState(
     null as IndexSearchResult<VocabularyDocument>
@@ -37,7 +40,7 @@ export function VocabularyView({
 
   return (
     vocab && (
-      <Styles.InnerView>
+      <InnerView isDisplayed={isDisplayed} focusOnArgsChange={[vocab]}>
         <Styles.Definitions>
           <Styles.Header>{vocab.display.join(", ")}</Styles.Header>
           <div>
@@ -67,6 +70,7 @@ export function VocabularyView({
               <Styles.Line>
                 <b>Meaning:</b>{" "}
                 <ul
+                  tabIndex={0}
                   style={{
                     // marginBlockStart: 0,
                     // marginBlockEnd: 0,
@@ -105,7 +109,7 @@ export function VocabularyView({
                     paddingInlineStart: fontSizes.small,
                     display: "flex",
                     flexFlow: "column wrap",
-                    maxHeight: "380px",
+                    maxHeight: "400px",
                     gap: "0 30px",
                     overflow: "auto",
                     flexGrow: 0.5,
@@ -124,7 +128,7 @@ export function VocabularyView({
           indexNames={indexNames}
           previousContentIds={previousContentIds}
         />
-      </Styles.InnerView>
+      </InnerView>
     )
   );
 }

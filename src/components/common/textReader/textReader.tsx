@@ -34,12 +34,12 @@ export function TextReader({
 
   return (
     <Styles.Button
-      tabIndex={1}
+      tabIndex={0}
       role={!isPlay ? "play" : "stop"}
       aria-label={!isPlay ? "play" : "stop"}
       onClick={() => onButtonPress()}
       onKeyDown={ev => {
-        if (ev.code === "Enter") {
+        if (ev.code === "Enter" || ev.code === "Space") {
           ev.preventDefault();
           onButtonPress();
         }

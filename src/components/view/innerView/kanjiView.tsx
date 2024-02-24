@@ -12,13 +12,16 @@ import { ContentReferences } from "../contentReferences/contentReferences";
 import { Styles } from "../style";
 import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
+import { InnerView } from "./innerView";
 
 export function KanjiView({
   contentId,
   previousContentIds,
+  isDisplayed,
 }: {
   contentId: ContentId & { type: "kanji" };
   previousContentIds: ContentId[];
+  isDisplayed: boolean;
 }) {
   const [kanji, setKanji] = useState(null as IndexSearchResult<KanjiDocument>);
   const [indexNames] = useState<IndexName[]>([
@@ -36,7 +39,7 @@ export function KanjiView({
 
   return (
     kanji && (
-      <Styles.InnerView>
+      <InnerView isDisplayed={isDisplayed} focusOnArgsChange={[kanji]}>
         <Styles.Definitions>
           <Styles.Line style={{ float: "left", marginRight: 10 }}>
             <KanjiSvg kanji={kanji.kanji} />
@@ -80,7 +83,7 @@ export function KanjiView({
           indexNames={indexNames}
           previousContentIds={previousContentIds}
         />
-      </Styles.InnerView>
+      </InnerView>
     )
   );
 }

@@ -57,7 +57,8 @@ export namespace Styles {
     padding: 10px;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: ${colors.backgroundLight2};
     }
   `;
