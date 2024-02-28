@@ -10,7 +10,6 @@ export function NavigationMenu(): JSX.Element {
   const buttons: [string, SystemContentIds][] = [
     ["Options", SystemContentIds.Options],
     ["Export", SystemContentIds.Export],
-    ["Kanji search", SystemContentIds.KanjiSearch],
   ];
 
   return (

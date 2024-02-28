@@ -2,6 +2,7 @@
 
 Improvements:
 
+- Search sentence page
 - Restyle pages
 - restyle content references
 - download all dictionaries

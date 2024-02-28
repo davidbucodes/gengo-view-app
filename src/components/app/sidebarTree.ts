@@ -5,33 +5,16 @@ import { ContentId, SystemContentIds } from "../view/contentId";
 export const sidebarTree: TreeModel<ContentId> = {
   items: [
     {
-      label: "Pages",
+      label: "Utilities",
       items: [
         {
-          label: "Welcome page",
+          label: "Kanji search",
           content: {
-            label: "Welcome page",
+            label: "Kanji search",
             type: "system",
-            id: SystemContentIds.Welcome,
+            id: SystemContentIds.KanjiSearch,
           },
         },
-        {
-          label: "Navigation",
-          content: {
-            label: "Navigation",
-            type: "system",
-            id: SystemContentIds.NavigationEfficiency,
-          },
-        },
-        {
-          label: "About",
-          content: {
-            label: "About",
-            type: "system",
-            id: SystemContentIds.About,
-          },
-        },
-        ,
         {
           label: "Text-to-speech",
           content: {
@@ -69,6 +52,35 @@ export const sidebarTree: TreeModel<ContentId> = {
             ],
           };
         }),
+      ],
+    },
+    {
+      label: "Help",
+      items: [
+        {
+          label: "Welcome page",
+          content: {
+            label: "Welcome page",
+            type: "system",
+            id: SystemContentIds.Welcome,
+          },
+        },
+        {
+          label: "Navigation",
+          content: {
+            label: "Navigation",
+            type: "system",
+            id: SystemContentIds.NavigationEfficiency,
+          },
+        },
+        {
+          label: "About",
+          content: {
+            label: "About",
+            type: "system",
+            id: SystemContentIds.About,
+          },
+        },
       ],
     },
   ],
