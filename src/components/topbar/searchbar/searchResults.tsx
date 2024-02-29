@@ -56,10 +56,32 @@ export function SearchResults({
     e: React.KeyboardEvent<HTMLDivElement>,
     result: ContentId
   ) {
-    console.log(e.code);
-    if (e.code === "Enter") {
+    if (e.code === "Enter" && !e.altKey) {
       dispatch(openTab({ contentId: result }));
       closePopupIfNeeded();
+    }
+    if (e.code === "Escape") {
+      closePopupIfNeeded();
+    } else if (e.code === "ArrowDown" || e.code === "ArrowRight") {
+      (e.currentTarget?.nextElementSibling as HTMLElement)?.focus();
+    } else if (e.code === "ArrowUp" || e.code === "ArrowLeft") {
+      const previousElement = e.currentTarget?.previousElementSibling;
+
+      if (previousElement) {
+        (e.currentTarget?.previousElementSibling as HTMLElement)?.focus();
+      } else {
+        const searchbar =
+          e.currentTarget?.parentElement?.parentElement?.previousElementSibling;
+
+        console.log(e.currentTarget?.parentElement);
+        console.log(e.currentTarget?.parentElement?.parentElement);
+        console.log(
+          e.currentTarget?.parentElement?.parentElement?.previousElementSibling
+        );
+        if (searchbar?.tagName === "INPUT") {
+          (searchbar as HTMLElement).focus();
+        }
+      }
     }
   }
 

@@ -107,6 +107,11 @@ export function Searchbar() {
             } else if (event.code === "Escape") {
               ref.current?.blur();
               setIsResultsPopupFocused(false);
+            } else if (event.code === "ArrowDown" || event.code === "Enter") {
+              (
+                ref.current?.nextElementSibling?.firstChild
+                  ?.firstChild as HTMLElement
+              )?.focus();
             }
           }}
           placeholder={"Search..."}
