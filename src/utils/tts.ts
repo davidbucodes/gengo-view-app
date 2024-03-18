@@ -3,11 +3,13 @@ import { AsyncTimeout } from "./asyncTimeout";
 export enum TextVoiceLanguage {
   JA = "JA",
   EN = "EN",
+  CH = "CH",
 }
 
 const languageToCode: Record<TextVoiceLanguage, string> = {
   JA: "ja",
   EN: "en",
+  CH: "zh-TW",
 };
 
 export class TextToSpeech {
@@ -90,7 +92,7 @@ export class TextToSpeech {
   private static async getVoice(language: TextVoiceLanguage) {
     const voices = await TextToSpeech.loadAllVoices();
     return voices.find(voice =>
-      voice.lang.toLowerCase().includes(languageToCode[language])
+      voice.lang.toLowerCase().includes(languageToCode[language].toLowerCase())
     );
   }
 }

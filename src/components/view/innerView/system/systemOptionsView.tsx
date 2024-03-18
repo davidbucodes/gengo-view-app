@@ -9,10 +9,15 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { invert } from "lodash";
 
-type OptionTitle = "Show tab history";
+type OptionTitle =
+  | "Show tab history"
+  | "Show kanji pinyin"
+  | "Highlight word at references";
 
 const optionTitleToConfigKey: Record<OptionTitle, keyof ConfigState> = {
   "Show tab history": "showTabHistory",
+  "Show kanji pinyin": "showKanjiPinyin",
+  "Highlight word at references": "highlightWordAtReferences",
 };
 const configKeyToOptionTitle = invert(optionTitleToConfigKey) as Record<
   keyof ConfigState,
@@ -38,7 +43,11 @@ export function SystemOptionsView({
       .filter(key => config[key])
       .map(key => configKeyToOptionTitle[key] as OptionTitle)
   );
-  const optionTitles: OptionTitle[] = ["Show tab history"];
+  const optionTitles: OptionTitle[] = [
+    "Show tab history",
+    "Show kanji pinyin",
+    "Highlight word at references",
+  ];
 
   return (
     contentId && (

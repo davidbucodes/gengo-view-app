@@ -5,7 +5,6 @@ export namespace Styles {
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    text-align: center;
     padding: 5px;
   `;
 

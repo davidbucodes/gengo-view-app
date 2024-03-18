@@ -22,7 +22,7 @@ export function SystemNavigationView({
   function getKeys(sequence: string) {
     const keys = kebabCase(sequence)
       .split("-")
-      .filter(i => i !== "key");
+      .filter(i => i !== "key" && i !== "arrow");
     const keysElements = keys.map(key => (
       <Styles.KeyboardKey key={key}>{capitalize(key)}</Styles.KeyboardKey>
     ));

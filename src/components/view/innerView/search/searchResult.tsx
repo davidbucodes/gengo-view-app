@@ -20,15 +20,13 @@ export function SearchResult({
   let tags = [<SearchResultBadge text={result._index} key={result._index} />];
 
   if (result._index === "kanji") {
-    const { kanji, jlpt, meaning, kunReading, onReading } =
+    const { kanji, jlpt, meaning, kun, on } =
       result as IndexSearchResult<KanjiDocument>;
     header = <>{kanji}</>;
     body = (
       <div>
         <div>
-          {[kunReading?.join(", "), onReading?.join(", ")]
-            .filter(i => i)
-            .join(" | ")}
+          {[kun?.join(", "), on?.join(", ")].filter(i => i).join(" | ")}
         </div>
         <div>{meaning?.join(", ")}</div>
       </div>

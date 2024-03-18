@@ -93,16 +93,26 @@ export namespace Styles {
 
   export const TableBody = styled.tbody`
     td {
+      font-weight: 300;
       border: ${colors.backgroundLight3} 1px solid;
       position: relative;
       background: ${colors.backgroundLight1};
     }
     td:not(:last-child) {
-      min-width: 4em;
-      word-break: keep-all;
+      min-width: 10em;
     }
     td:last-child {
       width: 99%;
     }
+  `;
+
+  export const Mark = styled.span`
+    color: black;
+    background: yellow;
+  `;
+
+  export const MarkSecondary = styled.span`
+    color: black;
+    background: orange;
   `;
 }

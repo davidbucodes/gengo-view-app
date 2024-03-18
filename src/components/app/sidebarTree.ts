@@ -16,6 +16,14 @@ export const sidebarTree: TreeModel<ContentId> = {
           },
         },
         {
+          label: "Sentence search",
+          content: {
+            label: "Sentence search",
+            type: "system",
+            id: SystemContentIds.SentenceSearch,
+          },
+        },
+        {
           label: "Text-to-speech",
           content: {
             label: "Text-to-speech",

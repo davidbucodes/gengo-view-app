@@ -22,6 +22,8 @@ export namespace Styles {
     padding-bottom: 30px;
     overflow-y: auto;
     outline: 0;
+    display: flex;
+    flex-direction: column;
   `;
 
   export const Definitions = styled.div`
@@ -55,15 +57,16 @@ export namespace Styles {
     align-items: center;
   `;
   export const KeyValueTable = styled.table`
-    font-size: ${fontSizes.mediumSmall};
+    font-size: ${fontSizes.smallSubtitle};
     border-collapse: collapse;
     flex-grow: 1;
     font-weight: lighter;
     td {
       border: ${colors.backgroundLight3} 1px solid;
+      padding: 10px;
     }
     td:not(:last-child) {
-      width: 15em;
+      width: 10em;
     }
   `;
 

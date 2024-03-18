@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { fontSizes } from "../../../theme";
 
 export namespace Styles {
   export const NavigationMenu = styled.div`

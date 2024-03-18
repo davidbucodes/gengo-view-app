@@ -8,13 +8,15 @@ import {
   VocabularyDocument,
   isKanjiRegexp,
 } from "@davidbucodes/gengo-view-database";
-import { meanBy, sortBy, uniq } from "lodash";
+import { meanBy, sortBy, uniq, zip } from "lodash";
 import { useEffect, useState } from "react";
 import { Link } from "../../common/link/link";
 import { ContentId } from "../contentId";
 import { Section } from "./section";
 import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
+import { useAppSelector } from "../../../store/hooks";
+import { highlightEntry } from "../../../utils/highlightEntry";
 
 const indexNameToTitle: Record<IndexName, string> = {
   name: "Names",
@@ -31,6 +33,10 @@ export function ContentReferences({
   indexNames: IndexName[];
   previousContentIds: ContentId[];
 }) {
+  const highlightWordAtReferences = useAppSelector(
+    state => state.config.highlightWordAtReferences
+  );
+
   const [sentences, setSentences] =
     useState<IndexSearchResult<SentenceDocument>[]>(null);
   const [vocabulary, setVocabulary] =
@@ -42,11 +48,13 @@ export function ContentReferences({
   const [vocabularyFilterText, setVocabularyFilterText] = useState<string>();
   const [namesFilterText, setNamesFilterText] = useState<string>();
 
+  const firstLabelEntry = contentId.label?.split(",")[0];
+
   useEffect(() => {
     if (indexNames.includes("sentence")) {
       (async () => {
         let sentencesResult = await Database.indices.sentenceIndex.searchText(
-          contentId.label?.split(",")[0]
+          firstLabelEntry
         );
         if (sentencesFilterText) {
           sentencesResult = await Database.indices.sentenceIndex.searchText(
@@ -68,9 +76,7 @@ export function ContentReferences({
     if (indexNames.includes("vocabulary")) {
       (async () => {
         let vocabularyResult =
-          await Database.indices.vocabularyIndex.searchText(
-            contentId.label?.split(",")[0]
-          );
+          await Database.indices.vocabularyIndex.searchText(firstLabelEntry);
 
         if (vocabularyFilterText) {
           vocabularyResult = await Database.indices.vocabularyIndex.searchText(
@@ -94,7 +100,7 @@ export function ContentReferences({
     if (indexNames.includes("name")) {
       (async () => {
         let nameResult = await Database.indices.nameIndex.searchText(
-          contentId.label?.split(",")[0]
+          firstLabelEntry
         );
 
         if (namesFilterText) {
@@ -167,9 +173,33 @@ export function ContentReferences({
               previousContentIds={previousContentIds}
               useTrElement
             >
-              <td>{vocab.display.join(", ")}</td>
-              <td>{vocab.reading.join(", ")}</td>
-              <td>{vocab.meaning.join(", ")}</td>
+              <td>
+                {!highlightWordAtReferences
+                  ? vocab.display.join(", ")
+                  : highlightEntry(
+                      vocab.display.join(", "),
+                      firstLabelEntry,
+                      vocabularyFilterText
+                    )}
+              </td>
+              <td>
+                {!highlightWordAtReferences
+                  ? vocab.reading.join(", ")
+                  : highlightEntry(
+                      vocab.reading.join(", "),
+                      firstLabelEntry,
+                      vocabularyFilterText
+                    )}
+              </td>
+              <td>
+                {!highlightWordAtReferences
+                  ? vocab.meaning.join(", ")
+                  : highlightEntry(
+                      vocab.meaning.join(", "),
+                      firstLabelEntry,
+                      vocabularyFilterText
+                    )}
+              </td>
             </Link>
           )}
           itemsCountAtPage={10}
@@ -185,20 +215,27 @@ export function ContentReferences({
           itemsRenderer={sentence => (
             <tr key={sentence._id}>
               <td>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {sentence.j}
+                <div>
+                  {!highlightWordAtReferences
+                    ? sentence.j
+                    : highlightEntry(
+                        sentence.j,
+                        firstLabelEntry,
+                        sentencesFilterText
+                      )}
                   <TextReader
                     language={TextVoiceLanguage.JA}
                     textToRead={sentence.j}
                   />
                 </div>
                 <div>
-                  {sentence.e}{" "}
+                  {!highlightWordAtReferences
+                    ? sentence.e
+                    : highlightEntry(
+                        sentence.e,
+                        firstLabelEntry,
+                        sentencesFilterText
+                      )}{" "}
                   <TextReader
                     language={TextVoiceLanguage.EN}
                     textToRead={sentence.e}
@@ -226,11 +263,17 @@ export function ContentReferences({
             >
               <td>
                 <ruby>
-                  {name.n}
+                  {!highlightWordAtReferences
+                    ? name.n
+                    : highlightEntry(name.n, firstLabelEntry, namesFilterText)}
                   <rt>{name.r}</rt>
                 </ruby>
               </td>
-              <td>{name.d}</td>
+              <td>
+                {!highlightWordAtReferences
+                  ? name.d
+                  : highlightEntry(name.d, firstLabelEntry, namesFilterText)}
+              </td>
             </Link>
           )}
           itemsCountAtPage={10}

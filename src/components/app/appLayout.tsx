@@ -232,8 +232,8 @@ export function AppLayout() {
     onClick: onGridItemClicked,
     onDragStart: onGridItemDrag,
     tooltip: `${kanji.kanji} N${kanji.jlpt}\n${kanji.meaning[0]}\n${[
-      kanji.kunReading?.[0],
-      kanji.onReading?.[0],
+      kanji.kun?.[0],
+      kanji.on?.[0],
     ]
       .filter(i => i)
       .join(" ")}`,

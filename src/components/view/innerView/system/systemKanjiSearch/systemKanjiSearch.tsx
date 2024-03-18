@@ -17,11 +17,7 @@ import { searchResultToContentId } from "../../../../topbar/searchbar/searchResu
 import { ContentId } from "../../../contentId";
 import { Styles } from "../../../style";
 
-export function SystemKanjiSearchView({
-  contentId,
-}: {
-  contentId: ContentId & { type: "system" };
-}) {
+export function SystemKanjiSearchView() {
   const dispatch = useAppDispatch();
   const [selectedStrokeCount, setSelectedStrokeCount] = useState<string>("1");
 
@@ -56,7 +52,7 @@ export function SystemKanjiSearchView({
     onDragStart: onGridItemDrag,
     tooltip: `${kanji.kanji}${kanji.jlpt ? " N" + kanji.jlpt : ""}\n${
       kanji.meaning?.[0] ? kanji.meaning?.[0] + "\n" : ""
-    }${[kanji.kunReading?.[0], kanji.onReading?.[0]].filter(i => i).join(" ")}`,
+    }${[kanji.kun?.[0], kanji.on?.[0]].filter(i => i).join(" ")}`,
   }));
 
   return (

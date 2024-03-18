@@ -5,6 +5,8 @@ export interface ConfigState {
   closeSearchResultsOnPopupInteraction: boolean;
   selectSearchOnFocus: boolean;
   showTabHistory: boolean;
+  showKanjiPinyin: boolean;
+  highlightWordAtReferences: boolean;
 }
 
 const initialState: ConfigState = {
@@ -12,6 +14,8 @@ const initialState: ConfigState = {
   closeSearchResultsOnPopupInteraction: true,
   selectSearchOnFocus: true,
   showTabHistory: true,
+  showKanjiPinyin: true,
+  highlightWordAtReferences: false,
 };
 
 export const slice = createSlice({

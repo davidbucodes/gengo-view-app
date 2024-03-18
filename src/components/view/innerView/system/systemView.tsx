@@ -4,6 +4,7 @@ import { SystemExportView } from "./systemExport";
 import { SystemKanjiSearchView } from "./systemKanjiSearch/systemKanjiSearch";
 import { SystemNavigationView } from "./systemNavigationView";
 import { SystemOptionsView } from "./systemOptionsView";
+import { SystemSentenceSearchView } from "./systemSentenceSearch/systemSentenceSearch";
 import { SystemTextToSpeechView } from "./systemTextToSpeechView";
 import { SystemWelcomeView } from "./systemWelcomeView";
 
@@ -24,8 +25,10 @@ export function SystemView({
     case SystemContentIds.Export:
       return <SystemExportView contentId={contentId} />;
     case SystemContentIds.KanjiSearch:
-      return <SystemKanjiSearchView contentId={contentId} />;
+      return <SystemKanjiSearchView />;
     case SystemContentIds.TextToSpeech:
       return <SystemTextToSpeechView contentId={contentId} />;
+    case SystemContentIds.SentenceSearch:
+      return <SystemSentenceSearchView />;
   }
 }

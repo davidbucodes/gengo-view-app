@@ -13,6 +13,7 @@ import { Styles } from "../style";
 import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
 import { InnerView } from "./innerView";
+import { useAppSelector } from "../../../store/hooks";
 
 export function KanjiView({
   contentId,
@@ -23,6 +24,9 @@ export function KanjiView({
   previousContentIds: ContentId[];
   isDisplayed: boolean;
 }) {
+  const shouldShowKanjiPinyin = useAppSelector(state => {
+    return state.config.showKanjiPinyin;
+  });
   const [kanji, setKanji] = useState(null as IndexSearchResult<KanjiDocument>);
   const [indexNames] = useState<IndexName[]>([
     "sentence",
@@ -50,24 +54,35 @@ export function KanjiView({
           <Styles.Line>
             <b>JLPT:</b> N{kanji.jlpt}
           </Styles.Line>
-          {Boolean(kanji.kunReading?.length) && (
+          {Boolean(kanji.kun?.length) && (
             <Styles.Line>
-              <b>Kun:</b> {kanji.kunReading.join(", ")}{" "}
+              <b>Kun:</b> {kanji.kun.join(", ")}{" "}
               {
                 <TextReader
                   language={TextVoiceLanguage.JA}
-                  textToRead={kanji.kunReading.join(", ")}
+                  textToRead={kanji.kun.join(", ")}
                 />
               }
             </Styles.Line>
           )}
-          {Boolean(kanji.onReading?.length) && (
+          {Boolean(kanji.on?.length) && (
             <Styles.Line>
-              <b>On:</b> {kanji.onReading.join(", ")}{" "}
+              <b>On:</b> {kanji.on.join(", ")}{" "}
               {
                 <TextReader
                   language={TextVoiceLanguage.JA}
-                  textToRead={kanji.onReading.join(", ")}
+                  textToRead={kanji.on.join(", ")}
+                />
+              }
+            </Styles.Line>
+          )}
+          {Boolean(kanji.pinyin?.length) && shouldShowKanjiPinyin && (
+            <Styles.Line>
+              <b>Pinyin:</b> {kanji.pinyin.join(", ")}{" "}
+              {
+                <TextReader
+                  language={TextVoiceLanguage.CH}
+                  textToRead={kanji.pinyin.join(", ")}
                 />
               }
             </Styles.Line>

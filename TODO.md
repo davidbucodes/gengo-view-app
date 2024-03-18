@@ -2,6 +2,9 @@
 
 Improvements:
 
+- Fix searchboxes
+- use searchbox element
+- update versions of packages if needed
 - Search sentence page
 - Restyle pages
 - restyle content references

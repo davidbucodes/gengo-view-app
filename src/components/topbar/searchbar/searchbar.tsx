@@ -20,6 +20,7 @@ export function Searchbar() {
       patchKeyboardConfig({
         config: {
           KeyF: "Focus searchbox",
+          ShiftEnter: "Focus searchbox",
         },
       })
     );
@@ -107,7 +108,7 @@ export function Searchbar() {
             } else if (event.code === "Escape") {
               ref.current?.blur();
               setIsResultsPopupFocused(false);
-            } else if (event.code === "ArrowDown" || event.code === "Enter") {
+            } else if (event.code === "ArrowDown") {
               (
                 ref.current?.nextElementSibling?.firstChild
                   ?.firstChild as HTMLElement

@@ -114,7 +114,12 @@ export function SystemExportView({
             onSelected={setSelectedTabType}
           />
         </Styles.Line>
-
+        <Styles.Line>
+          CSV preview:
+          <Button onClick={selectCsv}>Select CSV</Button>
+          <Button onClick={copyCsv}>Copy CSV to clipboard</Button>
+          <Button onClick={saveCsv}>Save CSV</Button>
+        </Styles.Line>
         <Styles.Line>Columns to export:</Styles.Line>
         <Styles.Line>
           <CheckboxGroup
@@ -129,12 +134,6 @@ export function SystemExportView({
             value={csvFilename}
             onChange={event => setCsvFilename(event.target.value)}
           />
-        </Styles.Line>
-        <Styles.Line>
-          CSV preview:
-          <Button onClick={selectCsv}>Select CSV</Button>
-          <Button onClick={copyCsv}>Copy CSV to clipboard</Button>
-          <Button onClick={saveCsv}>Save CSV</Button>
         </Styles.Line>
         <Styles.Code ref={csvRef}>{exportableCsv}</Styles.Code>
       </div>
