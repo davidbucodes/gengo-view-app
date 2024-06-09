@@ -4,20 +4,26 @@ export function Searchbox({
   text,
   placeholder,
   onChange,
+  onFocus,
+  onBlur,
   tabIndex,
   secondaryText,
   secondaryPlaceholder,
   useSecondaryFilter,
   onSecondaryChange,
+  autoFocus,
 }: React.PropsWithChildren<{
   text?: string;
   placeholder?: string;
   onChange?: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   tabIndex?: number;
   secondaryText?: string;
   secondaryPlaceholder?: string;
   useSecondaryFilter?: boolean;
   onSecondaryChange?: (value: string) => void;
+  autoFocus?: true;
 }>): JSX.Element {
   return (
     <div
@@ -58,6 +64,7 @@ export function Searchbox({
             onSecondaryChange?.(ev.currentTarget.value);
           }}
           defaultValue={secondaryText}
+          autoFocus={autoFocus}
         />
       )}
     </div>

@@ -1,7 +1,7 @@
 import { Side } from "../app/side";
-import { NavigationMenu } from "./navigationMenu/navigationMenu";
+import { SearchbarLeftMenu } from "./searchbarLeftMenu/searchbarLeftMenu";
 import { Searchbar } from "./searchbar/searchbar";
-import { SidebarDisplayMenu } from "./sidebarDisplayMenu/sidebarDisplayMenu";
+import { SearchbarRightMenu } from "./searchbarRightMenu/searchbarRightMenu";
 import { Styles } from "./style";
 
 export function Topbar({
@@ -15,9 +15,9 @@ export function Topbar({
 }): JSX.Element {
   return (
     <Styles.Topbar>
-      <NavigationMenu />
+      <SearchbarLeftMenu />
       <Searchbar />
-      <SidebarDisplayMenu
+      <SearchbarRightMenu
         onToggleSidebar={onToggleSidebar}
         isRightSidebarVisible={isRightSidebarVisible}
         isLeftSidebarVisible={isLeftSidebarVisible}

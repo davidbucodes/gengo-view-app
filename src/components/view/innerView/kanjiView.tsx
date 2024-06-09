@@ -15,6 +15,7 @@ import { TextVoiceLanguage } from "../../../utils/tts";
 import { InnerView } from "./innerView";
 import { useAppSelector } from "../../../store/hooks";
 import { DropdownSelect } from "../../common/dropdownSelect/dropdownSelect";
+import { CopyButton } from "../../common/copyButton/copyButton";
 
 export function KanjiView({
   contentId,
@@ -60,12 +61,10 @@ export function KanjiView({
           {Boolean(kanji.kun?.length) && (
             <Styles.Line>
               <b>Kun:</b> {kanji.kun.join(", ")}{" "}
-              {
-                <TextReader
-                  language={TextVoiceLanguage.JA}
-                  textToRead={kanji.kun.join(", ")}
-                />
-              }
+              <TextReader
+                language={TextVoiceLanguage.JA}
+                textToRead={kanji.kun.join(", ")}
+              />
             </Styles.Line>
           )}
           {Boolean(kanji.on?.length) && (

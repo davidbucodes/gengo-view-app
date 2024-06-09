@@ -6,7 +6,7 @@ import { SystemContentIds } from "../../view/contentId";
 import { Styles } from "./style";
 import { colors } from "../../../theme";
 
-export function NavigationMenu(): JSX.Element {
+export function SearchbarLeftMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const buttons: [JSX.Element, string, SystemContentIds][] = [
@@ -15,7 +15,7 @@ export function NavigationMenu(): JSX.Element {
   ];
 
   return (
-    <Styles.NavigationMenu>
+    <Styles.SearchbarLeftMenu>
       {buttons.map(([element, tooltip, systemContentId]) => (
         <Button
           key={systemContentId}
@@ -35,6 +35,6 @@ export function NavigationMenu(): JSX.Element {
           }
         ></Button>
       ))}
-    </Styles.NavigationMenu>
+    </Styles.SearchbarLeftMenu>
   );
 }

@@ -2,8 +2,9 @@ import { Side } from "../../app/side";
 import { Button } from "../../common/button/button";
 import { SidebarDisplayToggleBadge } from "./sidebarDisplayToggleBadge";
 import { Styles } from "./style";
+import { TabsListPopupButton } from "./tabsListPopupButton";
 
-export function SidebarDisplayMenu({
+export function SearchbarRightMenu({
   onToggleSidebar,
   isRightSidebarVisible,
   isLeftSidebarVisible,
@@ -13,7 +14,8 @@ export function SidebarDisplayMenu({
   isLeftSidebarVisible: boolean;
 }): JSX.Element {
   return (
-    <Styles.SidebarDisplayMenu>
+    <Styles.SearchbarRightMenu>
+      <TabsListPopupButton />
       <Button
         tooltip={`${isLeftSidebarVisible ? "Hide" : "Show"} left sidebar`}
         onClick={() => onToggleSidebar("left", !isLeftSidebarVisible)}
@@ -32,6 +34,6 @@ export function SidebarDisplayMenu({
           isSidebarDisplayed={isRightSidebarVisible}
         />
       </Button>
-    </Styles.SidebarDisplayMenu>
+    </Styles.SearchbarRightMenu>
   );
 }

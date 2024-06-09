@@ -3,9 +3,6 @@
 Improvements:
 
 - add kakijun of entire words
-- Add copy button next to the yomikata
-- Close all tabs in group by type
-- Add lists implementation
 - Add tab list viewer similar to Chrome, maybe use tab history? or omit tab history? at least when there is no option currently
 - Extract appears at kanji data from KanjiVG (data at kanji svgs)
 - fix csv filrname bug when dot
