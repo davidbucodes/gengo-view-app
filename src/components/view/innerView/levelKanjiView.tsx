@@ -40,7 +40,7 @@ export const LevelKanjiView = memo(function LevelKanjiView({
 
   const items: GridItemModel[] = kanjis.map(kanji => ({
     label: kanji.kanji,
-    contentId: searchResultToContentId(kanji),
+    value: searchResultToContentId(kanji),
     onClick: onGridItemClicked,
     onDragStart: onGridItemDrag,
     tooltip: `${kanji.kanji} ${kanji.jlpt}\n${kanji.meaning[0]}\n${[

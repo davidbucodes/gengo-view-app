@@ -1,18 +1,20 @@
 import { Styles } from "./style";
 
 export function Button({
-  text,
+  element,
   tooltip,
   onClick,
   onFocus,
   children,
   tabIndex,
+  color,
 }: React.PropsWithChildren<{
-  text?: string;
+  element?: JSX.Element;
   tooltip?: string;
   onClick: () => void;
   onFocus?: () => void;
   tabIndex?: number;
+  color?: string;
 }>): JSX.Element {
   return (
     <Styles.Button
@@ -20,13 +22,14 @@ export function Button({
       onClick={onClick}
       onFocus={onFocus}
       tabIndex={tabIndex}
+      color={color}
       onKeyDown={ev => {
         if (ev.code === "Enter") {
           onClick();
         }
       }}
     >
-      {text}
+      {element}
       {children}
     </Styles.Button>
   );

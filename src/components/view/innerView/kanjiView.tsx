@@ -14,6 +14,7 @@ import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
 import { InnerView } from "./innerView";
 import { useAppSelector } from "../../../store/hooks";
+import { DropdownSelect } from "../../common/dropdownSelect/dropdownSelect";
 
 export function KanjiView({
   contentId,
@@ -51,9 +52,11 @@ export function KanjiView({
           <Styles.Header style={{ marginTop: 10 }}>
             <b>{kanji.kanji}</b>
           </Styles.Header>
-          <Styles.Line>
-            <b>JLPT:</b> N{kanji.jlpt}
-          </Styles.Line>
+          {Boolean(kanji.jlpt) && (
+            <Styles.Line>
+              <b>JLPT:</b> N{kanji.jlpt}
+            </Styles.Line>
+          )}
           {Boolean(kanji.kun?.length) && (
             <Styles.Line>
               <b>Kun:</b> {kanji.kun.join(", ")}{" "}

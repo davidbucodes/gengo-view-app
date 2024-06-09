@@ -49,7 +49,11 @@ const config: Configuration = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: "./public",
+          from: "./node_modules/@davidbucodes/gengo-view-indices/*.index.json",
+          to: "./indices/[name].json",
+        },
+        {
+          from: "./node_modules/@davidbucodes/gengo-view-kanji-svgs/svgByKanji.json",
           to: ".",
         },
       ],

@@ -10,8 +10,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "stats": "webpack --profile --config webpack.config.dev.ts",
-    "copy-indices": "RD /S /Q .\\public\\indices & xcopy .\\node_modules\\@gengo-view\\indices .\\public\\indices /EIRY & del .\\public\\indices\\package.json",
-    "copy-kanji-svgs": "RD /S /Q .\\public\\kanjiSvgs & xcopy .\\node_modules\\@gengo-view\\kanji-svgs\\svgByKanji.json .\\public /EIRY",
     "format": "prettier -w **/*.ts **/*.tsx",
     "link-dependencies": "npm link @davidbucodes/gengo-view-database @davidbucodes/gengo-view-indices @davidbucodes/gengo-view-kanji-svgs"
   },

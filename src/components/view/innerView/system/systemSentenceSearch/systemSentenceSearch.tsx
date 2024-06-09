@@ -69,15 +69,17 @@ export function SystemSentenceSearchView() {
     <Styles.InnerView>
       <Styles.Header>Sentence search</Styles.Header>
       <Styles.Line>Filter:</Styles.Line>
-      <Searchbox
-        text={searchedText}
-        placeholder="Search sentences..."
-        onChange={value => setSearchedText(value)}
-        useSecondaryFilter
-        secondaryText={filterResultsText}
-        secondaryPlaceholder="Filter results..."
-        onSecondaryChange={value => setFilterResultsText(value)}
-      />
+      <Styles.Line>
+        <Searchbox
+          text={searchedText}
+          placeholder="Search sentences..."
+          onChange={value => setSearchedText(value)}
+          useSecondaryFilter
+          secondaryText={filterResultsText}
+          secondaryPlaceholder="Filter results..."
+          onSecondaryChange={value => setFilterResultsText(value)}
+        />
+      </Styles.Line>
       <Pagination
         items={searchResults}
         itemsInPage={30}

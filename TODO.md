@@ -2,6 +2,15 @@
 
 Improvements:
 
+- Add search button next to the copy button
+- Add copy button next to the yomikata
+- Close all tabs in group by type
+- Add lists implementation
+- Add tab list viewer similar to Chrome, maybe use tab history? or omit tab history? at least when there is no option currently
+- Extract appears at kanji data from KanjiVG (data at kanji svgs)
+- fix csv filrname bug when dot
+- fix radical single letter bug search kanji (eexample i letter)
+- Fix button text color (pay attention to top bar buttons color, should be same left side and right side)
 - Fix searchboxes
 - use searchbox element
 - update versions of packages if needed

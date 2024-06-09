@@ -1,6 +1,6 @@
 import { ContentId, SystemContentIds } from "../../contentId";
 import { SystemAboutView } from "./systemAboutView";
-import { SystemExportView } from "./systemExport";
+import { SystemExportView } from "./systemExportView";
 import { SystemKanjiSearchView } from "./systemKanjiSearch/systemKanjiSearch";
 import { SystemNavigationView } from "./systemNavigationView";
 import { SystemOptionsView } from "./systemOptionsView";

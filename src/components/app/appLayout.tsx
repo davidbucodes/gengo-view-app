@@ -28,6 +28,7 @@ import { pickCommand } from "../../store/slices/commandSlice";
 import { patchKeyboardConfig } from "../../store/slices/keyboardSlice";
 import { useKeyboardShortcuts } from "../../hooks/useKeyboardShourtcuts";
 import { searchResultToContentId } from "../topbar/searchbar/searchResultsToContentIds";
+import { getAllKanjisSorted, sortKanjis } from "../../utils/getAllKanjisSorted";
 
 export function AppLayout() {
   const dispatch = useAppDispatch();
@@ -79,9 +80,11 @@ export function AppLayout() {
   }
 
   useEffect(() => {
-    const kanjis = Jlpt.allKanji();
-    setKanjis(kanjis);
-    setFilteredKanjis(kanjis);
+    (async () => {
+      const kanjis = await getAllKanjisSorted("jlpt");
+      setKanjis(kanjis);
+      setFilteredKanjis(kanjis);
+    })();
 
     dispatch(
       patchKeyboardConfig({
@@ -220,9 +223,15 @@ export function AppLayout() {
     dispatch(setDraggedContent(contentId));
   }
 
+  function getKanjiTooltip(kanji: IndexSearchResult<KanjiDocument>): string {
+    return `${kanji.kanji}${kanji.jlpt ? " N" + kanji.jlpt : ""}${
+      kanji.meaning?.[0] ? "\n" + kanji.meaning?.[0] : ""
+    }\n${[kanji.kun?.[0], kanji.on?.[0]].filter(i => i).join(" ")}`;
+  }
+
   const gridItems: GridItemModel[] = filteredKanjis.map(kanji => ({
     label: kanji.kanji,
-    contentId: {
+    value: {
       dbId: kanji._id,
       dbIndex: kanji._index,
       label: kanji.kanji,
@@ -231,26 +240,24 @@ export function AppLayout() {
     },
     onClick: onGridItemClicked,
     onDragStart: onGridItemDrag,
-    tooltip: `${kanji.kanji} N${kanji.jlpt}\n${kanji.meaning[0]}\n${[
-      kanji.kun?.[0],
-      kanji.on?.[0],
-    ]
-      .filter(i => i)
-      .join(" ")}`,
+    tooltip: getKanjiTooltip(kanji),
   }));
 
   function onGridTextFilterInputChange(filterText: string): void {
     (async function () {
-      const filtered = await Database.indices.kanjiIndex.searchText(
-        filterText,
-        {
+      if (filterText) {
+        const filtered = (await Database.termsIndices.searchText(filterText, {
           documents: kanjis,
-          scorePenalty: 0,
-          english: true,
-          japanese: true,
-        }
-      );
-      setFilteredKanjis(filtered);
+          termIndices: ["kanji"],
+          addKanji: false,
+          addKanjiAtBottom: false,
+        })) as IndexSearchResult<KanjiDocument>[];
+        setFilteredKanjis(sortKanjis(filtered, "jlpt"));
+      } else {
+        const allKanjisSorted = await getAllKanjisSorted("jlpt");
+        console.log(allKanjisSorted);
+        setFilteredKanjis(allKanjisSorted);
+      }
     })();
   }
 

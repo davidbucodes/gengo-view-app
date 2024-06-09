@@ -15,7 +15,7 @@ const initialState: ConfigState = {
   selectSearchOnFocus: true,
   showTabHistory: true,
   showKanjiPinyin: true,
-  highlightWordAtReferences: false,
+  highlightWordAtReferences: true,
 };
 
 export const slice = createSlice({

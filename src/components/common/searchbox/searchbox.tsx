@@ -20,7 +20,14 @@ export function Searchbox({
   onSecondaryChange?: (value: string) => void;
 }>): JSX.Element {
   return (
-    <>
+    <div
+      style={{
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+        gap: "1ch",
+      }}
+    >
       <Styles.Searchbox
         placeholder={placeholder}
         type="search"
@@ -34,7 +41,7 @@ export function Searchbox({
         onChange={ev => {
           onChange?.(ev.currentTarget.value);
         }}
-        defaultValue={text}
+        value={text}
       />
       {text && useSecondaryFilter && (
         <Styles.Searchbox
@@ -53,6 +60,6 @@ export function Searchbox({
           defaultValue={secondaryText}
         />
       )}
-    </>
+    </div>
   );
 }

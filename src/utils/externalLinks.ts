@@ -1,10 +1,11 @@
 export const sites = [
-  "Google",
+  "Google JP",
   "Google Translate",
+  "Google Maps",
+  "Google",
   "Jisho.org",
   "Wikitionary",
   "Kanshudo",
-  "Google JP",
 ] as const;
 
 export function getExternalLink(term: string, site: (typeof sites)[number]) {
@@ -19,7 +20,9 @@ export function getExternalLink(term: string, site: (typeof sites)[number]) {
       return `https://en.wiikitionary.org/wiki/${term}#Japanese`; // or %23
     case "Kanshudo":
       return `https://kanshudo.com/search?q=${term}`;
-    case "Google":
+    case "Google JP":
       return `http://google.co.jp/search?q=${term}`;
+    case "Google Maps":
+      return `https://www.google.com/maps/search/${term}`;
   }
 }

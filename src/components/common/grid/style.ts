@@ -27,19 +27,23 @@ export namespace Styles {
   export const GridItem = styled.div<{
     isTabDragged?: boolean;
     "data-tooltip"?: string;
+    "data-separator"?: boolean;
   }>`
     text-align: center;
-    color: ${colors.backgroundLight6};
-    cursor: pointer;
+    color: ${props =>
+      props["data-separator"] ? colors.white : colors.backgroundLight6};
+    ${props => (props["data-separator"] ? "" : "cursor: pointer;")}
     font-size: ${fontSizes.mediumSmall};
     padding: 7px;
     user-select: none;
     position: relative;
     display: inline-block;
-
-    &:hover {
+    ${props =>
+      props["data-separator"]
+        ? ""
+        : `    &:hover {
       background: ${colors.backgroundLight2};
-    }
+    }`}
 
     ${props => {
       if (props.isTabDragged) {
@@ -88,15 +92,7 @@ export namespace Styles {
     font-size: ${fontSizes.medium};
   `;
 
-  export const TextFilterInput = styled.input.attrs({
-    type: "search",
-  })`
-    background: ${colors.backgroundLight3};
-    margin: ${fontSizes.tinier};
+  export const TextFilterInputContainer = styled.div`
     padding: 5px 8px;
-    border: 3px solid ${colors.backgroundLight4};
-    border-radius: 10px;
-    font-style: italic;
-    color: ${colors.backgroundLight5};
   `;
 }

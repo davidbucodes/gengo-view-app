@@ -3,7 +3,7 @@ import { Styles } from "../style";
 
 export function InnerView({
   children,
-  focusOnArgsChange: focusOnChange,
+  focusOnArgsChange,
   isDisplayed,
 }: React.PropsWithChildren<{
   focusOnArgsChange: Array<unknown>;
@@ -13,8 +13,7 @@ export function InnerView({
 
   useEffect(() => {
     ref.current?.focus();
-  }, [ref.current, isDisplayed, ...focusOnChange]);
-  ref.current?.focus();
+  }, [ref.current, isDisplayed, ...focusOnArgsChange]);
 
   return (
     <Styles.InnerView tabIndex={0} ref={ref}>

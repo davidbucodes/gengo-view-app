@@ -25,7 +25,7 @@ export function useKeyboardShortcuts() {
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
-      console.log(event.code, event);
+      console.log(event.code, (event.target as HTMLElement)?.tagName, event);
 
       if (
         ["INPUT", "TEXTAREA"].includes((event.target as HTMLElement)?.tagName)

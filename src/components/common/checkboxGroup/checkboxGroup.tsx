@@ -5,13 +5,23 @@ export function CheckboxGroup<T extends string>({
   options,
   selectedOptions,
   onChange,
+  wrap,
 }: {
   options: T[];
   selectedOptions: T[];
   onChange: (selectedOptions: T[]) => void;
+  wrap?: boolean;
 }) {
   return (
-    <Styles.CheckboxGroup>
+    <Styles.CheckboxGroup
+      style={
+        wrap && {
+          display: "flex",
+          gap: "0 1ch",
+          flexWrap: "wrap",
+        }
+      }
+    >
       {options.map(option => {
         const isChecked = selectedOptions.includes(option);
         const id = generateId();

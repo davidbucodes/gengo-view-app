@@ -26,6 +26,8 @@ const hebrewToQwertyDictionary: Record<string, string> = {
   צ: "m",
   ת: ",",
   ץ: ".",
+  "׳": "w",
+  "/": "q",
 };
 
 export function hebrewToQwerty(text: string) {

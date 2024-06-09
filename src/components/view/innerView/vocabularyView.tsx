@@ -12,6 +12,7 @@ import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
 import { fontSizes } from "../../../theme";
 import { InnerView } from "./innerView";
+import { CopyButton } from "../../common/copyButton/copyButton";
 
 export function VocabularyView({
   contentId,
@@ -38,11 +39,15 @@ export function VocabularyView({
     setVocab(vocabResult);
   }, [contentId]);
 
+  const display = vocab?.display?.join(", ");
+
   return (
     vocab && (
       <InnerView isDisplayed={isDisplayed} focusOnArgsChange={[vocab]}>
         <Styles.Definitions>
-          <Styles.Header>{vocab.display.join(", ")}</Styles.Header>
+          <Styles.Header>
+            {display} <CopyButton textToCopy={display} />
+          </Styles.Header>
           <div>
             {Boolean(vocab.jlpt) && (
               <Styles.Line>

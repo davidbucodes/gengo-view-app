@@ -26,6 +26,12 @@ export namespace Styles {
     flex-direction: column;
   `;
 
+  export const GridContainer = styled.div`
+    display: flex;
+    flex-grow: 1;
+    height: 300px;
+  `;
+
   export const Definitions = styled.div`
     width: 100%;
     margin-bottom: 10px;
@@ -90,7 +96,16 @@ export namespace Styles {
   `;
   export const Textbox = styled.input`
     padding: 5px;
-    font-size: ${fontSizes.medium};
+    font-size: ${fontSizes.mediumSmall};
+    background: ${colors.backgroundLight3};
+    appearance: none;
+    padding: 5px;
+    border: 3px solid ${colors.backgroundLight4};
+    border-radius: 10px;
+    font-style: italic;
+    text-align: center;
+    color: ${colors.backgroundLight5};
+    flex-grow: 0.9;
   `;
   export const Textarea = styled.textarea`
     padding: 5px;

@@ -29,7 +29,9 @@ export function Searchbar() {
   useEffect(() => {
     if (commandQueue.includes("Focus searchbox")) {
       dispatch(pickCommand({ name: "Focus searchbox" }));
-      setTimeout(() => ref?.current?.focus());
+      setTimeout(() => {
+        ref?.current?.focus();
+      });
     }
   }, [commandQueue]);
 

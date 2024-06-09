@@ -16,7 +16,7 @@ const config: Configuration = {
     hot: "only",
     open: true,
     liveReload: false,
-    static: __dirname + "/public",
+    static: __dirname + "/dist",
   },
 };
 

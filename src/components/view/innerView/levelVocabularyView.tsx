@@ -39,7 +39,7 @@ export const LevelVocabularyView = memo(function LevelVocabularyView({
 
   const items: GridItemModel[] = vocabularies.map(vocabulary => ({
     label: vocabulary.display?.join?.(", "),
-    contentId: searchResultToContentId(vocabulary),
+    value: searchResultToContentId(vocabulary),
     onClick: onGridItemClicked,
     onDragStart: onGridItemDrag,
     tooltip: `${vocabulary.display?.[0]} ${vocabulary.jlpt}\n${vocabulary.meaning?.[0]}\n${vocabulary.reading?.[0]}`,
