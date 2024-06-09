@@ -1,17 +1,4 @@
-import { Database, IndexName } from "@davidbucodes/gengo-view-database";
-import { uniq } from "lodash";
-import {
-  ChangeEvent,
-  FormEvent,
-  FormEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useAppSelector } from "../../../../store/hooks";
-import { Button } from "../../../common/button/button";
-import { CheckboxGroup } from "../../../common/checkboxGroup/checkboxGroup";
-import { RadioGroup } from "../../../common/radioGroup/radioGroup";
+import { ChangeEvent, useState } from "react";
 import { ContentId } from "../../contentId";
 import { Styles } from "../../style";
 import { TextReader } from "../../../common/textReader/textReader";

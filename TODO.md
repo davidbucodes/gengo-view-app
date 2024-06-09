@@ -2,7 +2,7 @@
 
 Improvements:
 
-- Add search button next to the copy button
+- add kakijun of entire words
 - Add copy button next to the yomikata
 - Close all tabs in group by type
 - Add lists implementation

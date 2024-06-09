@@ -13,6 +13,7 @@ import { TextVoiceLanguage } from "../../../utils/tts";
 import { fontSizes } from "../../../theme";
 import { InnerView } from "./innerView";
 import { CopyButton } from "../../common/copyButton/copyButton";
+import { SearchButton } from "../../common/searchButton/searchButton";
 
 export function VocabularyView({
   contentId,
@@ -47,6 +48,7 @@ export function VocabularyView({
         <Styles.Definitions>
           <Styles.Header>
             {display} <CopyButton textToCopy={display} />
+            <SearchButton textToSearch={display} />
           </Styles.Header>
           <div>
             {Boolean(vocab.jlpt) && (

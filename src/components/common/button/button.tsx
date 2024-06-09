@@ -19,7 +19,10 @@ export function Button({
   return (
     <Styles.Button
       title={tooltip}
-      onClick={onClick}
+      onClick={ev => {
+        ev.stopPropagation();
+        onClick();
+      }}
       onFocus={onFocus}
       tabIndex={tabIndex}
       color={color}
