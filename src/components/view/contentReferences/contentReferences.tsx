@@ -17,6 +17,8 @@ import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
 import { useAppSelector } from "../../../store/hooks";
 import { highlightEntry } from "../../../utils/highlightEntry";
+import { SearchResultBadge } from "../innerView/search/searchResultBadge/searchResultBadge";
+import { Badge } from "../../common/badge/badge";
 
 const indexNameToTitle: Record<IndexName, string> = {
   name: "Names",
@@ -90,7 +92,10 @@ export function ContentReferences({
           );
         }
         setVocabulary(
-          sortBy(vocabularyResult, vocab => meanBy(vocab.display, "length"))
+          sortBy(
+            sortBy(vocabularyResult, vocab => meanBy(vocab.display, "length")),
+            vocab => -vocab.jlpt
+          )
         );
       })();
     }
@@ -181,6 +186,14 @@ export function ContentReferences({
                       firstLabelEntry,
                       vocabularyFilterText
                     )}
+                {vocab.jlpt ? (
+                  <Badge
+                    text={`N${vocab.jlpt}`}
+                    textToColor={`${vocab.jlpt}`}
+                  />
+                ) : (
+                  ""
+                )}
               </td>
               <td>
                 {!highlightWordAtReferences

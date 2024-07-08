@@ -11,7 +11,7 @@
     "test:watch": "jest --watch",
     "stats": "webpack --profile --config webpack.config.dev.ts",
     "format": "prettier -w **/*.ts **/*.tsx",
-    "link-dependencies": "npm link @davidbucodes/gengo-view-database @davidbucodes/gengo-view-indices @davidbucodes/gengo-view-kanji-svgs"
+    "link-dependencies": "npm link @davidbucodes/gengo-view-database @davidbucodes/gengo-view-indices @davidbucodes/gengo-view-svgs"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@davidbucodes/gengo-view-database": "^1.0.3",
     "@davidbucodes/gengo-view-indices": "^1.0.1",
-    "@davidbucodes/gengo-view-kanji-svgs": "^1.0.0-beta1",
+    "@davidbucodes/gengo-view-svgs": "^1.0.0-beta1",
     "@mui/icons-material": "^5.10.16",
     "@reduxjs/toolkit": "^1.9.1",
     "lodash": "^4.17.21",

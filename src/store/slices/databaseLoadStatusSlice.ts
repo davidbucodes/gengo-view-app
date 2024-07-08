@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ConfigState {
-  isSvgByKanjiLoaded: boolean;
+  isSvgByLetterLoaded: boolean;
   loadingPercentage: number;
   isDatabaseLoaded: boolean;
 }
 
 const initialState: ConfigState = {
   isDatabaseLoaded: false,
-  isSvgByKanjiLoaded: false,
+  isSvgByLetterLoaded: false,
   loadingPercentage: 0,
 };
 
@@ -22,15 +22,15 @@ export const slice = createSlice({
     setLoadingPercentage: (state, action: PayloadAction<number>) => {
       state.loadingPercentage = action.payload;
     },
-    setIsSvgByKanjiLoaded: (state, action: PayloadAction<boolean>) => {
-      state.isSvgByKanjiLoaded = action.payload;
+    setIsSvgByLetterLoaded: (state, action: PayloadAction<boolean>) => {
+      state.isSvgByLetterLoaded = action.payload;
     },
   },
 });
 
 export const {
   setIsDatabaseLoaded,
-  setIsSvgByKanjiLoaded,
+  setIsSvgByLetterLoaded,
   setLoadingPercentage,
 } = slice.actions;
 

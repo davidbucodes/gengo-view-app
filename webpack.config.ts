@@ -53,7 +53,7 @@ const config: Configuration = {
           to: "./indices/[name].json",
         },
         {
-          from: "./node_modules/@davidbucodes/gengo-view-kanji-svgs/svgByKanji.json",
+          from: "./node_modules/@davidbucodes/gengo-view-svgs/svgByKanji.json",
           to: ".",
         },
       ],

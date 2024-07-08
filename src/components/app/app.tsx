@@ -1,10 +1,10 @@
 import { Database, Jlpt } from "@davidbucodes/gengo-view-database";
-import { SvgByKanji } from "@davidbucodes/gengo-view-kanji-svgs";
+import { SvgByKanji } from "@davidbucodes/gengo-view-svgs";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   setIsDatabaseLoaded,
-  setIsSvgByKanjiLoaded,
+  setIsSvgByLetterLoaded,
   setLoadingPercentage,
 } from "../../store/slices/databaseLoadStatusSlice";
 import { AppLayout } from "./appLayout";
@@ -20,12 +20,12 @@ export function App() {
   const loadingPercentage = useAppSelector(state => {
     return state.databaseLoadStatus.loadingPercentage;
   });
-  const isSvgByKanjiLoaded = useAppSelector(state => {
-    return state.databaseLoadStatus.isSvgByKanjiLoaded;
+  const isSvgByLetterLoaded = useAppSelector(state => {
+    return state.databaseLoadStatus.isSvgByLetterLoaded;
   });
 
   useEffect(() => {
-    const shouldLoad = !isSvgByKanjiLoaded && !isDatabaseLoaded;
+    const shouldLoad = !isSvgByLetterLoaded && !isDatabaseLoaded;
     if (shouldLoad) {
       TextToSpeech.loadAllVoices();
       (async () => {
@@ -46,15 +46,15 @@ export function App() {
       })();
       (async () => {
         await SvgByKanji.load("./svgByKanji.json");
-        dispatch(setIsSvgByKanjiLoaded(true));
+        dispatch(setIsSvgByLetterLoaded(true));
         dispatch(setLoadingPercentage(loadingPercentage + 0.25));
       })();
     }
-  }, [isDatabaseLoaded, isSvgByKanjiLoaded]);
+  }, [isDatabaseLoaded, isSvgByLetterLoaded]);
 
   return (
     <Styles.App>
-      {isDatabaseLoaded && isSvgByKanjiLoaded ? (
+      {isDatabaseLoaded && isSvgByLetterLoaded ? (
         <AppLayout />
       ) : (
         <DatabaseLoader loadingPercentage={loadingPercentage} />

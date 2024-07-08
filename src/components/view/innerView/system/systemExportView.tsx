@@ -8,6 +8,10 @@ import { RadioGroup } from "../../../common/radioGroup/radioGroup";
 import { ContentId } from "../../contentId";
 import { Styles } from "../../style";
 
+function formatFilename(text: string) {
+  return text.replaceAll(".", "_");
+}
+
 export function SystemExportView({
   contentId,
 }: {
@@ -105,7 +109,7 @@ export function SystemExportView({
     const url = window.URL.createObjectURL(blob);
     const linkElem = document.createElement("a");
     linkElem.href = url;
-    linkElem.download = csvFilename;
+    linkElem.download = formatFilename(csvFilename);
     linkElem.click();
   };
 
