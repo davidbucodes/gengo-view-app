@@ -2,10 +2,11 @@
 
 Improvements:
 
+- close all tabs of same type
+- list view for vocabulary and kanji of level
 - add kakijun of entire words
 - Extract appears at kanji data from KanjiVG (data at kanji svgs)
 - fix radical single letter bug search kanji (eexample i letter)
-- Fix button text color (pay attention to top bar buttons color, should be same left side and right side)
 - Fix searchboxes
 - use searchbox element
 - update versions of packages if needed
