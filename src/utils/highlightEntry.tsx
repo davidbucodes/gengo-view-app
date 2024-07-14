@@ -9,9 +9,9 @@ export function highlightEntry(
   return (
     <>
       {split(text, entry)
-        .flatMap(p => [
+        .flatMap((p, index) => [
           !secondEntry ? p : higlightSecondEntry(p, secondEntry),
-          <Styles.Mark>{entry}</Styles.Mark>,
+          <Styles.Mark key={index}>{entry}</Styles.Mark>,
         ])
         .slice(0, -1)}
     </>
