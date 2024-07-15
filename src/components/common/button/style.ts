@@ -15,6 +15,7 @@ export namespace Styles {
     display: inline-flex;
     align-items: center;
     font-size: ${fontSizes.smallSubtitle};
+    font-weight: normal;
 
     &:hover {
       background: ${colors.backgroundLight2};

@@ -9,6 +9,7 @@ export const enum SystemContentIds {
   KanjiSearch = "Kanji Search",
   TextToSpeech = "Text-to-speech",
   SentenceSearch = "Sentence Search",
+  Sessions = "Sessions",
 }
 
 export type ContentId =

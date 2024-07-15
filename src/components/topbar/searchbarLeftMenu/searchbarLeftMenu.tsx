@@ -1,4 +1,4 @@
-import { Settings, Download } from "@mui/icons-material";
+import { Settings, Download, Save, HistoryEdu } from "@mui/icons-material";
 import { useAppDispatch } from "../../../store/hooks";
 import { openTab } from "../../../store/slices/tabsSlice";
 import { Button } from "../../common/button/button";
@@ -12,6 +12,7 @@ export function SearchbarLeftMenu(): JSX.Element {
   const buttons: [JSX.Element, string, SystemContentIds][] = [
     [<Settings />, "Settings", SystemContentIds.Options],
     [<Download />, "Export", SystemContentIds.Export],
+    [<HistoryEdu />, "Sessions", SystemContentIds.Sessions],
   ];
 
   return (
@@ -28,7 +29,7 @@ export function SearchbarLeftMenu(): JSX.Element {
                 contentId: {
                   type: "system",
                   id: systemContentId,
-                  label: systemContentId,
+                  label: tooltip,
                 },
               })
             )

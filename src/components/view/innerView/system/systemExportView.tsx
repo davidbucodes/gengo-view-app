@@ -7,10 +7,7 @@ import { CheckboxGroup } from "../../../common/checkboxGroup/checkboxGroup";
 import { RadioGroup } from "../../../common/radioGroup/radioGroup";
 import { ContentId } from "../../contentId";
 import { Styles } from "../../style";
-
-function formatFilename(text: string) {
-  return text.replaceAll(".", "_");
-}
+import { downloadText } from "../../../../utils/downloadText";
 
 export function SystemExportView({
   contentId,
@@ -101,16 +98,7 @@ export function SystemExportView({
   };
 
   const saveCsv = () => {
-    const BOM = "\uFEFF";
-    const blob = new Blob([BOM + exportableCsv], {
-      type: "text/csv;charset=utf-8",
-    });
-
-    const url = window.URL.createObjectURL(blob);
-    const linkElem = document.createElement("a");
-    linkElem.href = url;
-    linkElem.download = formatFilename(csvFilename);
-    linkElem.click();
+    downloadText(csvFilename, exportableCsv);
   };
 
   return (

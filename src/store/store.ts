@@ -7,6 +7,7 @@ import tabsDisplay from "./slices/tabsDisplaySlice";
 import tabs from "./slices/tabsSlice";
 import keyboard from "./slices/keyboardSlice";
 import command from "./slices/commandSlice";
+import sessions from "./slices/sessionsSlice";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     databaseLoadStatus,
     keyboard,
     command,
+    sessions,
   },
 });
 

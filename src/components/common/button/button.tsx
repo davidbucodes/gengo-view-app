@@ -11,7 +11,7 @@ export function Button({
 }: React.PropsWithChildren<{
   element?: JSX.Element;
   tooltip?: string;
-  onClick: () => void;
+  onClick?: () => void;
   onFocus?: () => void;
   tabIndex?: number;
   color?: string;
@@ -21,14 +21,14 @@ export function Button({
       title={tooltip}
       onClick={ev => {
         ev.stopPropagation();
-        onClick();
+        onClick?.();
       }}
       onFocus={onFocus}
       tabIndex={tabIndex}
       color={color}
       onKeyDown={ev => {
         if (ev.code === "Enter") {
-          onClick();
+          onClick?.();
         }
       }}
     >

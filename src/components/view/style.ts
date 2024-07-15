@@ -43,6 +43,10 @@ export namespace Styles {
     vertical-align: middle;
     padding-bottom: ${fontSizes.smallSubtitle};
     font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
   `;
   export const Title = styled.div`
     line-height: ${fontSizes.large};
@@ -106,6 +110,9 @@ export namespace Styles {
     text-align: center;
     color: ${colors.backgroundLight5};
     flex-grow: 0.9;
+  `;
+  export const FilterTextbox = styled(Textbox)`
+    flex-grow: 1;
   `;
   export const Textarea = styled.textarea`
     padding: 5px;

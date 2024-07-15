@@ -2,6 +2,7 @@ import { ContentId, SystemContentIds } from "../../contentId";
 import { SystemAboutView } from "./systemAboutView";
 import { SystemExportView } from "./systemExportView";
 import { SystemKanjiSearchView } from "./systemKanjiSearch/systemKanjiSearch";
+import { SystemSessionsView } from "./systemSessionsView/systemSessionsView";
 import { SystemNavigationView } from "./systemNavigationView";
 import { SystemOptionsView } from "./systemOptionsView";
 import { SystemSentenceSearchView } from "./systemSentenceSearch/systemSentenceSearch";
@@ -30,5 +31,7 @@ export function SystemView({
       return <SystemTextToSpeechView contentId={contentId} />;
     case SystemContentIds.SentenceSearch:
       return <SystemSentenceSearchView />;
+    case SystemContentIds.Sessions:
+      return <SystemSessionsView />;
   }
 }
