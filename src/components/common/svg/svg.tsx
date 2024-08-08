@@ -1,4 +1,4 @@
-import { SvgByKanji } from "@davidbucodes/gengo-view-svgs";
+import { SvgByLetter } from "@davidbucodes/gengo-view-svgs";
 import { useEffect, useState } from "react";
 import { Loader } from "../loader/loader";
 import { Styles } from "./style";
@@ -10,7 +10,7 @@ export function KanjiSvg({ kanji }: { kanji: string }): JSX.Element {
   const [kanjiSvgUrl, setKanjiSvgUrl] = useState(null);
 
   useEffect(() => {
-    const svgStr = SvgByKanji.get(kanji);
+    const svgStr = SvgByLetter.get(kanji);
     if (!svgStr) {
       setErrorMessage("No kanji image available at the database");
       setIsErrorLoading(true);

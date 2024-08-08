@@ -14,6 +14,8 @@ import { fontSizes } from "../../../theme";
 import { InnerView } from "./innerView";
 import { CopyButton } from "../../common/copyButton/copyButton";
 import { SearchButton } from "../../common/searchButton/searchButton";
+import { AddToListButton } from "../../common/addToListButton/addToListButton";
+import { ListsToggleSave } from "../../common/listsToggleSave/listsToggleSave";
 
 export function VocabularyView({
   contentId,
@@ -33,6 +35,8 @@ export function VocabularyView({
     "name",
     "kanji",
   ]);
+  const [showListsSaveToggle, setShowListsSaveToggle] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const vocabResult =
@@ -42,15 +46,31 @@ export function VocabularyView({
 
   const display = vocab?.display?.join(", ");
 
+  function onAddToListButtonClick() {
+    setShowListsSaveToggle(!showListsSaveToggle);
+  }
+
   return (
     vocab && (
       <InnerView isDisplayed={isDisplayed} focusOnArgsChange={[vocab]}>
         <Styles.Definitions>
           <Styles.Header>
-            {display} <CopyButton textToCopy={display} />
-            <SearchButton textToSearch={display} />
+            {display}
+            <span>
+              <CopyButton textToCopy={display} />
+              <SearchButton textToSearch={display} />
+              <AddToListButton
+                onClick={onAddToListButtonClick}
+                contentId={contentId}
+              />
+            </span>
           </Styles.Header>
           <div>
+            {showListsSaveToggle ? (
+              <ListsToggleSave contentId={contentId} />
+            ) : (
+              ""
+            )}
             {Boolean(vocab.jlpt) && (
               <Styles.Line>
                 <b>JLPT:</b>

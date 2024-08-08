@@ -22,7 +22,7 @@ import { Sidebar } from "../sidebar/sidebar";
 import { Topbar } from "../topbar/topbar";
 import { ContentId } from "../view/contentId";
 import { Side } from "./side";
-import { sidebarTree } from "./sidebarTree";
+import { createSidebarTree } from "./createSidebarTree";
 import { Styles } from "./style";
 import { pickCommand } from "../../store/slices/commandSlice";
 import { patchKeyboardConfig } from "../../store/slices/keyboardSlice";
@@ -34,8 +34,14 @@ export function AppLayout() {
   const dispatch = useAppDispatch();
   const [isRightSidebarVisible, setIsRightSidebarVisible] = useState(true);
   const [isLeftSidebarVisible, setIsLeftSidebarVisible] = useState(true);
+  const [sidebarTree, setSidebarTree] = useState<
+    ReturnType<typeof createSidebarTree>
+  >({
+    items: [],
+  });
 
   const commandQueue = useAppSelector(state => state.command.commandQueue);
+  const lists = useAppSelector(state => state.lists.savedLists);
 
   const [kanjis, setKanjis] = useState(
     [] as IndexSearchResult<KanjiDocument>[]
@@ -203,7 +209,13 @@ export function AppLayout() {
     }
   }, [commandQueue]);
 
-  function onTreeItemSelect(treeItem: (typeof sidebarTree.items)[number]) {
+  useEffect(() => {
+    setSidebarTree(createSidebarTree({ lists }));
+  }, [lists]);
+
+  function onTreeItemSelect(
+    treeItem: ReturnType<typeof createSidebarTree>["items"][number]
+  ) {
     dispatch(openTab({ contentId: treeItem.content }));
   }
 

@@ -8,6 +8,7 @@ import tabs from "./slices/tabsSlice";
 import keyboard from "./slices/keyboardSlice";
 import command from "./slices/commandSlice";
 import sessions from "./slices/sessionsSlice";
+import lists from "./slices/listsSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     keyboard,
     command,
     sessions,
+    lists,
   },
 });
 

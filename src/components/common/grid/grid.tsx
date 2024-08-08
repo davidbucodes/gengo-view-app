@@ -35,7 +35,7 @@ export const Grid = React.memo(function Grid({
               key={
                 typeof item.value === "string"
                   ? item.value
-                  : (item.value as ContentId).id
+                  : ((item.value as ContentId).id as string)
               }
               item={item}
             />

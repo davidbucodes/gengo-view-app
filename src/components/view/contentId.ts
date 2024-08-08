@@ -10,6 +10,9 @@ export const enum SystemContentIds {
   TextToSpeech = "Text-to-speech",
   SentenceSearch = "Sentence Search",
   Sessions = "Sessions",
+  NewList = "NewList",
+  AllLists = "AllLists",
+  List = "List",
 }
 
 export type ContentId =
@@ -22,6 +25,7 @@ export type ContentId =
       id: SystemContentIds;
       label: string;
       type: "system";
+      listId?: string;
     }
   | {
       id: JlptLevel;

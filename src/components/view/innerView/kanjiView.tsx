@@ -16,6 +16,9 @@ import { InnerView } from "./innerView";
 import { useAppSelector } from "../../../store/hooks";
 import { DropdownSelect } from "../../common/dropdownSelect/dropdownSelect";
 import { CopyButton } from "../../common/copyButton/copyButton";
+import { ListsToggleSave } from "../../common/listsToggleSave/listsToggleSave";
+import { AddToListButton } from "../../common/addToListButton/addToListButton";
+import { SearchButton } from "../../common/searchButton/searchButton";
 
 export function KanjiView({
   contentId,
@@ -26,6 +29,8 @@ export function KanjiView({
   previousContentIds: ContentId[];
   isDisplayed: boolean;
 }) {
+  const [showListsSaveToggle, setShowListsSaveToggle] =
+    useState<boolean>(false);
   const shouldShowKanjiPinyin = useAppSelector(state => {
     return state.config.showKanjiPinyin;
   });
@@ -43,6 +48,10 @@ export function KanjiView({
     setKanji(kanjiResult);
   }, [contentId]);
 
+  function onAddToListButtonClick() {
+    setShowListsSaveToggle(!showListsSaveToggle);
+  }
+
   return (
     kanji && (
       <InnerView isDisplayed={isDisplayed} focusOnArgsChange={[kanji]}>
@@ -52,7 +61,17 @@ export function KanjiView({
           </Styles.Line>
           <Styles.Header style={{ marginTop: 10 }}>
             <b>{kanji.kanji}</b>
+            <span>
+              <CopyButton textToCopy={kanji.kanji} />
+              <SearchButton textToSearch={kanji.kanji} />
+              <AddToListButton
+                onClick={onAddToListButtonClick}
+                contentId={contentId}
+              />
+            </span>
           </Styles.Header>
+
+          {showListsSaveToggle ? <ListsToggleSave contentId={contentId} /> : ""}
           {Boolean(kanji.jlpt) && (
             <Styles.Line>
               <b>JLPT:</b> N{kanji.jlpt}

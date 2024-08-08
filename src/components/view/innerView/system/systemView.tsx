@@ -8,11 +8,16 @@ import { SystemOptionsView } from "./systemOptionsView";
 import { SystemSentenceSearchView } from "./systemSentenceSearch/systemSentenceSearch";
 import { SystemTextToSpeechView } from "./systemTextToSpeechView";
 import { SystemWelcomeView } from "./systemWelcomeView";
+import { SystemAllListsView } from "./systemLists/systemAllListsView";
+import { SystemListView } from "./systemLists/systemListView";
+import { TabModel } from "../../../../store/utils/tabActions";
 
 export function SystemView({
   contentId,
+  tab,
 }: {
   contentId: ContentId & { type: "system" };
+  tab: TabModel;
 }) {
   switch (contentId.id) {
     case SystemContentIds.About:
@@ -33,5 +38,9 @@ export function SystemView({
       return <SystemSentenceSearchView />;
     case SystemContentIds.Sessions:
       return <SystemSessionsView />;
+    case SystemContentIds.AllLists:
+      return <SystemAllListsView />;
+    case SystemContentIds.List:
+      return <SystemListView tab={tab} listId={contentId.listId} />;
   }
 }

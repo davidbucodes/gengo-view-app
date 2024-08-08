@@ -2,6 +2,9 @@
 
 Improvements:
 
+- lists
+- copy kanji button
+- fix bug when kanji searhing by stroke count and then set level ignore stroke count
 - close all tabs of same type
 - list view for vocabulary and kanji of level
 - add kakijun of entire words

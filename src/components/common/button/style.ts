@@ -16,6 +16,8 @@ export namespace Styles {
     align-items: center;
     font-size: ${fontSizes.smallSubtitle};
     font-weight: normal;
+    gap: 5px;
+    line-height: 1.5em;
 
     &:hover {
       background: ${colors.backgroundLight2};

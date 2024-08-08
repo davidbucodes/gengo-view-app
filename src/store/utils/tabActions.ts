@@ -205,6 +205,10 @@ export namespace TabActions {
 
   export const focusNextTabInGroup = (state: SliceState) => {
     const activeTabGroup = TabsGroupUtils.getActiveTabGroup(state);
+    if (!activeTabGroup) {
+      return;
+    }
+
     const activeTab = TabsGroupUtils.getActiveTabByGroup(activeTabGroup);
 
     const activeTabIndex = activeTabGroup.openTabs.findIndex(
@@ -223,6 +227,10 @@ export namespace TabActions {
 
   export const focusPreviousTabInGroup = (state: SliceState) => {
     const activeTabGroup = TabsGroupUtils.getActiveTabGroup(state);
+    if (!activeTabGroup) {
+      return;
+    }
+
     const activeTab = TabsGroupUtils.getActiveTabByGroup(activeTabGroup);
 
     const activeTabIndex = activeTabGroup.openTabs.findIndex(

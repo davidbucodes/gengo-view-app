@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SessionModel, SessionUtils } from "../utils/sessionUtils";
+import { KeyValueStorage } from "../../utils/KeyValueStorage";
 
 const SESSIONS_KEY = "SESSIONS_KEY";
 
@@ -9,16 +10,16 @@ export interface SavedSessionsState {
 
 function saveSessionsToStorage(sessions: SessionModel[]) {
   const sessionsDump = SessionUtils.dumpSessions({ sessions });
-  localStorage.setItem(SESSIONS_KEY, sessionsDump);
+  KeyValueStorage.set(SESSIONS_KEY, sessionsDump);
 }
 
-if (!localStorage.getItem(SESSIONS_KEY)) {
+if (!KeyValueStorage.isValueTruthy(SESSIONS_KEY)) {
   saveSessionsToStorage([]);
 }
 
 function loadSessionsFromStorage(): SessionModel[] {
   const sessionsFromStorage = SessionUtils.readSessionsDump({
-    sessionsDump: localStorage.getItem(SESSIONS_KEY),
+    sessionsDump: KeyValueStorage.get(SESSIONS_KEY),
   });
   return sessionsFromStorage;
 }

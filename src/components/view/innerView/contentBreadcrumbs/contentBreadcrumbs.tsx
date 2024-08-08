@@ -11,7 +11,7 @@ export function ContentBreadcrumbs({
     <Styles.ContentBreadcrumbs>
       Previous:{" "}
       {contentIds.map((contentId, index) => (
-        <>
+        <span key={index}>
           <ContentIdLink
             title={`${contentId.label} - ${contentId.type}`}
             contentId={contentId}
@@ -19,7 +19,7 @@ export function ContentBreadcrumbs({
             {contentId.label}
           </ContentIdLink>
           {index + 1 < contentIds.length && " > "}
-        </>
+        </span>
       ))}
     </Styles.ContentBreadcrumbs>
   );

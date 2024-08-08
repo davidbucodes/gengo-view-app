@@ -13,6 +13,7 @@ const allowedContentIdTypes = [
   "kanji",
   "name",
   "vocabulary",
+  "search",
 ] as ContentId["type"][];
 
 export namespace SessionUtils {

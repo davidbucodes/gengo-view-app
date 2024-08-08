@@ -13,6 +13,10 @@ import { Styles } from "../style";
 import { TextReader } from "../../common/textReader/textReader";
 import { TextVoiceLanguage } from "../../../utils/tts";
 import { InnerView } from "./innerView";
+import { AddToListButton } from "../../common/addToListButton/addToListButton";
+import { ListsToggleSave } from "../../common/listsToggleSave/listsToggleSave";
+import { CopyButton } from "../../common/copyButton/copyButton";
+import { SearchButton } from "../../common/searchButton/searchButton";
 
 export function NameView({
   contentId,
@@ -23,6 +27,9 @@ export function NameView({
   previousContentIds: ContentId[];
   isDisplayed: boolean;
 }) {
+  const [showListsSaveToggle, setShowListsSaveToggle] =
+    useState<boolean>(false);
+
   const [name, setName] = useState(null as IndexSearchResult<NameDocument>);
   const [indexNames] = useState<IndexName[]>([
     "sentence",
@@ -37,13 +44,32 @@ export function NameView({
     setName(nameResult);
   }, []);
 
+  function onAddToListButtonClick() {
+    setShowListsSaveToggle(!showListsSaveToggle);
+  }
+
   return (
     name && (
       <InnerView isDisplayed={isDisplayed} focusOnArgsChange={[name]}>
         <Loader isLoaded={Boolean(name)}>
           <Styles.Definitions>
-            <Styles.Header>{name?.n}</Styles.Header>
+            <Styles.Header>
+              {name?.n}
+              <span>
+                <CopyButton textToCopy={name?.n} />
+                <SearchButton textToSearch={name?.n} />
+                <AddToListButton
+                  onClick={onAddToListButtonClick}
+                  contentId={contentId}
+                />
+              </span>
+            </Styles.Header>
             <div>
+              {showListsSaveToggle ? (
+                <ListsToggleSave contentId={contentId} />
+              ) : (
+                ""
+              )}
               {Boolean(name.r.length) && (
                 <Styles.Line>
                   <b>Reading:</b> {name.r.join(", ")}

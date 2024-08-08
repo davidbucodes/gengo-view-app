@@ -1,4 +1,9 @@
-import { Settings, Download, Save, HistoryEdu } from "@mui/icons-material";
+import {
+  Settings,
+  Download,
+  HistoryEdu,
+  Assignment,
+} from "@mui/icons-material";
 import { useAppDispatch } from "../../../store/hooks";
 import { openTab } from "../../../store/slices/tabsSlice";
 import { Button } from "../../common/button/button";
@@ -13,6 +18,7 @@ export function SearchbarLeftMenu(): JSX.Element {
     [<Settings />, "Settings", SystemContentIds.Options],
     [<Download />, "Export", SystemContentIds.Export],
     [<HistoryEdu />, "Sessions", SystemContentIds.Sessions],
+    [<Assignment />, "All Lists", SystemContentIds.AllLists],
   ];
 
   return (

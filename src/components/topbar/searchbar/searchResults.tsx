@@ -113,7 +113,7 @@ export function SearchResults({
       {displayedResults.map((result, index) => (
         <Styles.SearchResult
           tabIndex={1}
-          key={result.id}
+          key={result.id as string}
           onMouseDown={e => onResultClick(e, result)}
           onKeyDown={e => onResultKeyDown(e, result)}
           onFocus={() => {

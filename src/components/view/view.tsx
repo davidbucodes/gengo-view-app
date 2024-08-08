@@ -97,6 +97,7 @@ export function View({ tabGroupId }: { tabGroupId: string }) {
             )}
             {contentId?.type === "system" && (
               <SystemView
+                tab={tab}
                 contentId={contentId as ContentId & { type: "system" }}
               />
             )}

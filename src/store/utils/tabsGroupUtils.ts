@@ -1,5 +1,5 @@
 import { IndexName } from "@davidbucodes/gengo-view-database";
-import { ContentId } from "../../components/view/contentId";
+import { ContentId, SystemContentIds } from "../../components/view/contentId";
 import { SliceState } from "../slices/tabsSlice";
 import { generateId } from "./generateId";
 import { TabModel } from "./tabActions";
@@ -92,7 +92,9 @@ export namespace TabsGroupUtils {
         (tab.content as ContentId & { type: IndexName }).dbId ===
           (payloadContent as ContentId & { type: IndexName }).dbId &&
         (tab.content as ContentId & { type: IndexName }).dbIndex ===
-          (payloadContent as ContentId & { type: IndexName }).dbIndex
+          (payloadContent as ContentId & { type: IndexName }).dbIndex &&
+        (tab.content as ContentId & { type: "system" }).listId ===
+          (payloadContent as ContentId & { type: "system" }).listId
     );
   }
 

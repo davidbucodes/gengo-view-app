@@ -1,5 +1,5 @@
 import { Database, Jlpt } from "@davidbucodes/gengo-view-database";
-import { SvgByKanji } from "@davidbucodes/gengo-view-svgs";
+import { SvgByLetter } from "@davidbucodes/gengo-view-svgs";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
@@ -45,7 +45,7 @@ export function App() {
         dispatch(setIsDatabaseLoaded(true));
       })();
       (async () => {
-        await SvgByKanji.load("./svgByKanji.json");
+        await SvgByLetter.load("./svgByKanji.json");
         dispatch(setIsSvgByLetterLoaded(true));
         dispatch(setLoadingPercentage(loadingPercentage + 0.25));
       })();
