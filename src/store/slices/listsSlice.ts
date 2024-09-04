@@ -2,6 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ListModel, ListUtils } from "../utils/listUtils";
 import { KeyValueStorage } from "../../utils/KeyValueStorage";
 import { ContentId } from "../../components/view/contentId";
+import {
+  listsByUpdateDateSelector,
+  sortListsByUpdateDate,
+} from "../selectors/listsByUpdateDateSelector";
 
 const LISTS_KEY = "LISTS_KEY";
 const favoritesName = "🇯🇵 Favorites";
@@ -101,11 +105,25 @@ export const slice = createSlice({
     ) => {
       const { listId, contentId } = action.payload;
       const list = state.savedLists.find(list => list.id === listId);
-      if (!list.contentIds.some(id => id.id === contentId.id)) {
-        list.contentIds.unshift(contentId);
-      } else {
-        list.contentIds = list.contentIds.filter(id => id.id !== contentId.id);
+      ListUtils.toggleSave(list, contentId);
+      list.updatedTimestamp = Date.now();
+      saveListsToStorage(state.savedLists);
+    },
+    toggleSaveToRecentlyUpdatedList: (
+      state,
+      action: PayloadAction<{
+        listIndex: number;
+        contentId: ContentId;
+      }>
+    ) => {
+      const { listIndex, contentId } = action.payload;
+      const sortedLists = sortListsByUpdateDate(state.savedLists);
+      const list = sortedLists[listIndex];
+      if (!list) {
+        return;
       }
+
+      ListUtils.toggleSave(list, contentId);
       list.updatedTimestamp = Date.now();
       saveListsToStorage(state.savedLists);
     },
@@ -119,6 +137,7 @@ export const {
   deleteList,
   renameList,
   toggleSave,
+  toggleSaveToRecentlyUpdatedList,
 } = slice.actions;
 
 export default slice.reducer;

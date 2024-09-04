@@ -48,4 +48,14 @@ export namespace ListUtils {
       allowedContentIdTypes.includes(contentId.type)
     );
   }
+
+  export function toggleSave(list: ListModel, contentId: ContentId) {
+    if (allowedContentIdTypes.includes(contentId.type)) {
+      if (!list.contentIds.some(id => id.id === contentId.id)) {
+        list.contentIds.unshift(contentId);
+      } else {
+        list.contentIds = list.contentIds.filter(id => id.id !== contentId.id);
+      }
+    }
+  }
 }

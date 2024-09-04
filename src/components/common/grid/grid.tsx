@@ -26,7 +26,7 @@ export const Grid = React.memo(function Grid({
           />
         </Styles.TextFilterInputContainer>
       )}
-      <Styles.Grid gridStyle={gridStyle}>
+      <Styles.Grid gridStyle={gridStyle} tabIndex={2}>
         <Pagination
           itemsInPage={250}
           items={items}

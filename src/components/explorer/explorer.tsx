@@ -12,11 +12,32 @@ import { TabContextMenu } from "./tabbar/tabContextMenu/tabContextMenu";
 import { TabsGroupGrid } from "./tabsGroup/tabsGroupGrid";
 import { SelectionContextMenu } from "./selectionContextMenu/selectionContextMenu";
 import { setSelectionContextMenu } from "../../store/slices/selectionContextMenuSlice";
+import { patchKeyboardConfig } from "../../store/slices/keyboardSlice";
+import { pickCommand } from "../../store/slices/commandSlice";
+import { toggleSaveToRecentlyUpdatedList } from "../../store/slices/listsSlice";
 
 export function Explorer(): JSX.Element {
   const rootTabGroupId = useAppSelector(state => state.tabs.rootTabGroupId);
   const tabGroups = useAppSelector(state => state.tabs.tabGroups);
   const rootTuple = useAppSelector(state => state.tabsDisplay.rootTuple);
+  const commandQueue = useAppSelector(state => state.command.commandQueue);
+  const activeTabContentId = useAppSelector(state => {
+    const activeTabGroupId = state.tabs.activeTabGroupQueue[0];
+    const activeTabGroup = state.tabs.tabGroups[activeTabGroupId];
+    if (!activeTabGroup) {
+      return null;
+    }
+    const activeTabId =
+      state.tabs.tabGroups[activeTabGroupId]?.activeTabQueue.at(-1);
+    const activeTab = state.tabs.tabGroups[activeTabGroupId]?.openTabs.find(
+      tab => tab.id === activeTabId
+    );
+    if (!activeTab) {
+      return null;
+    }
+
+    return activeTab.content;
+  });
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -66,6 +87,62 @@ export function Explorer(): JSX.Element {
       );
     }
   }
+
+  useEffect(() => {
+    dispatch(
+      patchKeyboardConfig({
+        config: {
+          Digit1: "Save current tab to first recently updated list",
+          Digit2: "Save current tab to second recently updated list",
+          Digit3: "Save current tab to third recently updated list",
+        },
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    if (
+      commandQueue.includes("Save current tab to first recently updated list")
+    ) {
+      dispatch(
+        pickCommand({ name: "Save current tab to first recently updated list" })
+      );
+      dispatch(
+        toggleSaveToRecentlyUpdatedList({
+          listIndex: 0,
+          contentId: activeTabContentId,
+        })
+      );
+    }
+    if (
+      commandQueue.includes("Save current tab to second recently updated list")
+    ) {
+      dispatch(
+        pickCommand({
+          name: "Save current tab to second recently updated list",
+        })
+      );
+      dispatch(
+        toggleSaveToRecentlyUpdatedList({
+          listIndex: 1,
+          contentId: activeTabContentId,
+        })
+      );
+    }
+    if (
+      commandQueue.includes("Save current tab to third recently updated list")
+    ) {
+      dispatch(
+        pickCommand({ name: "Save current tab to third recently updated list" })
+      );
+      dispatch(
+        toggleSaveToRecentlyUpdatedList({
+          listIndex: 2,
+          contentId: activeTabContentId,
+        })
+      );
+    }
+  }, [commandQueue]);
 
   return (
     <Styles.Explorer onContextMenu={event => onContextMenu(event)}>

@@ -21,6 +21,7 @@ export const fontSizes = {
   smaller: "1.15rem",
   smallSubtitle: "1.3rem",
   small: "1.5rem",
+  mediumSmaller: "1.6rem",
   mediumSmall: "1.65rem",
   medium: "2rem",
   large: "2.25rem",

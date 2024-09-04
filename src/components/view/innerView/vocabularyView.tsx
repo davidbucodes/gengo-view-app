@@ -16,6 +16,7 @@ import { CopyButton } from "../../common/copyButton/copyButton";
 import { SearchButton } from "../../common/searchButton/searchButton";
 import { AddToListButton } from "../../common/addToListButton/addToListButton";
 import { ListsToggleSave } from "../../common/listsToggleSave/listsToggleSave";
+import { AddToFavoriteButton } from "../../common/addToFavoritesButton/addToFavoritesButton";
 
 export function VocabularyView({
   contentId,
@@ -59,6 +60,7 @@ export function VocabularyView({
             <span>
               <CopyButton textToCopy={display} />
               <SearchButton textToSearch={display} />
+              <AddToFavoriteButton contentId={contentId} />
               <AddToListButton
                 onClick={onAddToListButtonClick}
                 contentId={contentId}

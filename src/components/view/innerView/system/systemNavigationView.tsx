@@ -14,15 +14,21 @@ export function SystemNavigationView({
     return a[0].at(-1).localeCompare(b[0].at(-1));
   });
 
-  configEntries.unshift([
-    "AltEnter",
-    "When searchbox is focused - open search tab for the typed text" as any,
-  ]);
+  configEntries.unshift(
+    [
+      "AltEnter",
+      "When searchbox is focused - open search tab for the typed text" as any,
+    ],
+    [
+      "CtrlEnter",
+      "When searchbox is focused - open first vocabulary result for the typed text" as any,
+    ]
+  );
 
   function getKeys(sequence: string) {
     const keys = kebabCase(sequence)
       .split("-")
-      .filter(i => i !== "key" && i !== "arrow");
+      .filter(i => i !== "key" && i !== "arrow" && i !== "digit");
     const keysElements = keys.map(key => (
       <Styles.KeyboardKey key={key}>{capitalize(key)}</Styles.KeyboardKey>
     ));

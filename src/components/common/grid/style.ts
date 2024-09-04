@@ -29,6 +29,7 @@ export namespace Styles {
     "data-tooltip"?: string;
     "data-separator"?: boolean;
   }>`
+    appearance: none;
     text-align: center;
     color: ${props =>
       props["data-separator"] ? colors.white : colors.backgroundLight6};
@@ -38,6 +39,7 @@ export namespace Styles {
     user-select: none;
     position: relative;
     display: inline-block;
+
     ${props =>
       props["data-separator"]
         ? ""

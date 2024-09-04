@@ -89,14 +89,15 @@ export function SystemAllListsView() {
     <div>
       <Styles.Header>All lists</Styles.Header>
       <Styles.Line>
-        List name (optional):
+        New list name (optional):
         <Styles.Textbox
           value={listName}
+          placeholder="New list name..."
           onChange={event => {
             setListName(event.target.value);
           }}
         />
-        <Button onClick={createList}>Save</Button>
+        <Button onClick={createList}>Create new list</Button>
       </Styles.Line>
       <Styles.Line>
         Previous lists

@@ -113,6 +113,7 @@ export function AppLayout() {
       dispatch(pickCommand({ name: "Close current tab" }));
       dispatch(closeCurrentTab());
     }
+
     if (commandQueue.includes("Close all tab groups")) {
       dispatch(pickCommand({ name: "Close all tab groups" }));
       dispatch(closeAllGroups());

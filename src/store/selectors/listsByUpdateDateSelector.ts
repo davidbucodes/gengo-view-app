@@ -1,12 +1,13 @@
-import { Argument } from "webpack";
 import { ListModel } from "../utils/listUtils";
-import { useAppSelector } from "../hooks";
 import { sortBy } from "lodash";
+import { RootState } from "../store";
 
-export function listsByUpdateDateSelector(
-  state: Parameters<Parameters<typeof useAppSelector>[0]>[0]
-): ListModel[] {
-  return sortBy(state.lists.savedLists, function (list) {
+export function listsByUpdateDateSelector(state: RootState): ListModel[] {
+  return sortListsByUpdateDate(state.lists.savedLists);
+}
+
+export function sortListsByUpdateDate(lists: ListModel[]): ListModel[] {
+  return sortBy(lists, function (list) {
     return -list.updatedTimestamp;
   });
 }

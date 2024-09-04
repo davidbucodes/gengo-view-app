@@ -45,6 +45,7 @@ export function Searchbar() {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState<ContentId[]>([]);
   const [searchResultsLength, setSearchResultsLength] = useState(0);
+  const [isComposing, setIsComposing] = useState(false);
 
   function onClosePopup() {
     setTimeout(() => {
@@ -94,6 +95,8 @@ export function Searchbar() {
             });
           }}
           onChange={event => setSearchText(event.target.value)}
+          onCompositionStart={() => setIsComposing(true)}
+          onCompositionEnd={() => setIsComposing(false)}
           onKeyDown={event => {
             if (event.code === "Enter" && event.altKey === true) {
               dispatch(
@@ -107,10 +110,27 @@ export function Searchbar() {
               );
               ref.current?.blur();
               setIsResultsPopupFocused(false);
+            } else if (
+              (event.code === "Enter" && event.ctrlKey === true) ||
+              (event.code === "Enter" && event.metaKey === true)
+            ) {
+              const firstVocabulryResult = searchResults.find(
+                result => result.type === "vocabulary"
+              );
+
+              if (firstVocabulryResult) {
+                dispatch(
+                  openTab({
+                    contentId: firstVocabulryResult,
+                  })
+                );
+                ref.current?.blur();
+                setIsResultsPopupFocused(false);
+              }
             } else if (event.code === "Escape") {
               ref.current?.blur();
               setIsResultsPopupFocused(false);
-            } else if (event.code === "ArrowDown") {
+            } else if (event.code === "ArrowDown" && !isComposing) {
               (
                 ref.current?.nextElementSibling?.firstChild
                   ?.firstChild as HTMLElement

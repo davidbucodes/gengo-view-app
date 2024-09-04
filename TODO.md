@@ -2,6 +2,17 @@
 
 Improvements:
 
+- add favorites button
+- add preview to lists
+- add anki mitai to list
+- add note to word kanji etc.
+- fix shortcuts keys when in hebrew
+- japanese translation of UI
+- when previewing items add learning ranks
+- view pages add learning ranks
+- list item remove
+- save and load config to storage
+- add tooltips to all buttons expecially list and maybe session
 - lists
 - copy kanji button
 - fix bug when kanji searhing by stroke count and then set level ignore stroke count

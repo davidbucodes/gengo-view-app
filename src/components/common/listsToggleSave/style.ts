@@ -28,5 +28,6 @@ export namespace Styles {
     flex-shrink: 0;
     flex-grow: 1;
     flex-wrap: wrap;
+    flex-direction: column;
   `;
 }

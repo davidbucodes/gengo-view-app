@@ -109,7 +109,7 @@ export namespace Styles {
     font-style: italic;
     text-align: center;
     color: ${colors.backgroundLight5};
-    flex-grow: 0.9;
+    flex-grow: 0.4;
   `;
   export const FilterTextbox = styled(Textbox)`
     flex-grow: 1;

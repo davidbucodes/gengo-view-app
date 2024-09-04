@@ -6,7 +6,9 @@ interface TreeItemProps {
 }
 
 export namespace Styles {
-  export const TreeItemWrapper = styled.div``;
+  export const TreeItemWrapper = styled.div`
+    flex-shrink: 0;
+  `;
 
   export const TreeItem = styled.div<TreeItemProps>`
     color: white;
@@ -14,6 +16,7 @@ export namespace Styles {
     margin-left: ${props => 40 * props.level}px;
     padding-left: 15px;
     font-size: ${fontSizes.smallSubtitle};
+    line-height: ${fontSizes.mediumSmaller};
     user-select: none;
     cursor: pointer;
     display: flex;

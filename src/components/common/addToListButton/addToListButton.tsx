@@ -14,14 +14,15 @@ export function AddToListButton({
 }): JSX.Element {
   return (
     <span>
-      <Button onClick={() => onClick()} tooltip="Add to list">
-        <PlaylistAdd />
-      </Button>
       {showLatestListsInline ? (
         <ListsToggleSave contentId={contentId} inline limitLists={3} />
       ) : (
         ""
       )}
+      <Button onClick={() => onClick()} tooltip={"Other lists"}>
+        <PlaylistAdd />
+        Other lists
+      </Button>
     </span>
   );
 }
