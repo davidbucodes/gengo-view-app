@@ -3,6 +3,7 @@ import {
   Download,
   HistoryEdu,
   Assignment,
+  BeenhereOutlined,
 } from "@mui/icons-material";
 import { useAppDispatch } from "../../../store/hooks";
 import { openTab } from "../../../store/slices/tabsSlice";
@@ -17,6 +18,7 @@ export function SearchbarLeftMenu(): JSX.Element {
   const buttons: [JSX.Element, string, SystemContentIds][] = [
     [<Settings />, "Settings", SystemContentIds.Options],
     [<Download />, "Export", SystemContentIds.Export],
+    [<BeenhereOutlined />, "Familiars", SystemContentIds.Familiars],
     [<HistoryEdu />, "Sessions", SystemContentIds.Sessions],
     [<Assignment />, "All Lists", SystemContentIds.AllLists],
   ];

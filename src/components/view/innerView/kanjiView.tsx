@@ -19,6 +19,7 @@ import { CopyButton } from "../../common/copyButton/copyButton";
 import { ListsToggleSave } from "../../common/listsToggleSave/listsToggleSave";
 import { AddToListButton } from "../../common/addToListButton/addToListButton";
 import { SearchButton } from "../../common/searchButton/searchButton";
+import { AddToFamiliarsButton } from "../../common/addToFamiliarsButton/addToFamiliarsButton";
 
 export function KanjiView({
   contentId,
@@ -64,6 +65,7 @@ export function KanjiView({
             <span>
               <CopyButton textToCopy={kanji.kanji} />
               <SearchButton textToSearch={kanji.kanji} />
+              <AddToFamiliarsButton contentId={contentId} />
               <AddToListButton
                 onClick={onAddToListButtonClick}
                 contentId={contentId}

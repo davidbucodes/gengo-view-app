@@ -115,4 +115,10 @@ export namespace Styles {
     color: black;
     background: orange;
   `;
+
+  export const FlexTd = styled.td`
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  `;
 }

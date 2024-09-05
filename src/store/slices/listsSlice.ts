@@ -8,7 +8,7 @@ import {
 } from "../selectors/listsByUpdateDateSelector";
 
 const LISTS_KEY = "LISTS_KEY";
-const favoritesName = "🇯🇵 Favorites";
+const familiarsName = "🇯🇵 Familiars";
 
 export interface SavedListsState {
   savedLists: ListModel[];
@@ -20,7 +20,7 @@ function saveListsToStorage(lists: ListModel[]) {
 }
 
 function createDefaultList(): ListModel {
-  return ListUtils.createList(favoritesName);
+  return ListUtils.createList(familiarsName);
 }
 
 if (!KeyValueStorage.isValueTruthy(LISTS_KEY)) {

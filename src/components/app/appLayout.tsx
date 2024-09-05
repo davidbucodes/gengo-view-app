@@ -103,6 +103,7 @@ export function AppLayout() {
           ShiftKeyV: "Search copied text - first vocabulary or open search",
           KeyT: "Focus next tab in group",
           ShiftKeyT: "Focus previous tab in group",
+          KeyA: "Toggle save status of current tab as familiar",
         },
       })
     );

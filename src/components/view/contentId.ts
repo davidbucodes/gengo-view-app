@@ -13,6 +13,7 @@ export const enum SystemContentIds {
   NewList = "NewList",
   AllLists = "AllLists",
   List = "List",
+  Familiars = "Familiars",
 }
 
 export type ContentId =

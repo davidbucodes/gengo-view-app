@@ -2,8 +2,10 @@
 
 Improvements:
 
-- add favorites button
+- add familiars button
+- fix toggle familiar remove functionality
 - add preview to lists
+- add custom sentences?
 - add anki mitai to list
 - add note to word kanji etc.
 - fix shortcuts keys when in hebrew

@@ -8,7 +8,7 @@ import {
   VocabularyDocument,
   isKanjiRegexp,
 } from "@davidbucodes/gengo-view-database";
-import { meanBy, sortBy, uniq, zip } from "lodash";
+import { identity, meanBy, sortBy, uniq, zip } from "lodash";
 import { useEffect, useState } from "react";
 import { Link } from "../../common/link/link";
 import { ContentId } from "../contentId";
@@ -19,6 +19,9 @@ import { useAppSelector } from "../../../store/hooks";
 import { highlightEntry } from "../../../utils/highlightEntry";
 import { SearchResultBadge } from "../innerView/search/searchResultBadge/searchResultBadge";
 import { Badge } from "../../common/badge/badge";
+import { Beenhere } from "@mui/icons-material";
+import { searchResultToContentId } from "../../topbar/searchbar/searchResultsToContentIds";
+import { Styles } from "./style";
 
 const indexNameToTitle: Record<IndexName, string> = {
   name: "Names",
@@ -38,6 +41,9 @@ export function ContentReferences({
   const highlightWordAtReferences = useAppSelector(
     state => state.config.highlightWordAtReferences
   );
+  const savedFamiliars = useAppSelector(
+    state => state.familiars.savedFamiliars
+  );
 
   const [sentences, setSentences] =
     useState<IndexSearchResult<SentenceDocument>[]>(null);
@@ -49,6 +55,10 @@ export function ContentReferences({
   const [sentencesFilterText, setSentencesFilterText] = useState<string>();
   const [vocabularyFilterText, setVocabularyFilterText] = useState<string>();
   const [namesFilterText, setNamesFilterText] = useState<string>();
+
+  const [isSavedFamiliarDictionary, setIsSavedFamiliarDictionary] = useState<
+    Record<string, boolean>
+  >({});
 
   const firstLabelEntry = contentId.label?.split(",")[0];
 
@@ -143,6 +153,20 @@ export function ContentReferences({
     }
   }, [contentId, indexNames]);
 
+  useEffect(() => {
+    const isSavedFamiliarsDict: Record<string, boolean> = {};
+    [vocabulary, kanji, names]
+      .filter(identity)
+      .flat()
+      .forEach(searchResult => {
+        const { id } = searchResultToContentId(searchResult);
+        isSavedFamiliarsDict[searchResult._index + searchResult._id] = Boolean(
+          savedFamiliars[id]
+        );
+      });
+    setIsSavedFamiliarDictionary(isSavedFamiliarsDict);
+  }, [vocabulary, kanji, names, savedFamiliars]);
+
   return (
     <div
       style={{
@@ -160,7 +184,18 @@ export function ContentReferences({
               previousContentIds={previousContentIds}
               useTrElement
             >
-              <td>{kanji.kanji}</td>
+              <Styles.FlexTd>
+                {isSavedFamiliarDictionary[kanji._index + kanji._id] ? (
+                  <Beenhere
+                    style={{
+                      marginRight: 6,
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+                {kanji.kanji}
+              </Styles.FlexTd>
               <td>{kanji.meaning ? kanji.meaning?.join(", ") : ""}</td>
             </Link>
           )}
@@ -178,14 +213,25 @@ export function ContentReferences({
               previousContentIds={previousContentIds}
               useTrElement
             >
-              <td>
-                {!highlightWordAtReferences
-                  ? vocab.display.join(", ")
-                  : highlightEntry(
-                      vocab.display.join(", "),
-                      firstLabelEntry,
-                      vocabularyFilterText
-                    )}
+              <Styles.FlexTd>
+                {isSavedFamiliarDictionary[vocab._index + vocab._id] ? (
+                  <Beenhere
+                    style={{
+                      marginRight: 6,
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+                <span>
+                  {!highlightWordAtReferences
+                    ? vocab.display.join(", ")
+                    : highlightEntry(
+                        vocab.display.join(", "),
+                        firstLabelEntry,
+                        vocabularyFilterText
+                      )}
+                </span>
                 {vocab.jlpt ? (
                   <Badge
                     text={`N${vocab.jlpt}`}
@@ -194,7 +240,7 @@ export function ContentReferences({
                 ) : (
                   ""
                 )}
-              </td>
+              </Styles.FlexTd>
               <td>
                 {!highlightWordAtReferences
                   ? vocab.reading.join(", ")
@@ -274,14 +320,29 @@ export function ContentReferences({
               previousContentIds={previousContentIds}
               useTrElement
             >
-              <td>
-                <ruby>
+              <Styles.FlexTd>
+                {isSavedFamiliarDictionary[name._index + name._id] ? (
+                  <Beenhere
+                    style={{
+                      marginRight: 6,
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+                <span>
+                  {!highlightWordAtReferences
+                    ? name.n
+                    : highlightEntry(name.n, firstLabelEntry, namesFilterText)}
+                </span>
+              </Styles.FlexTd>
+              {/* <ruby>
                   {!highlightWordAtReferences
                     ? name.n
                     : highlightEntry(name.n, firstLabelEntry, namesFilterText)}
                   <rt>{name.r}</rt>
-                </ruby>
-              </td>
+                </ruby> */}
+              <td>{name.r}</td>
               <td>
                 {!highlightWordAtReferences
                   ? name.d

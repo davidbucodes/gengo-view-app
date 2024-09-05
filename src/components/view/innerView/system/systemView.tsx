@@ -11,6 +11,7 @@ import { SystemWelcomeView } from "./systemWelcomeView";
 import { SystemAllListsView } from "./systemLists/systemAllListsView";
 import { SystemListView } from "./systemLists/systemListView";
 import { TabModel } from "../../../../store/utils/tabActions";
+import { SystemFamiliarsView } from "./systemFamiliars/systemFamiliarsView";
 
 export function SystemView({
   contentId,
@@ -42,5 +43,7 @@ export function SystemView({
       return <SystemAllListsView />;
     case SystemContentIds.List:
       return <SystemListView tab={tab} listId={contentId.listId} />;
+    case SystemContentIds.Familiars:
+      return <SystemFamiliarsView />;
   }
 }

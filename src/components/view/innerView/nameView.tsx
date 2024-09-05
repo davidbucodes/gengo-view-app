@@ -17,6 +17,7 @@ import { AddToListButton } from "../../common/addToListButton/addToListButton";
 import { ListsToggleSave } from "../../common/listsToggleSave/listsToggleSave";
 import { CopyButton } from "../../common/copyButton/copyButton";
 import { SearchButton } from "../../common/searchButton/searchButton";
+import { AddToFamiliarsButton } from "../../common/addToFamiliarsButton/addToFamiliarsButton";
 
 export function NameView({
   contentId,
@@ -58,6 +59,7 @@ export function NameView({
               <span>
                 <CopyButton textToCopy={name?.n} />
                 <SearchButton textToSearch={name?.n} />
+                <AddToFamiliarsButton contentId={contentId} />
                 <AddToListButton
                   onClick={onAddToListButtonClick}
                   contentId={contentId}

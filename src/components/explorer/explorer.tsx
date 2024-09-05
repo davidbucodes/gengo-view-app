@@ -15,6 +15,7 @@ import { setSelectionContextMenu } from "../../store/slices/selectionContextMenu
 import { patchKeyboardConfig } from "../../store/slices/keyboardSlice";
 import { pickCommand } from "../../store/slices/commandSlice";
 import { toggleSaveToRecentlyUpdatedList } from "../../store/slices/listsSlice";
+import { toggleFamiliar } from "../../store/slices/familiarsSlice";
 
 export function Explorer(): JSX.Element {
   const rootTabGroupId = useAppSelector(state => state.tabs.rootTabGroupId);
@@ -92,9 +93,12 @@ export function Explorer(): JSX.Element {
     dispatch(
       patchKeyboardConfig({
         config: {
-          Digit1: "Save current tab to first recently updated list",
-          Digit2: "Save current tab to second recently updated list",
-          Digit3: "Save current tab to third recently updated list",
+          Digit1:
+            "Toggle save status of current tab to first recently updated list",
+          Digit2:
+            "Toggle save status of current tab to second recently updated list",
+          Digit3:
+            "Toggle save status of current tab to third recently updated list",
         },
       })
     );
@@ -102,10 +106,14 @@ export function Explorer(): JSX.Element {
 
   useEffect(() => {
     if (
-      commandQueue.includes("Save current tab to first recently updated list")
+      commandQueue.includes(
+        "Toggle save status of current tab to first recently updated list"
+      )
     ) {
       dispatch(
-        pickCommand({ name: "Save current tab to first recently updated list" })
+        pickCommand({
+          name: "Toggle save status of current tab to first recently updated list",
+        })
       );
       dispatch(
         toggleSaveToRecentlyUpdatedList({
@@ -115,11 +123,13 @@ export function Explorer(): JSX.Element {
       );
     }
     if (
-      commandQueue.includes("Save current tab to second recently updated list")
+      commandQueue.includes(
+        "Toggle save status of current tab to second recently updated list"
+      )
     ) {
       dispatch(
         pickCommand({
-          name: "Save current tab to second recently updated list",
+          name: "Toggle save status of current tab to second recently updated list",
         })
       );
       dispatch(
@@ -130,14 +140,30 @@ export function Explorer(): JSX.Element {
       );
     }
     if (
-      commandQueue.includes("Save current tab to third recently updated list")
+      commandQueue.includes(
+        "Toggle save status of current tab to third recently updated list"
+      )
     ) {
       dispatch(
-        pickCommand({ name: "Save current tab to third recently updated list" })
+        pickCommand({
+          name: "Toggle save status of current tab to third recently updated list",
+        })
       );
       dispatch(
         toggleSaveToRecentlyUpdatedList({
           listIndex: 2,
+          contentId: activeTabContentId,
+        })
+      );
+    }
+    if (
+      commandQueue.includes("Toggle save status of current tab as familiar")
+    ) {
+      dispatch(
+        pickCommand({ name: "Toggle save status of current tab as familiar" })
+      );
+      dispatch(
+        toggleFamiliar({
           contentId: activeTabContentId,
         })
       );

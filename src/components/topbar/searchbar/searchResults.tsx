@@ -5,6 +5,10 @@ import { Button } from "../../common/button/button";
 import { ContentIdBadge } from "../../common/contentIdBadge/contentIdBadge";
 import { ContentId } from "../../view/contentId";
 import { Styles } from "./style";
+import { identity } from "lodash";
+import { searchResultToContentId } from "./searchResultsToContentIds";
+import { Beenhere, BeenhereOutlined } from "@mui/icons-material";
+import { colors } from "../../../theme";
 
 export function SearchResults({
   onClosePopup,
@@ -28,8 +32,15 @@ export function SearchResults({
   const closeSearchResultsOnPopupInteraction = useAppSelector(
     state => state.config.closeSearchResultsOnPopupInteraction
   );
+  const savedFamiliars = useAppSelector(
+    state => state.familiars.savedFamiliars
+  );
 
   const [isSomeElementFocused, setIsSomeElementFocused] = useState(false);
+
+  const [isSavedFamiliarDictionary, setIsSavedFamiliarDictionary] = useState<
+    Record<string, boolean>
+  >({});
 
   useEffect(() => {
     if (isSomeElementFocused) {
@@ -97,6 +108,15 @@ export function SearchResults({
   );
   const displayedResults = searchResults.slice(0, resultsNumberToDisplay);
 
+  useEffect(() => {
+    const isSavedFamiliarsDict: Record<string, boolean> = {};
+    searchResults.forEach(searchResult => {
+      const { id } = searchResult;
+      isSavedFamiliarsDict[id] = Boolean(savedFamiliars[id]);
+    });
+    setIsSavedFamiliarDictionary(isSavedFamiliarsDict);
+  }, [searchResults, savedFamiliars]);
+
   return (
     <Styles.SearchResults
       tabIndex={-1}
@@ -123,6 +143,11 @@ export function SearchResults({
             setIsSomeElementFocused(false);
           }}
         >
+          {isSavedFamiliarDictionary[result.id] ? (
+            <Beenhere style={{ marginRight: 6, color: colors.white }} />
+          ) : (
+            ""
+          )}
           <ContentIdBadge tabContentType={result.type} />
           <Styles.SearchResultText>{result.label}</Styles.SearchResultText>
         </Styles.SearchResult>

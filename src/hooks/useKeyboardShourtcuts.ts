@@ -18,6 +18,7 @@ const enum KeySequence {
   Digit1 = "Digit1",
   Digit2 = "Digit2",
   Digit3 = "Digit3",
+  KeyA = "KeyA",
 }
 
 export type KeyboardConfig = Partial<Record<KeySequence, CommandName>>;

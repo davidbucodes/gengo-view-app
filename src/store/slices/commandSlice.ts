@@ -10,9 +10,10 @@ export type CommandName =
   | "Focus searchbox"
   | "Focus next tab in group"
   | "Focus previous tab in group"
-  | "Save current tab to first recently updated list"
-  | "Save current tab to second recently updated list"
-  | "Save current tab to third recently updated list";
+  | "Toggle save status of current tab to first recently updated list"
+  | "Toggle save status of current tab to second recently updated list"
+  | "Toggle save status of current tab to third recently updated list"
+  | "Toggle save status of current tab as familiar";
 
 export interface ConfigState {
   commandQueue: CommandName[];
