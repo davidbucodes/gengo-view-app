@@ -29,6 +29,7 @@ import { patchKeyboardConfig } from "../../store/slices/keyboardSlice";
 import { useKeyboardShortcuts } from "../../hooks/useKeyboardShourtcuts";
 import { searchResultToContentId } from "../topbar/searchbar/searchResultsToContentIds";
 import { getAllKanjisSorted, sortKanjis } from "../../utils/getAllKanjisSorted";
+import { listsByUpdateDateSelector } from "../../store/selectors/listsByUpdateDateSelector";
 
 export function AppLayout() {
   const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ export function AppLayout() {
   });
 
   const commandQueue = useAppSelector(state => state.command.commandQueue);
-  const lists = useAppSelector(state => state.lists.savedLists);
+  const lists = useAppSelector(listsByUpdateDateSelector);
 
   const [kanjis, setKanjis] = useState(
     [] as IndexSearchResult<KanjiDocument>[]

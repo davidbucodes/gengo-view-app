@@ -2,12 +2,12 @@
 
 Improvements:
 
-- add familiars button
-- fix toggle familiar remove functionality
+- lists folder
+- 琢磨 vocab table display fix
+- add note to word kanji etc.
 - add preview to lists
 - add custom sentences?
 - add anki mitai to list
-- add note to word kanji etc.
 - fix shortcuts keys when in hebrew
 - japanese translation of UI
 - when previewing items add learning ranks
