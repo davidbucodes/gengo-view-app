@@ -45,7 +45,7 @@ export function App() {
         dispatch(setIsDatabaseLoaded(true));
       })();
       (async () => {
-        await SvgByLetter.load("./svgByKanji.json");
+        await SvgByLetter.load("./svgByLetter.json");
         dispatch(setIsSvgByLetterLoaded(true));
         dispatch(setLoadingPercentage(loadingPercentage + 0.25));
       })();
