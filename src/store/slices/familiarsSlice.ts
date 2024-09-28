@@ -4,7 +4,6 @@ import { ContentId } from "../../components/view/contentId";
 import { FamiliarsUtils, SavedFamiliars } from "../utils/familiarsUtils";
 
 const FAMILIARS_KEY = "FAMILIARS_KEY";
-const familiarsName = "🇯🇵 Familiars";
 
 export interface SavedFamiliarsState {
   savedFamiliars: SavedFamiliars;

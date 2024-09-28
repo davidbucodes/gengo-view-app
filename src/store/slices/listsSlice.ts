@@ -2,13 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ListModel, ListUtils } from "../utils/listUtils";
 import { KeyValueStorage } from "../../utils/KeyValueStorage";
 import { ContentId } from "../../components/view/contentId";
-import {
-  listsByUpdateDateSelector,
-  sortListsByUpdateDate,
-} from "../selectors/listsByUpdateDateSelector";
+import { sortListsByUpdateDate } from "../selectors/listsByUpdateDateSelector";
 
 const LISTS_KEY = "LISTS_KEY";
-const familiarsName = "🇯🇵 Familiars";
+const favoritesListName = "🇯🇵 Favorites";
 
 export interface SavedListsState {
   savedLists: ListModel[];
@@ -20,7 +17,7 @@ function saveListsToStorage(lists: ListModel[]) {
 }
 
 function createDefaultList(): ListModel {
-  return ListUtils.createList(familiarsName);
+  return ListUtils.createList(favoritesListName);
 }
 
 if (!KeyValueStorage.isValueTruthy(LISTS_KEY)) {
