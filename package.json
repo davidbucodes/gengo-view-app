@@ -1,6 +1,6 @@
 {
   "name": "@davidbucodes/gengo-view-app",
-  "version": "1.0.1-beta",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,9 +17,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@davidbucodes/gengo-view-database": "^1.0.3",
-    "@davidbucodes/gengo-view-indices": "^1.0.1",
-    "@davidbucodes/gengo-view-svgs": "^1.0.0-beta1",
+    "@davidbucodes/gengo-view-database": "^1.0.5",
+    "@davidbucodes/gengo-view-indices": "^1.0.2",
+    "@davidbucodes/gengo-view-svgs": "^1.0.0",
     "@mui/icons-material": "^5.10.16",
     "@reduxjs/toolkit": "^1.9.1",
     "lodash": "^4.17.21",
